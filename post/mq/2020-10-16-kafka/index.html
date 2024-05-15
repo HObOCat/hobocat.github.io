@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="description" content="Kafka的使用 - https://hobocat.github.io/post/mq/2020-10-16-kafka/">
+    <meta name="author" content="Jack - https://hobocat.github.io/">
+    
+    <meta name="msvalidate.01" content="B46311949B856F2A7015F366FB3CE878" />
+    <title>Kafka的使用</title>
+    
+    <base target="_blank">
+    <link rel="icon" type="image/png" href="/favicon.ico">
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="https://hobocat.github.io/style.min.94e7ed14b48117025ebd1148adc11f7268f1ebf50d97297ac663edf1aa6f52dc.css">
+    
+    <script>const DARK =  false ;</script>
+    
+    <script type="text/javascript" src="/main.js" defer></script>
+    
+</head>
+<body class="active-animate cool">
+        <div class="container-floating-box">
+	<div class="box box1"></div>
+	<div class="box box11"></div>
+	<div class="box box12"></div>
+	<div class="box box2"></div>
+	<div class="box box3"></div>
+	<div class="box box4"></div>
+	<div class="box box5"></div>
+	<div class="box box6"></div>
+	<div class="box box7"></div>
+	<div class="box box8"></div>
+	<div class="box box9"></div>
+</div>
+        <div class="cool-before" style="background: url('/imgs/bg/wallhaven-6qr21l.jpg') left top/100% no-repeat fixed;"></div>
+        <div id="header" class=""><div class="container-header">
+
+    
+    
+    
+    <div class="right">
+        
+        <h1 class="title">Kafka的使用</h1>
+    
+        
+        
+            <div id="toc">📜</div>
+        
+    </div>
+</div>
+</div>
+        <div id="content">
+
+
+
+
+
+
+
+
+
+
+<div class="container-main container-page ">
+
+    
+
+    
+    
+    
+    
+
+    <div class="desc">
+        
+        <span>
+            
+            <svg t="1656736000388" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                p-id="7409" width="12" height="12">
+                <path
+                    d="M524.885333 338.986667L200.362667 663.466667c-17.28 15.274667-27.989333 36.693333-29.696 56.234666v133.76l130.730666 0.085334c22.784-1.621333 43.989333-12.245333 61.013334-31.701334l322.688-322.645333-160.213334-160.213333z m60.373334-60.330667l160.170666 160.213333 102.144-102.144a19.712 19.712 0 0 0 0-27.861333L715.093333 176.426667a19.456 19.456 0 0 0-27.605333 0L585.258667 278.613333zM701.312 85.333333c27.946667 0 54.741333 11.136 74.282667 30.848l132.309333 132.309334a105.045333 105.045333 0 0 1 0 148.565333L424.874667 879.957333c-29.824 34.346667-72.106667 55.466667-120.448 58.794667H85.333333v-42.666667l0.128-179.84c3.626667-44.970667 24.576-86.826667 56.448-114.944l485.12-485.034666A104.789333 104.789333 0 0 1 701.269333 85.333333z"
+                    p-id="7410" fill="#adb5bd"></path>
+            </svg>
+            2020-10-16&nbsp;&nbsp;&nbsp;
+            <svg t="1656737270708" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                p-id="23838" width="11" height="11">
+                <path
+                    d="M824.264 95.36c0-23.859 25.043-44.16 48.902-44.16s49.714 20.301 49.714 44.16v190.08c0 23.859-19.054 52.868-42.913 52.868h-190.08c-23.859 0-46.696-25.96-46.696-49.819s22.55-46.249 46.409-46.249h82.025C702.344 175.534 610.22 155.853 512 155.853c-206.775 0-360.398 149.372-360.398 356.147 0 206.775 153.623 358.23 360.398 358.23 206.775 0 357.467-151.455 357.467-358.23 0-23.859 23.634-50.706 53.413-50.706 29.78 0 49.92 26.847 49.92 50.706 0 254.493-206.307 460.8-460.8 460.8-254.493 0-460.8-206.307-460.8-460.8C51.2 257.507 257.507 51.2 512 51.2c122.4 0 226.684 33.296 312.264 117.369 0.358 0.351 0.358-24.052 0-73.209z"
+                    p-id="23839" fill="#adb5bd"></path>
+            </svg>
+            2024-05-15&nbsp;&nbsp;&nbsp;
+        </span>
+        <span>
+            
+            <svg t="1656737548689" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                p-id="33866" width="12" height="12">
+                <path
+                    d="M832.038608 64.662657H192.030028C121.255125 64.662657 63.940169 121.98845 63.940169 192.694717v446.793671C63.940169 710.205493 121.255125 767.643272 192.030028 767.643272h133.353183a63.940169 63.940169 0 0 1 55.219742 31.576328l76.099638 129.83828c12.358154 21.093031 33.790754 31.626903 55.216129 31.626903s42.832688-10.544709 55.198067-31.619678l76.222461-129.870792a63.940169 63.940169 0 0 1 55.212517-31.551041h133.54103c70.576219 0 127.732228-57.289669 127.732227-127.800865V192.391272C959.825022 121.85479 902.643727 64.662657 832.038608 64.662657zM895.884854 639.842407A63.85347 63.85347 0 0 1 832.092795 703.703103h-133.54103a127.753903 127.753903 0 0 0-110.349172 63.09847l-76.222461 129.856342a0.274545 0.274545 0 0 1 0-0.050574h-0.032512s-0.021675 0.061411-0.032512 0.061412l-76.1466-129.85273A127.804477 127.804477 0 0 0 325.383211 703.703103H192.030028A64.207489 64.207489 0 0 1 127.880338 639.488388V192.694717A64.102729 64.102729 0 0 1 192.030028 128.602826h640.00858A63.799284 63.799284 0 0 1 895.884854 192.391272v447.451135z"
+                    fill="#adb5bd" p-id="33867"></path>
+                <path
+                    d="M608.154093 288.092004A31.970084 31.970084 0 0 0 576.184009 320.062089v160.078006l-134.650049-179.278119A31.970084 31.970084 0 0 0 384.002258 320.062089v255.760676a31.970084 31.970084 0 0 0 63.940169 0v-159.958796l134.650048 179.274507a31.970084 31.970084 0 0 0 57.531703-19.200113V320.062089a31.970084 31.970084 0 0 0-31.970085-31.970085z"
+                    fill="#adb5bd" p-id="33868"></path>
+            </svg>
+            9393 字</span>&nbsp;
+        <span>
+            
+            <svg t="1656737462334" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                p-id="32892" width="12" height="12">
+                <path
+                    d="M512 74.666667C270.933333 74.666667 74.666667 270.933333 74.666667 512S270.933333 949.333333 512 949.333333 949.333333 753.066667 949.333333 512 753.066667 74.666667 512 74.666667z m0 810.666666c-204.8 0-373.333333-168.533333-373.333333-373.333333S307.2 138.666667 512 138.666667 885.333333 307.2 885.333333 512 716.8 885.333333 512 885.333333z"
+                    p-id="32893" fill="#adb5bd"></path>
+                <path
+                    d="M695.466667 567.466667l-151.466667-70.4V277.333333c0-17.066667-14.933333-32-32-32s-32 14.933333-32 32v238.933334c0 12.8 6.4 23.466667 19.2 29.866666l170.666667 81.066667c4.266667 2.133333 8.533333 2.133333 12.8 2.133333 12.8 0 23.466667-6.4 29.866666-19.2 6.4-14.933333 0-34.133333-17.066666-42.666666z"
+                    p-id="32894" fill="#adb5bd"></path>
+            </svg>
+            19 分钟</span>
+        <div class="container-ctgtag">
+	<div class="taxonomy">
+		<div class="tag">
+			
+			
+		</div>
+	</div>
+</div>
+        
+    </div>
+
+    <div class="toc">
+        <div class="container-page-operation">
+	<div class="page-operation">
+		<div><a href="/"><img src="/imgs/icons/home-2.svg" alt=""></a></div>
+		<div><a href="/nav"><img src="/imgs/icons/iov-navigate-1.svg" alt=""></a></div>
+		<div><a href="/wiki"><img src="/imgs/icons/wiki.svg" alt=""></a></div>
+		<div><a href="/tags"><img src="/imgs/icons/treetags.svg" alt=""></a></div>
+		<div id="light-dark"><a><img src="/imgs/icons/moon2.svg" alt=""></a></div>
+		<div><a href="#"><img src="/imgs/icons/up2.svg" alt=""></a></div>
+	</div>
+</div>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一概述安装">一、概述&amp;安装</a>
+      <ul>
+        <li><a href="#概述">概述</a></li>
+        <li><a href="#安装启动">安装启动</a></li>
+      </ul>
+    </li>
+    <li><a href="#二kafka架构">二、kafka架构</a>
+      <ul>
+        <li><a href="#工作流程及文件存储机制">工作流程及文件存储机制</a></li>
+        <li><a href="#生产者数据可靠性保证">生产者数据可靠性保证</a></li>
+        <li><a href="#生产者数据一致性问题可见性">生产者数据一致性问题【可见性】</a></li>
+        <li><a href="#exactly-once语义">Exactly Once语义</a></li>
+        <li><a href="#消费者消费方式">消费者消费方式</a></li>
+        <li><a href="#消费者分区分配策略">消费者分区分配策略</a></li>
+        <li><a href="#offset的维护">offset的维护</a></li>
+        <li><a href="#事务">事务</a></li>
+        <li><a href="#zookeeper在kafka中的作用">Zookeeper在Kafka中的作用</a></li>
+      </ul>
+    </li>
+    <li><a href="#三spring-boot-kafka">三、Spring boot kafka</a>
+      <ul>
+        <li><a href="#adminclient-api">AdminClient API</a></li>
+        <li><a href="#producers-api">Producers API</a></li>
+        <li><a href="#consumer-api">Consumer API</a></li>
+        <li><a href="#streams-api">Streams API</a></li>
+        <li><a href="#connector-api">Connector API</a></li>
+      </ul>
+    </li>
+    <li><a href="#四kafka特性">四、Kafka特性</a>
+      <ul>
+        <li><a href="#kafka高效读写数据">Kafka高效读写数据</a></li>
+        <li><a href="#kafka的吞吐量大原因">Kafka的吞吐量大原因</a></li>
+        <li><a href="#kafka自有特点">Kafka自有特点</a></li>
+        <li><a href="#kafka限制">Kafka限制</a></li>
+        <li><a href="#消费者消费者组">消费者&amp;消费者组</a></li>
+        <li><a href="#kafka如何保证顺序性">Kafka如何保证顺序性</a></li>
+        <li><a href="#kafka的topic删除">Kafka的Topic删除</a></li>
+      </ul>
+    </li>
+    <li><a href="#五kafka-manager">五、Kafka Manager</a></li>
+  </ul>
+</nav>
+    </div>
+
+    <div class='content  '>
+        <h2 id="一概述安装">一、概述&amp;安装</h2>
+<h3 id="概述">概述</h3>
+<p>Kafka是一个大数据流处理平台</p>
+<p>Kafka是一个分布式的基于发布/订阅模式的消息队列(Message Queue)，主要应用于大数据实时处理领域。</p>
+<img src="/img/kafka/structural.png" style="zoom:67%;" />
+<ul>
+<li>
+<p>Producer</p>
+<p>消息生产者</p>
+</li>
+<li>
+<p>Consumer</p>
+<p>消息消费者</p>
+</li>
+<li>
+<p>Consumer Group (CG)：</p>
+<p>消费者组，由多个consumer组成。消费者组内每个消费者负责消费不同分区的数据，一个分区只能由一个组内消费者消费。消费者组之间互不影响，所有的消费者都属于某个消费者组</p>
+</li>
+<li>
+<p>Broker</p>
+<p>一台kafka服务器就是一个broker。一个集群由多个broker组成。一个broker可以容纳多个topic</p>
+</li>
+<li>
+<p>Topic</p>
+<p>可以理解为一个队列，生产者和消费者面向的都是一个topic</p>
+</li>
+<li>
+<p>Partition</p>
+<p>一个topic可以分为多个partition，每个partition是一个有序的队列</p>
+</li>
+<li>
+<p>Replica</p>
+<p>副本，为保证集群中的某个节点发生故障时，该节点上的partition数据不丢失，且kafka仍然能够继续工作，提供了副本机制，一个topic的每个分区都有若干个副本，一个leader和若干个follower</p>
+</li>
+<li>
+<p>leader</p>
+<p>每个分区多个副本的&quot;主&quot;，生产者发送数据的对象，以及消费者消费数据的对象都是leader</p>
+</li>
+<li>
+<p>follower</p>
+<p>每个分区多个副本中的&quot;从&quot;，实时从leader中同步数据，保持和leader数据的同步。leader发生故障时，某个follower会成为新的follower，follower不提供面向消费者和生产者的服务</p>
+</li>
+</ul>
+<h3 id="安装启动">安装启动</h3>
+<p><strong>配置<code>server.properties</code>文件</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># *broker全局唯一编号，不能重复</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">broker.id</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># *主题是否可删除</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">delete.topic.enable</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 插入一个不存在的topic时，kafka是否自动创建此topic</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">auto.create.topics.enable</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">false</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 处理网络请求的线程数</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">num.network.threads</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">3</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 处理磁盘IO的线程数</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">num.io.threads</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">8</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 发生套接字缓冲区大小</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">socket.send.buffer.bytes</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">102400</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 接收套接字缓冲区大小</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">socket.receive.buffer.bytes</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">102400</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 请求套接字缓冲区大小</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">socket.request.max.bytes</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">104857600</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 数据存储目录</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">log.dirs</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">/opt/module/kafka/config/data</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 默认分区数</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">num.partitions</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 用来恢复和清除data下数据的线程数</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">num.recovery.threads.per.data.dir</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># topic的offset的备份份数。建议设置更高的数字保证更高的可用性建议以下设置为3</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">offsets.topic.replication.factor</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">transaction.state.log.replication.factor</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">transaction.state.log.min.isr</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 数据文件设置</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">log.retention.hours</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">168</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">log.segment.bytes</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">1073741824</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">log.retention.check.interval.ms</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">300000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># *zk连接配置</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">zookeeper.connect</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">centos161:2181,centos162:2181,centos163:2181</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">zookeeper.connection.timeout.ms</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">18000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 消费者组内消费者负载均衡延迟时间</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">group.initial.rebalance.delay.ms</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>常用命令</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 启动节点</span>
+</span></span><span style="display:flex;"><span>kafka-server-start.sh -daemon /opt/module/kafka/config/server.properties
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 停止运行</span>
+</span></span><span style="display:flex;"><span>kafka-server-stop.sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 查看主题列表</span>
+</span></span><span style="display:flex;"><span>kafka-topics.sh --zookeeper centos161:2181 --list
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 创建Topic</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># replication-factor：follower + leader数目</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># partitions：分区数</span>
+</span></span><span style="display:flex;"><span>kafka-topics.sh --zookeeper <span style="color:#000;font-weight:bold">[</span>ip:port<span style="color:#000;font-weight:bold">]</span> --create --replication-factor <span style="color:#000;font-weight:bold">[</span>num<span style="color:#000;font-weight:bold">]</span> --partitions <span style="color:#000;font-weight:bold">[</span>num<span style="color:#000;font-weight:bold">]</span> --topic <span style="color:#000;font-weight:bold">[</span>topicName<span style="color:#000;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 删除主题</span>
+</span></span><span style="display:flex;"><span>kafka-topics.sh --zookeeper <span style="color:#000;font-weight:bold">[</span>ip:port<span style="color:#000;font-weight:bold">]</span> --delete --topic <span style="color:#000;font-weight:bold">[</span>topicName<span style="color:#000;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 查看某个topic详情</span>
+</span></span><span style="display:flex;"><span>kafka-topics.sh --zookeeper <span style="color:#000;font-weight:bold">[</span>ip:port<span style="color:#000;font-weight:bold">]</span> --describe --topic <span style="color:#000;font-weight:bold">[</span>topicName<span style="color:#000;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 修改分区数，只能增加</span>
+</span></span><span style="display:flex;"><span>kafka-topics.sh --zookeeper <span style="color:#000;font-weight:bold">[</span>ip:port<span style="color:#000;font-weight:bold">]</span> --alter --topic <span style="color:#000;font-weight:bold">[</span>topicName<span style="color:#000;font-weight:bold">]</span> --partitions <span style="color:#000;font-weight:bold">[</span>num<span style="color:#000;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 模拟生成</span>
+</span></span><span style="display:flex;"><span>kafka-console-producer.sh --topic first2 --broker-list centos161:9092
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 模拟消费</span>
+</span></span><span style="display:flex;"><span>kafka-console-consumer.sh --bootstrap-server centos161:9092, centos162:9092, centos163:9092 <span style="color:#000;font-weight:bold">[</span>--from-beginning<span style="color:#000;font-weight:bold">]</span> --topic <span style="color:#000;font-weight:bold">[</span>topicName<span style="color:#000;font-weight:bold">]</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>群起脚本</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#999;font-weight:bold;font-style:italic">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">host_name_arr</span><span style="color:#000;font-weight:bold">=(</span><span style="color:#d14">&#39;centos161&#39;</span> <span style="color:#d14">&#39;centos162&#39;</span> <span style="color:#d14">&#39;centos163&#39;</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">for</span> host_name in <span style="color:#d14">${</span><span style="color:#008080">host_name_arr</span>[*]<span style="color:#d14">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">do</span>
+</span></span><span style="display:flex;"><span> <span style="color:#0086b3">echo</span> <span style="color:#d14">&#39;========================&#39;</span><span style="color:#008080">$host_name</span><span style="color:#d14">&#39;====================&#39;</span>
+</span></span><span style="display:flex;"><span> <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">[</span> <span style="color:#d14">&#34;</span><span style="color:#008080">$1</span><span style="color:#d14">&#34;</span> <span style="color:#000;font-weight:bold">==</span> <span style="color:#d14">&#34;start&#34;</span> <span style="color:#000;font-weight:bold">]</span> ; <span style="color:#000;font-weight:bold">then</span>
+</span></span><span style="display:flex;"><span>  ssh <span style="color:#008080">$host_name</span> <span style="color:#d14">&#34;/opt/module/kafka/bin/kafka-server-start.sh -daemon /opt/module/kafka/config/server.properties&#34;</span>
+</span></span><span style="display:flex;"><span> <span style="color:#000;font-weight:bold">fi</span>
+</span></span><span style="display:flex;"><span> <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">[</span> <span style="color:#d14">&#34;</span><span style="color:#008080">$1</span><span style="color:#d14">&#34;</span> <span style="color:#000;font-weight:bold">==</span> <span style="color:#d14">&#34;stop&#34;</span> <span style="color:#000;font-weight:bold">]</span> ; <span style="color:#000;font-weight:bold">then</span>
+</span></span><span style="display:flex;"><span>  ssh <span style="color:#008080">$host_name</span> <span style="color:#d14">&#34;/opt/module/zookeeper/bin/kafka-server-stop.sh /opt/module/kafka/config/server.properties&#34;</span>
+</span></span><span style="display:flex;"><span> <span style="color:#000;font-weight:bold">fi</span>
+</span></span><span style="display:flex;"><span> <span style="color:#0086b3">echo</span> -e <span style="color:#d14">&#39;\n&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">done</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="二kafka架构">二、kafka架构</h2>
+<h3 id="工作流程及文件存储机制">工作流程及文件存储机制</h3>
+<img src="/img/kafka/kafka架构.png" alt="kafka架构" style="zoom:67%;" />
+<p><span style="color:red">Kafka中消息是以topic进行分类的</span>，生产者生产消息，消费者消费消息，都是面向topic的。topic是逻辑上的概念，而partition是物理上的概念，每个partition对应于一个log文件，该log文件中存储的就是Producer生产的数据。Producer生产的数据会被不断追加到该log文件末端，且每条数据都有自己的offset。 消费者组中的每个消费者，都会实时记录自己消费到了哪个offset，以便出错恢复时，从上次的位置继续消费。</p>
+<img src="/img/kafka/文件结构.png"  style="zoom:60%;" />
+<p>由于生产者生产的消息会不断追加到log文件末尾，为防止log文件过大导致数据定位效率低下，Kafka采取了分片和索引机制，将每个patition分为多个segment。每个segment对应<code>.index</code>文件【存储索引】和<code>*.1og</code>文件【存储数据】。这些文件位于一个文件夹下，该文件夹的命名规则为topic名称+分区序号。</p>
+<h3 id="生产者数据可靠性保证">生产者数据可靠性保证</h3>
+<p>为保证Producer发送的数据能可靠的发送到指定的topic，topic的每个partition收到Producer发送的数据后，都需要向Producer发送ack。如果Producer收到ack，就会进行下一轮的发送，否则重新发送数据。</p>
+<img src="/img/kafka/ack.png" style="zoom:68%;" />
+<p>Kafka使用了等待全部<code>ISR</code>节点同步才发送返回的ACK的信息【并非全部follower节点】</p>
+<p><code>ISR</code>：leader维护了一个动态的<code>in-sync replica set (ISR)</code>，意为和leader保持同步的follower集合。当ISR中的follower完成数据的同步之后，leader就会给follower发送ack。如果follower长时间未向leader同步数据，则该follower将被踢出ISR，该时间阈值由<code>replica.lag.time.max.ms</code>参数设定。leader发生故障之后，就会从ISR中选举新的leader。</p>
+<p>Kafka为用户提供了三种可靠性级别，ACK参数设置如下</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Producer不等待broker的ack，这一操作提供了一个最低的延迟，broker接收到还没有写入磁盘就已经返回，当broker故障时有可能丢失数据;</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Producer等待broker的ack，partition的leader落盘成功后返回ack，如果在follower同步成功之前leader故障，那么将会丢失数据;</td>
+</tr>
+<tr>
+<td>-1(all)</td>
+<td>Producer等待broker的ack，partition的leader和follower全部落盘成功后才返回ack。但是如果在follower同步完成后，broker发送ack之前，leader 发生故障，那么会造成数据重复。</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><code>offsets.commit.required.acks</code>默认为-1</p>
+</blockquote>
+<p><strong>leader宕机且ISR只有leader节点</strong></p>
+<p>kafka在Broker端提供了一个配置参数<code>unclean.leader.election</code>这个参数有两个值：</p>
+<ul>
+<li>true（默认）允许不同步副本成为leader，由于不同步副本的消息较为滞后，此时成为leader，可能会出现消息不一致的情况。</li>
+<li>false不允许不同步副本成为leader，此时如果发生ISR列表为空，会一直等待旧leader恢复，降低了可用性。</li>
+</ul>
+<h3 id="生产者数据一致性问题可见性">生产者数据一致性问题【可见性】</h3>
+<img src="/img/kafka/hw.png" style="zoom:67%;" />
+<ul>
+<li>
+<p>LEO【Log End Offset】：指每个副本的最大的offset</p>
+</li>
+<li>
+<p>HW【High Watermark】：高水位，指消费者能看见的最大的offset</p>
+</li>
+</ul>
+<p><strong>当follower故障时</strong></p>
+<p>follower发生故障后会被临时踢出ISR，待该follower恢复后，follower会读取本地磁盘记录的上次的HW，并将log文件高于HW的部分截取掉，从HW开始向leader 进行同步。等该follower的LEO大于等于该Partition的HW,即follower追上leader之后，就可以重新加入ISR。</p>
+<p><strong>当leader故障时</strong></p>
+<p>leader发生故障之后，会从ISR中选出一个新的leader，之后为保证多个副本之间的数据一致性，其余的follower会先将各自的log文件高于HW的部分截掉,然后从新的leader同步数据。</p>
+<p>注意：这只能保证副本之间的数据一致性，并不能保证数据不丢失或者不重复。</p>
+<h3 id="exactly-once语义">Exactly Once语义</h3>
+<p>At Least Once【最少一次】、At Most Once【最多一次】、Exactly Once【精准一次】</p>
+<p>0.11版本的Kafka，引入了幂等性。所谓的幂等性就是指Producer不论向Server发送多少次重复数据，Server 端都只会持久化一条。幂等性结合At Least Once语义，就构成了Kafka的Exactly Once语义。即： <code>At Least Once + 幂等性 = Exactly Once</code></p>
+<p>要启用幂等性，需要将Producer的参数中<code>enable.idompotence</code>设置为true，此时ACK已经为-1。Kafka的幂等性实现其实就是将原来下游需要做的去重放在了数据上游。开启幂等性的Producer在初始化的时候会被分配一个PID，发往同一Partition的消息会附带Sequence Number。而Broker端会对&lt;PID, Partition, SeqNumber&gt;做缓存，当具有相同主键的消息提交时，Broker只会持久化一条。</p>
+<p>但是PID重启就会变化，同时不同的Partition也具有不同主键，所以幂等性无法保证跨分区跨会话的Exactly Once。</p>
+<h3 id="消费者消费方式">消费者消费方式</h3>
+<p>consumer采用pull（拉）模式从broker中读取数据。</p>
+<p>push（推）模式很难适应消费速率不同的消费者，因为消息发送速率是由broker决定的。它的目标是尽可能以最快速度传递消息，但是这样很容易造成consumer来不及处理消息，典型的表现就是拒绝服务以及网络拥塞。而pull模式则可以根据consumer的消费能力以适当的速率消费消息。</p>
+<p>pull模式不足之处是，如果kafka没有数据，消费者可能会陷入循环中，一直返回空数据。针对这一点，Kafka的消费者在消费数据时会传入一个时长参数timeout，如果当前没有数据可供消费，consumer会等待一段时间之后再返回，这段时长即为timeout。</p>
+<h3 id="消费者分区分配策略">消费者分区分配策略</h3>
+<blockquote>
+<p>Kafka记录offset是以<code>consumer group + topic + partition </code>记录</p>
+</blockquote>
+<p>一个consumer group中有多个consumer，一个topic有多个partition， 所以必然会涉及到partition的分配问题，即确定那个partition由哪个consumer来消费。Kafka有两种分配策略<code>Round Robin</code>和<code>Range</code>。</p>
+<p><strong>Range策略</strong></p>
+<p>Range策略是对每个主题而言的，首先对同一个主题里面的分区按照序号进行排序，并对消费者按照字母顺序进行排序。如果是4个分区3个消费者，排完序的分区将会是0，1，2，3；消费者排完序将会是C1，C2，C3。然后将partitions的个数除于消费者的总数来决定每个消费者消费几个分区。如果除不尽，那么前面几个消费者线程将会多消费一个分区。即C1消费0，3；C2消费1；C3消费2</p>
+<p><strong>Round Robin策略</strong></p>
+<p>使用RoundRobin策略有两个前提条件必须满足：</p>
+<ol>
+<li>同一个Consumer Group里面的所有消费者的num.streams必须相等</li>
+<li>每个消费者订阅的主题必须相同</li>
+</ol>
+<p>Round Robin策略的工作原理：将消费者组按字典排序然后轮询分配。假设现在有CG1订阅T0[P0]，CG2订阅T1[P0,P1]，CG3订阅T0，T1。则分配为CG1：T0P0；CG2：T1P0；CG3：T1P1；</p>
+<h3 id="offset的维护">offset的维护</h3>
+<p>默认将offset保存在Kafka一个内置的topic中，该topic为<code>_consumer_offsets </code>，默认有50个分区。记录的KEY是消费者组ID、Topic、Partition的组合。</p>
+<h3 id="事务">事务</h3>
+<p>为了实现跨分区跨会话的事务，需要引入一个全局唯一的Transaction ID，并将Producer获得的PID和Transaction ID绑定。这样当Producer重启后就可以通过正在进行的Transaction ID获得原来的PID。为了管理Transaction，Kafka 引入了一个新的组件Transaction Coordinator。Producer就是通过和Transaction Coordinator交互获得Transaction ID对应的任务状态。Transaction Coordinator还负责将事务所有写入Kafka的一个内部Topic，这样即使整个服务重启，由于事务状态得到保存，进行中的事务状态可以得到恢复，从而继续进行。</p>
+<h3 id="zookeeper在kafka中的作用">Zookeeper在Kafka中的作用</h3>
+<p>Kafka集群中有一个broker会被选举为Controller，负责管理集群broker的上下线，所有topic的分区副本分配和leader选举等工作。
+Controller的管理工作都是依赖于Zookeeper的。</p>
+<img src="/img/kafka/zookeeper-kafka.png" style="zoom:67%;" />
+<h2 id="三spring-boot-kafka">三、Spring boot kafka</h2>
+<h3 id="adminclient-api">AdminClient API</h3>
+<p><strong>创建Topic</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">// 如果要修改分区数，只需修改配置值重启项目即可。修改分区数并不会导致数据的丢失，但是分区数只能增大不能减小</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">// 删除Topic机会少，可使用命令行工具或者GUI工具操作</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#3c5d5d;font-weight:bold">@Bean</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span>NewTopic<span style="color:#bbb"> </span><span style="color:#900;font-weight:bold">initialTopic</span>()<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#000;font-weight:bold">return</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">new</span><span style="color:#bbb"> </span>NewTopic(<span style="color:#d14">&#34;test-topic&#34;</span>,<span style="color:#bbb"> </span>8,<span style="color:#bbb"> </span>Short.<span style="color:#008080">parseShort</span>(<span style="color:#d14">&#34;2&#34;</span>));<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="producers-api">Producers API</h3>
+<p>Producer并不是一条一条发送消息的，而是批量发送。Producer最主要会启动两个线程，第一个是启动守护进程用于轮询队列元素是否满足发送条件，第二个是调用send方法是会创建一个线程用于向队列插入元素。</p>
+<p><img src="/img/kafka/producer.png" alt="producer"></p>
+<p><strong>spring boot生产者配置</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#008080">spring.kafka.bootstrap-servers</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">192.168.22.161:9092,192.168.22.162:9092,192.168.22.163:9092</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#######################################【初始化生产者配置】#######################################</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 重试次数</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">spring.kafka.producer.retries</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 应答级别:多少个分区副本备份完成时向生产者发送ack确认(可选0、1、all/-1)</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">spring.kafka.producer.acks</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">-1</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># broker用来识别消息是来自哪个客户端的。在broker进行打印日志、衡量指标或者配额限制时会用到</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">spring.kafka.admin.client-id</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">kun-117</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 批量发送大小</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">spring.kafka.producer.batch-size</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">16384</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 提交延时</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 当生产端积累的消息达到batch-size或接收到消息linger.ms后,生产者就会将消息提交给kafka</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># linger.ms为0表示每接收到一条消息就提交给kafka,这时候batch-size其实就没用了</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">spring.kafka.producer.properties.linger.ms</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 生产端缓冲区大小</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">spring.kafka.producer.buffer-memory</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">33554432</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Kafka提供的序列化和反序列化类</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">spring.kafka.producer.key-serializer</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">org.apache.kafka.common.serialization.StringSerializer</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">spring.kafka.producer.value-serializer</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">org.springframework.kafka.support.serializer.JsonSerializer</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 自定义分区器</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># spring.kafka.producer.properties.partitioner.class=com.kun.kafka.producer.CustomizePartitioner</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 消息的压缩发送，可选择snappy、gzip或者lz4，默认不压缩</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># spring.kafka.producer.compression-type=snappy</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 事务前缀，配置即开启事务</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># spring.kafka.producer.transaction-id-prefix=${spring.kafka.admin.client-id}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>发送消息</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">// 发送消息</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>kafkaTemplate.<span style="color:#008080">send</span>(<span style="color:#d14">&#34;test-topic&#34;</span>,<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">new</span><span style="color:#bbb"> </span>UserBean(<span style="color:#d14">&#34;kun&#34;</span>,<span style="color:#bbb"> </span>18));<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">// 发送消息，取key的hashcode发送到指定的partition</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>kafkaTemplate.<span style="color:#008080">send</span>(<span style="color:#d14">&#34;test-topic&#34;</span>,<span style="color:#bbb"> </span><span style="color:#d14">&#34;key-1&#34;</span>,<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">new</span><span style="color:#bbb"> </span>UserBean(<span style="color:#d14">&#34;Jack&#34;</span>,<span style="color:#bbb"> </span>20));<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">// 发送消息，根据传入的partition发送到指定的partition</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>kafkaTemplate.<span style="color:#008080">send</span>(<span style="color:#d14">&#34;test-topic&#34;</span>,<span style="color:#bbb"> </span>0,<span style="color:#bbb"> </span><span style="color:#d14">&#34;&#34;</span>,<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">new</span><span style="color:#bbb"> </span>UserBean(<span style="color:#d14">&#34;Jane&#34;</span>,<span style="color:#bbb"> </span>21));<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">// 发送消息，根据传入的partition发送到指定的partition，并添加当前时间戳作为消息头</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>kafkaTemplate.<span style="color:#008080">send</span>(<span style="color:#d14">&#34;test-topic&#34;</span>,<span style="color:#bbb"> </span>0,<span style="color:#bbb"> </span>DateUtil.<span style="color:#008080">currentSeconds</span>(),<span style="color:#bbb"> </span><span style="color:#d14">&#34;&#34;</span>,<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">new</span><span style="color:#bbb"> </span>UserBean(<span style="color:#d14">&#34;Lot&#34;</span>,<span style="color:#bbb"> </span>33));<span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>发送消息添加回调功能</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>UserBean<span style="color:#bbb"> </span>user<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">new</span><span style="color:#bbb"> </span>UserBean(<span style="color:#d14">&#34;kun&#34;</span>,<span style="color:#bbb"> </span>18);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>ListenableFuture<span style="color:#000;font-weight:bold">&lt;</span>SendResult<span style="color:#000;font-weight:bold">&lt;</span>String,<span style="color:#bbb"> </span>Object<span style="color:#000;font-weight:bold">&gt;&gt;</span><span style="color:#bbb"> </span>future<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>kafkaTemplate.<span style="color:#008080">send</span>(<span style="color:#d14">&#34;test-topic&#34;</span>,<span style="color:#bbb"> </span>user);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>future.<span style="color:#008080">addCallback</span>(sendResult<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">-&gt;</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>log.<span style="color:#008080">info</span>(<span style="color:#d14">&#34;{}&#34;</span>,<span style="color:#bbb"> </span>sendResult.<span style="color:#008080">getRecordMetadata</span>());<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>log.<span style="color:#008080">info</span>(<span style="color:#d14">&#34;{}&#34;</span>,<span style="color:#bbb"> </span>sendResult.<span style="color:#008080">getProducerRecord</span>());<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>},<span style="color:#bbb"> </span>throwable<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">-&gt;</span><span style="color:#bbb"> </span>log.<span style="color:#008080">info</span>(<span style="color:#d14">&#34;{}&#34;</span>,<span style="color:#bbb"> </span>throwable));<span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>发送消息的事务功能</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">// 需要设置spring.kafka.producer.transaction-id-prefix</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>kafkaTemplate.<span style="color:#008080">setAllowNonTransactional</span>(<span style="color:#000;font-weight:bold">true</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>kafkaTemplate.<span style="color:#008080">send</span>(<span style="color:#d14">&#34;test-topic-1&#34;</span>,<span style="color:#bbb"> </span><span style="color:#d14">&#34;key-1&#34;</span>,<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">new</span><span style="color:#bbb"> </span>UserBean(<span style="color:#d14">&#34;Jack&#34;</span>,<span style="color:#bbb"> </span>20));<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>kafkaTemplate.<span style="color:#008080">send</span>(<span style="color:#d14">&#34;test-topic-1&#34;</span>,<span style="color:#bbb"> </span>0,<span style="color:#bbb"> </span><span style="color:#d14">&#34;&#34;</span>,<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">new</span><span style="color:#bbb"> </span>UserBean(<span style="color:#d14">&#34;Jane&#34;</span>,<span style="color:#bbb"> </span>21));<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>kafkaTemplate.<span style="color:#008080">setAllowNonTransactional</span>(<span style="color:#000;font-weight:bold">false</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">// 发送事务消息</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>kafkaTemplate.<span style="color:#008080">executeInTransaction</span>(kafkaOperations<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">-&gt;</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>kafkaTemplate.<span style="color:#008080">send</span>(<span style="color:#d14">&#34;test-topic-1&#34;</span>,<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">new</span><span style="color:#bbb"> </span>UserBean(<span style="color:#d14">&#34;Transaction-1&#34;</span>,<span style="color:#bbb"> </span>18));<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>kafkaTemplate.<span style="color:#008080">send</span>(<span style="color:#d14">&#34;test-topic-1&#34;</span>,<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">new</span><span style="color:#bbb"> </span>UserBean(<span style="color:#d14">&#34;Transaction-2&#34;</span>,<span style="color:#bbb"> </span>18));<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#000;font-weight:bold">if</span>(<span style="color:#000;font-weight:bold">true</span>){<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000;font-weight:bold">throw</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">new</span><span style="color:#bbb"> </span>RuntimeException(<span style="color:#d14">&#34;模拟异常&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>kafkaTemplate.<span style="color:#008080">send</span>(<span style="color:#d14">&#34;test-topic-1&#34;</span>,<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">new</span><span style="color:#bbb"> </span>UserBean(<span style="color:#d14">&#34;Transaction-3&#34;</span>,<span style="color:#bbb"> </span>18));<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#000;font-weight:bold">return</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">true</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>});<span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>监听发送消息</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">// spring boot本身自带的日志打印</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#3c5d5d;font-weight:bold">@Bean</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span>ProducerListener<span style="color:#000;font-weight:bold">&lt;</span>Object,<span style="color:#bbb"> </span>Object<span style="color:#000;font-weight:bold">&gt;</span><span style="color:#bbb"> </span><span style="color:#900;font-weight:bold">kafkaProducerLoggingListener</span>()<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#000;font-weight:bold">return</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">new</span><span style="color:#bbb"> </span>LoggingProducerListener<span style="color:#000;font-weight:bold">&lt;&gt;</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">// 自定义功能</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#3c5d5d;font-weight:bold">@Bean</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span>ProducerListener<span style="color:#000;font-weight:bold">&lt;</span>Object,<span style="color:#bbb"> </span>Object<span style="color:#000;font-weight:bold">&gt;</span><span style="color:#bbb"> </span><span style="color:#900;font-weight:bold">kafkaProducerListener</span>()<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>ProducerListener<span style="color:#000;font-weight:bold">&lt;</span>Object,<span style="color:#bbb"> </span>Object<span style="color:#000;font-weight:bold">&gt;</span><span style="color:#bbb"> </span>listener<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">new</span><span style="color:#bbb"> </span>ProducerListener<span style="color:#000;font-weight:bold">&lt;</span>Object,<span style="color:#bbb"> </span>Object<span style="color:#000;font-weight:bold">&gt;</span>(){<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000;font-weight:bold">private</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">int</span><span style="color:#bbb"> </span>errorCounter<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>0;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000;font-weight:bold">private</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">int</span><span style="color:#bbb"> </span>successCounter<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>0;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#3c5d5d;font-weight:bold">@Override</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">void</span><span style="color:#bbb"> </span><span style="color:#900;font-weight:bold">onSuccess</span>(ProducerRecord<span style="color:#000;font-weight:bold">&lt;</span>Object,<span style="color:#bbb"> </span>Object<span style="color:#000;font-weight:bold">&gt;</span><span style="color:#bbb"> </span>producerRecord,<span style="color:#bbb"> </span>RecordMetadata<span style="color:#bbb"> </span>recordMetadata)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>successCounter<span style="color:#000;font-weight:bold">++</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>System.<span style="color:#008080">out</span>.<span style="color:#008080">println</span>(<span style="color:#d14">&#34;成功个数&#34;</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">+</span><span style="color:#bbb"> </span>successCounter);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#3c5d5d;font-weight:bold">@Override</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">void</span><span style="color:#bbb"> </span><span style="color:#900;font-weight:bold">onError</span>(ProducerRecord<span style="color:#000;font-weight:bold">&lt;</span>Object,<span style="color:#bbb"> </span>Object<span style="color:#000;font-weight:bold">&gt;</span><span style="color:#bbb"> </span>producerRecord,<span style="color:#bbb"> </span>Exception<span style="color:#bbb"> </span>exception)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>errorCounter<span style="color:#000;font-weight:bold">++</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>System.<span style="color:#008080">out</span>.<span style="color:#008080">println</span>(<span style="color:#d14">&#34;失败个数&#34;</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">+</span><span style="color:#bbb"> </span>errorCounter);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>};<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#000;font-weight:bold">return</span><span style="color:#bbb"> </span>listener;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="consumer-api">Consumer API</h3>
+<p>Consumer并不是一条一条拉取消息的，而是批量拉取，逐一消费，Consumer不是线程安全的</p>
+<p><strong>spring boot 消费者配置</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#008080">spring.kafka.bootstrap-servers</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">192.168.22.161:9092,192.168.22.162:9092,192.168.22.163:9092</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#######################################【初始化消费者配置】#######################################</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 默认的消费组ID</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">spring.kafka.consumer.properties.group.id</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">kun-117-consumerGroup</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 是否自动提交offset</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">spring.kafka.consumer.enable-auto-commit</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 最大拉取条数据需要在session.timeout.ms这个时间内处理完，默认：500</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">spring.kafka.consumer.max-poll-records</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">500</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 消费超时时间，大小不能超过session.timeout.ms，默认：3000</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">spring.kafka.consumer.heartbeat-interval</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">3000</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 提交offset延时(接收到消息后多久提交offset)，默认：5000</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">spring.kafka.consumer.auto-commit-interval</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">5000</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 当kafka中没有初始offset或offset超出范围时将自动重置offset</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># earliest:重置为分区中最小的offset;</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># latest:重置为分区中最新的offset(消费分区中新产生的数据);</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># none:只要有一个分区不存在已提交的offset,就抛出异常;</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">spring.kafka.consumer.auto-offset-reset</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">latest</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 消费会话超时时间(超过这个时间consumer没有发送心跳,就会触发rebalance操作)</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">spring.kafka.consumer.properties.session.timeout.ms</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">120000</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 消费请求超时时间</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">spring.kafka.consumer.properties.request.timeout.ms</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">180000</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Kafka提供的序列化和反序列化类</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">spring.kafka.consumer.key-deserializer</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">org.apache.kafka.common.serialization.StringDeserializer</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">spring.kafka.consumer.value-deserializer</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">org.apache.kafka.common.serialization.StringDeserializer</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 消费端监听的topic不存在时，项目启动是否会报错</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">spring.kafka.listener.missing-topics-fatal</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 每次fetch请求时，server应该返回的最小字节数。如果没有足够的数据返回，请求会等待，直到足够的数据才会返回。默认：1</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">spring.kafka.consumer.fetch-min-size</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Fetch请求发给broker后，在broker中可能会被阻塞的（当topic中records的总size小于fetch.min.bytes时），此时这个fetch请求耗时就会比较长。这个配置就是来配置consumer最多等待response多久。</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">spring.kafka.consumer.fetch-max-wait</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">500</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 设置批量消费</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># spring.kafka.listener.type=batch</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>单条消费消息并处理异常</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@KafkaListener</span>(topics<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>{<span style="color:#d14">&#34;test-topic&#34;</span>},<span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">               </span>groupId<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span><span style="color:#d14">&#34;consumer-kun-app&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">               </span>containerGroup<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span><span style="color:#d14">&#34;consumer-kun-app&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">               </span>errorHandler<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span><span style="color:#d14">&#34;kafkaListenerErrorHandler&#34;</span>)<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">void</span><span style="color:#bbb"> </span><span style="color:#900;font-weight:bold">onMessage</span>(ConsumerRecord<span style="color:#000;font-weight:bold">&lt;</span>String,<span style="color:#bbb"> </span>UserBean<span style="color:#000;font-weight:bold">&gt;</span><span style="color:#bbb"> </span>record,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                      </span><span style="color:#3c5d5d;font-weight:bold">@Header</span>(KafkaHeaders.<span style="color:#008080">RECEIVED_MESSAGE_KEY</span>)<span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>key)<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">throws</span><span style="color:#bbb"> </span>Exception<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>System.<span style="color:#008080">out</span>.<span style="color:#008080">println</span>(<span style="color:#d14">&#34;简单消费：&#34;</span><span style="color:#000;font-weight:bold">+</span>record.<span style="color:#008080">topic</span>()<span style="color:#000;font-weight:bold">+</span><span style="color:#d14">&#34;-&#34;</span><span style="color:#000;font-weight:bold">+</span>record.<span style="color:#008080">partition</span>()<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">+</span><span style="color:#bbb"> </span><span style="color:#d14">&#34;-&#34;</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">+</span>record.<span style="color:#008080">value</span>());<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#000;font-weight:bold">throw</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">new</span><span style="color:#bbb"> </span>Exception(<span style="color:#d14">&#34;模拟异常&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">// 当不需要将失败的消息发送到其它队列时返回null即可</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#3c5d5d;font-weight:bold">@Bean</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span>KafkaListenerErrorHandler<span style="color:#bbb"> </span><span style="color:#900;font-weight:bold">kafkaListenerErrorHandler</span>()<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#998;font-style:italic">// 一下业务逻辑是重置offset，重新消费出现异常的消息，</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>ConsumerAwareListenerErrorHandler<span style="color:#bbb"> </span>kafkaListenerErrorHandler<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>(message,<span style="color:#bbb"> </span>exception,<span style="color:#bbb"> </span>consumer)<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">-&gt;</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>MessageHeaders<span style="color:#bbb"> </span>headers<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>message.<span style="color:#008080">getHeaders</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>String<span style="color:#bbb"> </span>topicName<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>headers.<span style="color:#008080">get</span>(KafkaHeaders.<span style="color:#008080">RECEIVED_TOPIC</span>,<span style="color:#bbb"> </span>String.<span style="color:#008080">class</span>)<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>Integer<span style="color:#bbb"> </span>partitionId<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>headers.<span style="color:#008080">get</span>(KafkaHeaders.<span style="color:#008080">RECEIVED_PARTITION_ID</span>,<span style="color:#bbb"> </span>Integer.<span style="color:#008080">class</span>)<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>Long<span style="color:#bbb"> </span>offset<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>headers.<span style="color:#008080">get</span>(KafkaHeaders.<span style="color:#008080">OFFSET</span>,<span style="color:#bbb"> </span>Long.<span style="color:#008080">class</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>consumer.<span style="color:#008080">seek</span>(<span style="color:#000;font-weight:bold">new</span><span style="color:#bbb"> </span>TopicPartition(topicName,<span style="color:#bbb"> </span>partitionId),<span style="color:#bbb"> </span>offset);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000;font-weight:bold">return</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">null</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>};<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#000;font-weight:bold">return</span><span style="color:#bbb"> </span>kafkaListenerErrorHandler;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>批量消费消息并处理异常，需设置<code>spring.kafka.listener.type=batch</code></strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@KafkaListener</span>(<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>topics<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>{<span style="color:#d14">&#34;test-topic&#34;</span>},<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>groupId<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span><span style="color:#d14">&#34;consumer-kun-app&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>containerGroup<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span><span style="color:#d14">&#34;consumer-kun-app&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>errorHandler<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span><span style="color:#d14">&#34;kafkaListenerErrorHandler&#34;</span>)<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">void</span><span style="color:#bbb"> </span><span style="color:#900;font-weight:bold">onMessage</span>(List<span style="color:#000;font-weight:bold">&lt;</span>ConsumerRecord<span style="color:#000;font-weight:bold">&lt;</span>String,<span style="color:#bbb"> </span>UserBean<span style="color:#000;font-weight:bold">&gt;&gt;</span><span style="color:#bbb"> </span>records)<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">throws</span><span style="color:#bbb"> </span>Exception<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#000;font-weight:bold">for</span><span style="color:#bbb"> </span>(ConsumerRecord<span style="color:#000;font-weight:bold">&lt;</span>String,<span style="color:#bbb"> </span>UserBean<span style="color:#000;font-weight:bold">&gt;</span><span style="color:#bbb"> </span>record<span style="color:#bbb"> </span>:<span style="color:#bbb"> </span>records)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>System.<span style="color:#008080">out</span>.<span style="color:#008080">println</span>(<span style="color:#d14">&#34;简单消费：&#34;</span><span style="color:#000;font-weight:bold">+</span>record.<span style="color:#008080">topic</span>()<span style="color:#000;font-weight:bold">+</span><span style="color:#d14">&#34;-&#34;</span><span style="color:#000;font-weight:bold">+</span>record.<span style="color:#008080">partition</span>()<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">+</span><span style="color:#bbb"> </span><span style="color:#d14">&#34;-&#34;</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">+</span>record.<span style="color:#008080">value</span>());<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#000;font-weight:bold">throw</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">new</span><span style="color:#bbb"> </span>Exception(<span style="color:#d14">&#34;模拟异常&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">// 将批次中的所有位移都重置为批次中最小的offset</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#3c5d5d;font-weight:bold">@Bean</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span>KafkaListenerErrorHandler<span style="color:#bbb"> </span><span style="color:#900;font-weight:bold">kafkaListenerErrorHandler</span>()<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>ConsumerAwareListenerErrorHandler<span style="color:#bbb"> </span>kafkaListenerErrorHandler<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>(message,<span style="color:#bbb"> </span>exception,<span style="color:#bbb"> </span>consumer)<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">-&gt;</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>MessageHeaders<span style="color:#bbb"> </span>headers<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>message.<span style="color:#008080">getHeaders</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>List<span style="color:#000;font-weight:bold">&lt;</span>String<span style="color:#000;font-weight:bold">&gt;</span><span style="color:#bbb"> </span>topics<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>headers.<span style="color:#008080">get</span>(KafkaHeaders.<span style="color:#008080">RECEIVED_TOPIC</span>,<span style="color:#bbb"> </span>List.<span style="color:#008080">class</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>List<span style="color:#000;font-weight:bold">&lt;</span>Integer<span style="color:#000;font-weight:bold">&gt;</span><span style="color:#bbb"> </span>partitions<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>headers.<span style="color:#008080">get</span>(KafkaHeaders.<span style="color:#008080">RECEIVED_PARTITION_ID</span>,<span style="color:#bbb"> </span>List.<span style="color:#008080">class</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>List<span style="color:#000;font-weight:bold">&lt;</span>Long<span style="color:#000;font-weight:bold">&gt;</span><span style="color:#bbb"> </span>offsets<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>headers.<span style="color:#008080">get</span>(KafkaHeaders.<span style="color:#008080">OFFSET</span>,<span style="color:#bbb"> </span>List.<span style="color:#008080">class</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>Map<span style="color:#000;font-weight:bold">&lt;</span>TopicPartition,<span style="color:#bbb"> </span>Long<span style="color:#000;font-weight:bold">&gt;</span><span style="color:#bbb"> </span>offsetsToReset<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">new</span><span style="color:#bbb"> </span>HashMap<span style="color:#000;font-weight:bold">&lt;&gt;</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000;font-weight:bold">for</span><span style="color:#bbb"> </span>(<span style="color:#458;font-weight:bold">int</span><span style="color:#bbb"> </span>i<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>0;<span style="color:#bbb"> </span>i<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">&lt;</span><span style="color:#bbb"> </span>topics.<span style="color:#008080">size</span>();<span style="color:#bbb"> </span>i<span style="color:#000;font-weight:bold">++</span>)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#458;font-weight:bold">int</span><span style="color:#bbb"> </span>index<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>i;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>offsetsToReset.<span style="color:#008080">compute</span>(<span style="color:#000;font-weight:bold">new</span><span style="color:#bbb"> </span>TopicPartition(topics.<span style="color:#008080">get</span>(i),<span style="color:#bbb"> </span>partitions.<span style="color:#008080">get</span>(i)),<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                             </span>(k,<span style="color:#bbb"> </span>v)<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">-&gt;</span><span style="color:#bbb"> </span>v<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">==</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">null</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">?</span><span style="color:#bbb"> </span>offsets.<span style="color:#008080">get</span>(index)<span style="color:#bbb"> </span>:<span style="color:#bbb"> </span>Math.<span style="color:#008080">min</span>(v,offsets.<span style="color:#008080">get</span>(index)));<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>offsetsToReset.<span style="color:#008080">forEach</span>((k,<span style="color:#bbb"> </span>v)<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">-&gt;</span><span style="color:#bbb"> </span>consumer.<span style="color:#008080">seek</span>(k,<span style="color:#bbb"> </span>v));<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000;font-weight:bold">return</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">null</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>};<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#000;font-weight:bold">return</span><span style="color:#bbb"> </span>kafkaListenerErrorHandler;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>直接使用json反序列化消息</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * JsonDeserializer限制了可序列化的包名称，需要继承开放权限
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * spring.kafka.consumer.value-deserializer=com.kun.kafka.AppJsonDeserializer
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * 也可配置
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * spring.kafka.consumer.value-deserializer=org.springframework.kafka.support.serializer.JsonDeserializer
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> * spring.kafka.consumer.properties.spring.json.trusted.packages=*
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"> */</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">AppJsonDeserializer</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">extends</span><span style="color:#bbb"> </span>JsonDeserializer<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#3c5d5d;font-weight:bold">@Override</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">void</span><span style="color:#bbb"> </span><span style="color:#900;font-weight:bold">configure</span>(Map<span style="color:#bbb"> </span>configs,<span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">boolean</span><span style="color:#bbb"> </span>isKey)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000;font-weight:bold">super</span>.<span style="color:#008080">configure</span>(configs,<span style="color:#bbb"> </span>isKey);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>getTypeMapper().<span style="color:#008080">addTrustedPackages</span>(<span style="color:#d14">&#34;com.kun.kafka.bean&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#3c5d5d;font-weight:bold">@KafkaListener</span>(<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>topics<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>{<span style="color:#d14">&#34;test-topic&#34;</span>},<span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>groupId<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span><span style="color:#d14">&#34;consumer-kun-app&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>containerGroup<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span><span style="color:#d14">&#34;consumer-kun-app&#34;</span>)<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">void</span><span style="color:#bbb"> </span><span style="color:#900;font-weight:bold">onMessage</span>(<span style="color:#3c5d5d;font-weight:bold">@Payload</span><span style="color:#bbb"> </span>UserBean<span style="color:#bbb"> </span>record,<span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                      </span><span style="color:#3c5d5d;font-weight:bold">@Header</span>(KafkaHeaders.<span style="color:#008080">RECEIVED_TOPIC</span>)<span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>topicName)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>System.<span style="color:#008080">out</span>.<span style="color:#008080">println</span>(<span style="color:#d14">&#34;topicName: &#34;</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">+</span><span style="color:#bbb"> </span>topicName);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>System.<span style="color:#008080">out</span>.<span style="color:#008080">println</span>(<span style="color:#d14">&#34;record: &#34;</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">+</span><span style="color:#bbb"> </span>record);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>消费失败将消息转发到另一队列，此功能是Spring提供，并非死信队列</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@KafkaListener</span>(<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>topics<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>{<span style="color:#d14">&#34;test-topic&#34;</span>},<span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>groupId<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span><span style="color:#d14">&#34;consumer-kun-app&#34;</span>,<span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>containerGroup<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span><span style="color:#d14">&#34;consumer-kun-app&#34;</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>errorHandler<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span><span style="color:#d14">&#34;kafkaListenerErrorHandler&#34;</span>)<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#3c5d5d;font-weight:bold">@SendTo</span>(<span style="color:#d14">&#34;test-error-topic&#34;</span>)<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">void</span><span style="color:#bbb"> </span><span style="color:#900;font-weight:bold">onMessage</span>(<span style="color:#3c5d5d;font-weight:bold">@Payload</span><span style="color:#bbb"> </span>UserBean<span style="color:#bbb"> </span>record,<span style="color:#bbb"> </span><span style="color:#3c5d5d;font-weight:bold">@Header</span>(KafkaHeaders.<span style="color:#008080">RECEIVED_TOPIC</span>)<span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>topicName,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                      </span><span style="color:#3c5d5d;font-weight:bold">@Header</span>(KafkaHeaders.<span style="color:#008080">RECEIVED_TIMESTAMP</span>)<span style="color:#bbb"> </span>Long<span style="color:#bbb"> </span>time)<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">throws</span><span style="color:#bbb"> </span>Exception<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>System.<span style="color:#008080">out</span>.<span style="color:#008080">println</span>(<span style="color:#d14">&#34;topicName: &#34;</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">+</span><span style="color:#bbb"> </span>topicName);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>System.<span style="color:#008080">out</span>.<span style="color:#008080">println</span>(<span style="color:#d14">&#34;record: &#34;</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">+</span><span style="color:#bbb"> </span>record);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>System.<span style="color:#008080">out</span>.<span style="color:#008080">println</span>(<span style="color:#d14">&#34;time: &#34;</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">+</span><span style="color:#bbb"> </span>time);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#000;font-weight:bold">throw</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">new</span><span style="color:#bbb"> </span>Exception(<span style="color:#d14">&#34;模拟异常&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#3c5d5d;font-weight:bold">@Bean</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span>KafkaListenerErrorHandler<span style="color:#bbb"> </span><span style="color:#900;font-weight:bold">kafkaListenerErrorHandler</span>()<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>ConsumerAwareListenerErrorHandler<span style="color:#bbb"> </span>handler<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>(message,<span style="color:#bbb"> </span>exception,<span style="color:#bbb"> </span>consumer)<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">-&gt;</span><span style="color:#bbb"> </span>message.<span style="color:#008080">getPayload</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#000;font-weight:bold">return</span><span style="color:#bbb"> </span>handler;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="streams-api">Streams API</h3>
+<p>kafka stream是提供了对存储于Kafka内的数据进行流式处理和分析的功能，是一个程序库</p>
+<img src="/img/kafka/stream.png"  style="zoom:57%;" />
+<p><strong>名称解释</strong></p>
+<ul>
+<li>流处理器【处理流数据的业务处理器】</li>
+<li>流【业务处理器之间的流向】</li>
+<li>流处理拓扑【流处理器和流组合形成的拓扑关系】</li>
+<li>Source处理器【数据的来源处理器】</li>
+<li>Slink处理器【数据的结果处理器】</li>
+</ul>
+<p><strong>配置 spring boot</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#008080">spring.kafka.streams.bootstrap-servers</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">192.168.22.161:9092,192.168.22.162:9092,192.168.22.163:9092</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">spring.kafka.streams.application-id</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">stream-kun-117</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">spring.kafka.streams.properties.default.key.serde</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">org.apache.kafka.common.serialization.Serdes$StringSerde</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">spring.kafka.streams.properties.default.value.serde</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">org.apache.kafka.common.serialization.Serdes$StringSerde</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 缓存文件的目录，目录即使被删除数据依然累计，只是为了加快速度，数据存储在kafka主题中</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">spring.kafka.streams.state-dir</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">F:\\dir</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>统计value重复个数</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Bean</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span>KStream<span style="color:#000;font-weight:bold">&lt;</span>String,<span style="color:#bbb"> </span>String<span style="color:#000;font-weight:bold">&gt;</span><span style="color:#bbb"> </span><span style="color:#900;font-weight:bold">kStream</span>(StreamsBuilder<span style="color:#bbb"> </span>streamsBuilder){<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>KStream<span style="color:#000;font-weight:bold">&lt;</span>String,<span style="color:#bbb"> </span>String<span style="color:#000;font-weight:bold">&gt;</span><span style="color:#bbb"> </span>stream<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>streamsBuilder.<span style="color:#008080">stream</span>(<span style="color:#d14">&#34;word-topic&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>stream.<span style="color:#008080">flatMapValues</span>((values)<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">-&gt;</span><span style="color:#bbb"> </span>Arrays.<span style="color:#008080">asList</span>(values.<span style="color:#008080">split</span>(<span style="color:#d14">&#34; &#34;</span>))).<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>groupBy((k,<span style="color:#bbb"> </span>v)<span style="color:#000;font-weight:bold">-&gt;</span><span style="color:#bbb"> </span>v).<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>count().<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>toStream().<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>to(<span style="color:#d14">&#34;result-topic&#34;</span>,<span style="color:#bbb"> </span>Produced.<span style="color:#008080">with</span>(Serdes.<span style="color:#008080">String</span>(),<span style="color:#bbb"> </span>Serdes.<span style="color:#008080">Long</span>()));<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#000;font-weight:bold">return</span><span style="color:#bbb"> </span>stream;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="connector-api">Connector API</h3>
+<p><a href="https://www.confluent.io/hub/">第三方开源Connector组件使用</a></p>
+<h2 id="四kafka特性">四、Kafka特性</h2>
+<h3 id="kafka高效读写数据">Kafka高效读写数据</h3>
+<p>1、顺序写磁盘：Kafka的producer生产数据，要写入到log文件中，写的过程是一直追加到文件末端，为顺序写。</p>
+<p>2、零复制技术：采用零拷贝</p>
+<h3 id="kafka的吞吐量大原因">Kafka的吞吐量大原因</h3>
+<ul>
+<li>
+<p>均是批量发送接收消息，且有压缩功能</p>
+</li>
+<li>
+<p>有partition机制</p>
+</li>
+<li>
+<p>日志的顺序读写和快速检索</p>
+</li>
+</ul>
+<h3 id="kafka自有特点">Kafka自有特点</h3>
+<p>Kafka可以消费以前的数据</p>
+<h3 id="kafka限制">Kafka限制</h3>
+<p>Kafka只能保证Partition内有序，无法保证Topic消息是有序的</p>
+<h3 id="消费者消费者组">消费者&amp;消费者组</h3>
+<ul>
+<li>消费者组是kafka的消费单位</li>
+<li>单个Partition只能由消费者组中的某个消费者消费</li>
+<li>消费者组中的单个消费者可以消费多个partition</li>
+</ul>
+<h3 id="kafka如何保证顺序性">Kafka如何保证顺序性</h3>
+<p>第一种：使用单Partition【生产环境不会用】</p>
+<p>第二种：使用Kafka的 Key + offset 可以做到业务有序，即顺序业务Key需要相同</p>
+<h3 id="kafka的topic删除">Kafka的Topic删除</h3>
+<img src="/img/kafka/Kafka_Topic_Deletion.png" style="zoom:67%;" />
+<p>Kafka删除Topic的过程</p>
+<ol>
+<li>Kafka的broker在被选举成controller后，会执行下面几步
+<ul>
+<li>注册DeleteTopicsListener，监听zookeeper节点/admin/delete_topics下子节点的变化，delete命令实 际上就是要在该节点下创建一个节点，名字是待删除topic名，标记该topic是待删除的</li>
+<li>创建一个单独的线程DeleteTopicsThread，来执行topic删除的操作</li>
+</ul>
+</li>
+<li>DeleteTopicsThread线程启动时会先在awaitTopicDeletionNotification处阻塞并等待删除事件的通知，即有新的topic被添加</li>
+<li>当我们使用了delete命令在zookeeper上的节点/admin/delete_topics下创建子节点&lt; topic_name &gt;</li>
+<li>DeleteTopicsListener会收到ChildChange事件会依次判断如下逻辑：
+<ul>
+<li>查询topic是否存在，若已经不存在了，则直接删除/admin/delete_topics/&lt; topic_name &gt;节点</li>
+<li>查询topic是否为当前正在执行Preferred副本选举或分区重分配，若果是，则标记为暂时不适合被删除</li>
+<li>将该topic添加到queue中，让删除线程继续往下执行</li>
+</ul>
+</li>
+</ol>
+<p>删除线程执行删除操作的真正逻辑是：</p>
+<ol>
+<li>它首先会向各broker更新原信息，使得他们不再向外提供数据服务，准备开始删除数据。</li>
+<li>开始删除这个topic的所有分区
+<ul>
+<li>给所有broker发请求，告诉它们这些分区要被删除。broker收到后就不再接受任何在这些分区上的客户端请求了</li>
+<li>把每个分区下的所有副本都置于OfflineReplica状态，这样ISR就不断缩小，当leader副本最后也被置于OfflineReplica状态时信息将被更新为-1</li>
+<li>将所有副本置于ReplicaDeletionStarted状态</li>
+<li>副本状态机捕获状态变更，然后发起StopReplicaRequest给broker，broker接到请求后停止所有fetcher线程、移除缓存，然后删除底层log文件</li>
+<li>关闭所有空闲的Fetcher线程</li>
+</ul>
+</li>
+<li>删除zookeeper上节点/brokers/topics/&lt; topic_name &gt;</li>
+<li>删除zookeeper上节点/config/topics/&lt; topic_name &gt;</li>
+<li>删除zookeeper上节点/admin/delete_topics/&lt; topic_name &gt;</li>
+<li>并删除内存中的topic相关信息</li>
+</ol>
+<h2 id="五kafka-manager">五、Kafka Manager</h2>
+<p><a href="https://github.com/yahoo/CMAK">CMAK下载地址</a>，编译需要JDK11</p>
+<p>第一步：安装SBT</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>curl https://bintray.com/sbt/rpm/rpm &gt; bintray-sbt-rpm.repo
+</span></span><span style="display:flex;"><span>mv bintray-sbt-rpm.repo /etc/yum.repos.d/
+</span></span><span style="display:flex;"><span>yum install -y sbt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>第二步：编译</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>./sbt clean dist
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>第三步：提取编译完成文件在<code>target/universal/cmak-[version]</code></p>
+<p>第四步：配置<code>config/application.conf</code>中ZK地址</p>
+<p>第五步：启动</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>nohup bin/cmak -java-home /opt/module/cmak/jdk11 -Dhttp.port<span style="color:#000;font-weight:bold">=</span><span style="color:#099">8222</span> &gt;&gt; output.log 2&gt;&amp;<span style="color:#099">1</span> &amp;
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    
+
+    <div class="container-comment-giscus">
+        <script src="https://giscus.app/client.js"
+        data-repo="loveminimal/comment"
+        data-repo-id="R_kgDOJNJQ8g"
+        data-category="General"
+        data-category-id="DIC_kwDOJNJQ8s4CYl0m"
+        data-mapping="title"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="noborder_light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+        </script>
+</div>
+</div>
+
+        </div>
+        <div id="footer"><div class="container-footer">
+    
+
+    <div class="beian">
+        
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41092802000242">
+            
+
+        </a>
+
+        
+        <a href="//beian.miit.gov.cn" target="_blank">
+            
+            <span class="some">icp...<span>
+            
+        </a>
+    </div>
+
+    
+    <div class="info">
+        
+        <a href="https://github.com/loveminimal/hugo-theme-virgo">🕊️</a> 2016 - <span id="info-date"></span>
+    </div>
+
+</div></div>
+        <div class="cool-after" style="
+            
+                background-color: rgba(255, 255, 255, 0.49); 
+                backdrop-filter: saturate(100%) blur(6px);
+            
+            "></div>
+    </body>
+</html>

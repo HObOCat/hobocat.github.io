@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Spring-Cloud on hobocat home</title>
+    <link>https://hobocat.github.io/categories/spring-cloud/</link>
+    <description>Recent content in Spring-Cloud on hobocat home</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 15 May 2024 15:24:47 +0800</lastBuildDate>
+    <atom:link href="https://hobocat.github.io/categories/spring-cloud/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>spring cloud alibaba naocs使用详解</title>
+      <link>https://hobocat.github.io/post/spring-cloud/2021-02-02-spring-cloud-alibaba-nacos/</link>
+      <pubDate>Tue, 02 Feb 2021 16:42:30 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/spring-cloud/2021-02-02-spring-cloud-alibaba-nacos/</guid>
+      <description>一、Naocs简介 ​ Nacos是阿里巴巴开源的一款支持服务注册与发现，配置管理以及微服务管理的组件。用来取代以前常用的注册中心（zookeeper , eureka</description>
+    </item>
+    <item>
+      <title>spring cloud alibaba sentinel使用详解</title>
+      <link>https://hobocat.github.io/post/spring-cloud/2021-02-02-spring-cloud-alibaba-sentinel/</link>
+      <pubDate>Tue, 02 Feb 2021 16:42:30 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/spring-cloud/2021-02-02-spring-cloud-alibaba-sentinel/</guid>
+      <description>一、Sentinel简介 ​ sentinel是面向分布式服务框架的轻量级流量控制框架,主要以流量为切入点,从流量控制,熔断降级,系统负载保护等多个维度来维护系统的</description>
+    </item>
+    <item>
+      <title>spring cloud config使用详解</title>
+      <link>https://hobocat.github.io/post/spring-cloud/2021-02-02-spring-cloud-config/</link>
+      <pubDate>Tue, 02 Feb 2021 16:42:30 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/spring-cloud/2021-02-02-spring-cloud-config/</guid>
+      <description>一、Spring Cloud Config简介 ​ Spring Cloud Config项目是一个解决分布式系统的配置管理方案。它包含了Client和Server两个部分，Server提供配置文件</description>
+    </item>
+    <item>
+      <title>spring cloud eureka使用详解</title>
+      <link>https://hobocat.github.io/post/spring-cloud/2021-02-02-spring-cloud-eureka/</link>
+      <pubDate>Tue, 02 Feb 2021 16:42:30 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/spring-cloud/2021-02-02-spring-cloud-eureka/</guid>
+      <description>一、简介 ​ Spring Cloud封装了Netflix公司开发的Eureka模块来实现服务注册和发现，Eureka采用了C-S的设计架构。Eureka Server 作为服务注册功能的服</description>
+    </item>
+    <item>
+      <title>spring cloud gateway使用详解</title>
+      <link>https://hobocat.github.io/post/spring-cloud/2021-02-02-spring-cloud-gateway/</link>
+      <pubDate>Tue, 02 Feb 2021 16:42:30 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/spring-cloud/2021-02-02-spring-cloud-gateway/</guid>
+      <description>一、Gateway概述 微服务网关简介 在微服务架构中，不同的微服务可以有不同的网络地址，各个微服务之间通过互相调用完成用户请求。这样会带来几个问题： 客户端多次请求</description>
+    </item>
+    <item>
+      <title>spring cloud hystrix使用详解</title>
+      <link>https://hobocat.github.io/post/spring-cloud/2021-02-02-spring-cloud-hystrix/</link>
+      <pubDate>Tue, 02 Feb 2021 16:42:30 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/spring-cloud/2021-02-02-spring-cloud-hystrix/</guid>
+      <description>一、Hystrix简介 ​ Hystrix是Netflix开源的一款容错框架，包含常用的容错方法：线程池隔离、信号量隔离、熔断、降级回退。在高并发访问下，系统所依赖</description>
+    </item>
+    <item>
+      <title>spring cloud open feign使用详解</title>
+      <link>https://hobocat.github.io/post/spring-cloud/2021-02-02-spring-cloud-open-feign/</link>
+      <pubDate>Tue, 02 Feb 2021 16:42:30 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/spring-cloud/2021-02-02-spring-cloud-open-feign/</guid>
+      <description>一、简介 ​ Open Feign为微服务架构下服务之间的调用提供了解决方案。首先利用了OpenFeign的声明式方式定义Web服务客户端，其次还更进一步通过集成Ribbo</description>
+    </item>
+    <item>
+      <title>spring cloud ribbon使用详解</title>
+      <link>https://hobocat.github.io/post/spring-cloud/2021-02-02-spring-cloud-ribbon/</link>
+      <pubDate>Tue, 02 Feb 2021 16:42:30 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/spring-cloud/2021-02-02-spring-cloud-ribbon/</guid>
+      <description>一、Ribbon概述 Ribbon简介 ​ Spring Cloud Ribbon 是基于Netflix Ribbon实现的一套客户端负载均衡的工具。主要功能是提供客户端的软件负载均衡算法和服务调用。R</description>
+    </item>
+    <item>
+      <title>spring cloud sleuth使用详解</title>
+      <link>https://hobocat.github.io/post/spring-cloud/2021-02-02-spring-cloud-sleuth/</link>
+      <pubDate>Tue, 02 Feb 2021 16:42:30 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/spring-cloud/2021-02-02-spring-cloud-sleuth/</guid>
+      <description>一、sleuth简介 ​ 微服务跟踪(sleuth)其实是一个工具,它在整个分布式系统中能跟踪一个用户请求的过程(包括数据采集，数据传输，数据存储，数据分析，数据可</description>
+    </item>
+    <item>
+      <title>spring cloud zookeeper使用详解</title>
+      <link>https://hobocat.github.io/post/spring-cloud/2021-02-02-spring-cloud-zookeeper/</link>
+      <pubDate>Tue, 02 Feb 2021 16:42:30 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/spring-cloud/2021-02-02-spring-cloud-zookeeper/</guid>
+      <description>一、简介 ​ Zookeeper作为知名的分布式调度系统，我们也可以利用其作为配置中心。其wacth 主动通知机制， 可以将node节点数据变更信息及时通知到clien</description>
+    </item>
+    <item>
+      <title>微服务介绍</title>
+      <link>https://hobocat.github.io/post/spring-cloud/2021-02-02-spring-cloud-preorder/</link>
+      <pubDate>Tue, 02 Feb 2021 16:42:30 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/spring-cloud/2021-02-02-spring-cloud-preorder/</guid>
+      <description>一、微服务概念 ​ 微服务架构风格是一种将单一应用程序开发成一组小型服务的方法，每个服务运行在自己的进程中，服务间通信采用轻量级通信机制【通常用HTTP资源API】</description>
+    </item>
+  </channel>
+</rss>

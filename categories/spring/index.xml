@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Spring on hobocat home</title>
+    <link>https://hobocat.github.io/categories/spring/</link>
+    <description>Recent content in Spring on hobocat home</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 15 May 2024 15:24:47 +0800</lastBuildDate>
+    <atom:link href="https://hobocat.github.io/categories/spring/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Spring Boot高级篇</title>
+      <link>https://hobocat.github.io/post/spring/2019-12-09-spring-boot-%E9%AB%98%E7%BA%A7%E7%AF%87/</link>
+      <pubDate>Mon, 09 Dec 2019 15:37:10 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/spring/2019-12-09-spring-boot-%E9%AB%98%E7%BA%A7%E7%AF%87/</guid>
+      <description>一、Spring Boot与缓存 JSR107中JCache简介 JCache定义了5个核心接口，分别是CachingProvider, CacheManager, Cache, Entry 和 Expiry CachingPro</description>
+    </item>
+    <item>
+      <title>Spring Security使用指南</title>
+      <link>https://hobocat.github.io/post/spring/2019-10-09-spring-security/</link>
+      <pubDate>Wed, 09 Oct 2019 10:06:30 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/spring/2019-10-09-spring-security/</guid>
+      <description>一、基于游览器的安全 表单登陆 设置表单登陆【继承WebSecurityConfigurerAdapter进行适配】 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24</description>
+    </item>
+    <item>
+      <title>Spring Boot基础篇</title>
+      <link>https://hobocat.github.io/post/spring/2019-01-30-spring-boot-%E5%9F%BA%E7%A1%80%E7%AF%87/</link>
+      <pubDate>Wed, 30 Jan 2019 11:11:10 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/spring/2019-01-30-spring-boot-%E5%9F%BA%E7%A1%80%E7%AF%87/</guid>
+      <description>一、Spring Boot简单入门 Spring Boot简介 ​ 因为J2EE笨重的开发方式、繁琐的配置、低下的开发效率和复杂的部署流程、集成第三方插件难度大这些技术痛点的存在的</description>
+    </item>
+    <item>
+      <title>spring-data-solr的应用</title>
+      <link>https://hobocat.github.io/post/spring/2018-12-06-spring-data-solr/</link>
+      <pubDate>Thu, 06 Dec 2018 16:07:31 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/spring/2018-12-06-spring-data-solr/</guid>
+      <description>一、集成spring-data-solr 1 2 3 4 5 6 7 8 9 10 11 &amp;lt;!-- 单机连接 --&amp;gt; &amp;lt;solr:solr-client id=&amp;#34;solrClient&amp;#34; url=&amp;#34;http://192.168.1.155:8080/solr&amp;#34; /&amp;gt; &amp;lt;!-- 使用SolrJ的转换器，Spring的转换器对于关联类型不友好 --&amp;gt; &amp;lt;bean id=&amp;#34;solrConverter&amp;#34; class=&amp;#34;org.springframework.data.solr.core.convert.SolrJConverter&amp;#34; /&amp;gt; &amp;lt;!-- 配</description>
+    </item>
+    <item>
+      <title>spring注解驱动及其源码分析</title>
+      <link>https://hobocat.github.io/post/spring/2018-10-08-spring-annotation/</link>
+      <pubDate>Mon, 08 Oct 2018 15:25:32 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/spring/2018-10-08-spring-annotation/</guid>
+      <description>一、组件注册 ​ Spring注解驱动上下文环境类为AnnotationConfigApplicationContext，避免使用application.xml进行</description>
+    </item>
+  </channel>
+</rss>

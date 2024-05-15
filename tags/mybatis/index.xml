@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mybatis on hobocat home</title>
+    <link>https://hobocat.github.io/tags/mybatis/</link>
+    <description>Recent content in Mybatis on hobocat home</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 15 May 2024 15:24:47 +0800</lastBuildDate>
+    <atom:link href="https://hobocat.github.io/tags/mybatis/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>mybatis plus使用指南</title>
+      <link>https://hobocat.github.io/post/mybatis/2020-08-16-mybatis-plus/</link>
+      <pubDate>Sun, 16 Aug 2020 20:48:02 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/mybatis/2020-08-16-mybatis-plus/</guid>
+      <description>一、集成Spring boot 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.baomidou&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;mybatis-plus-boot-starter&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;[version]&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;!-- 用于生成逆向工程 --&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.baomidou&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;mybatis-plus-generator&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;[version]&amp;lt;/version&amp;gt; &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.freemarker&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;freemarker&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;[version]&amp;lt;/version&amp;gt; &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt; &amp;lt;/dependency&amp;gt; 二、逆向工程配置 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15</description>
+    </item>
+    <item>
+      <title>通用mapper使用指南</title>
+      <link>https://hobocat.github.io/post/mybatis/2018-10-08-mapper/</link>
+      <pubDate>Mon, 08 Oct 2018 15:12:22 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/mybatis/2018-10-08-mapper/</guid>
+      <description>一、概述 ​ 通用 Mapper是一个可以实现任意 MyBatis 通用方法的框架，项目提供了常规的增删改查操作以及查询相关的单表操作。通用 Mapper 是为了解决 MyBatis 使用中 90% 的基本操作，使用它可</description>
+    </item>
+    <item>
+      <title>mybatis使用指南</title>
+      <link>https://hobocat.github.io/post/mybatis/2018-09-27-mybatis/</link>
+      <pubDate>Thu, 27 Sep 2018 15:45:32 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/mybatis/2018-09-27-mybatis/</guid>
+      <description>一、简介 ​ MyBatis 是一款优秀的持久层框架，它支持定制化 SQL、存储过程以及高级映射。MyBatis 避免了几乎所有的 JDBC 代码和手动设置参数以及获取结果集。MyBatis 可</description>
+    </item>
+  </channel>
+</rss>

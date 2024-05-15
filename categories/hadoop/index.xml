@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hadoop on hobocat home</title>
+    <link>https://hobocat.github.io/categories/hadoop/</link>
+    <description>Recent content in Hadoop on hobocat home</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 15 May 2024 15:24:47 +0800</lastBuildDate>
+    <atom:link href="https://hobocat.github.io/categories/hadoop/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HBase使用</title>
+      <link>https://hobocat.github.io/post/hbase/2020-10-29-hbase/</link>
+      <pubDate>Thu, 29 Oct 2020 15:35:30 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/hbase/2020-10-29-hbase/</guid>
+      <description>一、简介&amp;amp;安装 简介 HBase是一种分布式、可扩展、支持海量数据存储的NoSQL数据库。 逻辑上，HBase的数据模型同关系型数据库很类似，数据存储在一张表</description>
+    </item>
+    <item>
+      <title>hive使用</title>
+      <link>https://hobocat.github.io/post/hive/2020-09-25-hive/</link>
+      <pubDate>Fri, 25 Sep 2020 15:31:20 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/hive/2020-09-25-hive/</guid>
+      <description>一、Hive的概念 Hive由Facebook开源基于Hadoop的一个数据仓库工具，用于解决海量结构化日志的数据统计，Hive可以将结构化的数据文件映射为一张表</description>
+    </item>
+    <item>
+      <title>Hadoop基础</title>
+      <link>https://hobocat.github.io/post/hadoop/2020-09-24-hadoop/</link>
+      <pubDate>Thu, 24 Sep 2020 14:23:30 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/hadoop/2020-09-24-hadoop/</guid>
+      <description>一、Hadoop和大数据简介 大数据 ​ 大数据(BigData) :指无法在一定时间范围内用常规软件工具进行捕捉、管理和处理的数据集合，是需要新处理模式才能具有更强的</description>
+    </item>
+  </channel>
+</rss>

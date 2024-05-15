@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="description" content="分布式事务理论 - https://hobocat.github.io/post/database/2021-02-02-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/">
+    <meta name="author" content="Jack - https://hobocat.github.io/">
+    
+    <meta name="msvalidate.01" content="B46311949B856F2A7015F366FB3CE878" />
+    <title>分布式事务理论</title>
+    
+    <base target="_blank">
+    <link rel="icon" type="image/png" href="/favicon.ico">
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="https://hobocat.github.io/style.min.94e7ed14b48117025ebd1148adc11f7268f1ebf50d97297ac663edf1aa6f52dc.css">
+    
+    <script>const DARK =  false ;</script>
+    
+    <script type="text/javascript" src="/main.js" defer></script>
+    
+</head>
+<body class="active-animate cool">
+        <div class="container-floating-box">
+	<div class="box box1"></div>
+	<div class="box box11"></div>
+	<div class="box box12"></div>
+	<div class="box box2"></div>
+	<div class="box box3"></div>
+	<div class="box box4"></div>
+	<div class="box box5"></div>
+	<div class="box box6"></div>
+	<div class="box box7"></div>
+	<div class="box box8"></div>
+	<div class="box box9"></div>
+</div>
+        <div class="cool-before" style="background: url('/imgs/bg/wallhaven-6qr21l.jpg') left top/100% no-repeat fixed;"></div>
+        <div id="header" class=""><div class="container-header">
+
+    
+    
+    
+    <div class="right">
+        
+        <h1 class="title">分布式事务理论</h1>
+    
+        
+        
+            <div id="toc">📜</div>
+        
+    </div>
+</div>
+</div>
+        <div id="content">
+
+
+
+
+
+
+
+
+
+
+<div class="container-main container-page ">
+
+    
+
+    
+    
+    
+    <div class="rel">
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    </div>
+    
+    
+
+    <div class="desc">
+        
+        <span>
+            
+            <svg t="1656736000388" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                p-id="7409" width="12" height="12">
+                <path
+                    d="M524.885333 338.986667L200.362667 663.466667c-17.28 15.274667-27.989333 36.693333-29.696 56.234666v133.76l130.730666 0.085334c22.784-1.621333 43.989333-12.245333 61.013334-31.701334l322.688-322.645333-160.213334-160.213333z m60.373334-60.330667l160.170666 160.213333 102.144-102.144a19.712 19.712 0 0 0 0-27.861333L715.093333 176.426667a19.456 19.456 0 0 0-27.605333 0L585.258667 278.613333zM701.312 85.333333c27.946667 0 54.741333 11.136 74.282667 30.848l132.309333 132.309334a105.045333 105.045333 0 0 1 0 148.565333L424.874667 879.957333c-29.824 34.346667-72.106667 55.466667-120.448 58.794667H85.333333v-42.666667l0.128-179.84c3.626667-44.970667 24.576-86.826667 56.448-114.944l485.12-485.034666A104.789333 104.789333 0 0 1 701.269333 85.333333z"
+                    p-id="7410" fill="#adb5bd"></path>
+            </svg>
+            2021-02-02&nbsp;&nbsp;&nbsp;
+            <svg t="1656737270708" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                p-id="23838" width="11" height="11">
+                <path
+                    d="M824.264 95.36c0-23.859 25.043-44.16 48.902-44.16s49.714 20.301 49.714 44.16v190.08c0 23.859-19.054 52.868-42.913 52.868h-190.08c-23.859 0-46.696-25.96-46.696-49.819s22.55-46.249 46.409-46.249h82.025C702.344 175.534 610.22 155.853 512 155.853c-206.775 0-360.398 149.372-360.398 356.147 0 206.775 153.623 358.23 360.398 358.23 206.775 0 357.467-151.455 357.467-358.23 0-23.859 23.634-50.706 53.413-50.706 29.78 0 49.92 26.847 49.92 50.706 0 254.493-206.307 460.8-460.8 460.8-254.493 0-460.8-206.307-460.8-460.8C51.2 257.507 257.507 51.2 512 51.2c122.4 0 226.684 33.296 312.264 117.369 0.358 0.351 0.358-24.052 0-73.209z"
+                    p-id="23839" fill="#adb5bd"></path>
+            </svg>
+            2021-02-02&nbsp;&nbsp;&nbsp;
+        </span>
+        <span>
+            
+            <svg t="1656737548689" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                p-id="33866" width="12" height="12">
+                <path
+                    d="M832.038608 64.662657H192.030028C121.255125 64.662657 63.940169 121.98845 63.940169 192.694717v446.793671C63.940169 710.205493 121.255125 767.643272 192.030028 767.643272h133.353183a63.940169 63.940169 0 0 1 55.219742 31.576328l76.099638 129.83828c12.358154 21.093031 33.790754 31.626903 55.216129 31.626903s42.832688-10.544709 55.198067-31.619678l76.222461-129.870792a63.940169 63.940169 0 0 1 55.212517-31.551041h133.54103c70.576219 0 127.732228-57.289669 127.732227-127.800865V192.391272C959.825022 121.85479 902.643727 64.662657 832.038608 64.662657zM895.884854 639.842407A63.85347 63.85347 0 0 1 832.092795 703.703103h-133.54103a127.753903 127.753903 0 0 0-110.349172 63.09847l-76.222461 129.856342a0.274545 0.274545 0 0 1 0-0.050574h-0.032512s-0.021675 0.061411-0.032512 0.061412l-76.1466-129.85273A127.804477 127.804477 0 0 0 325.383211 703.703103H192.030028A64.207489 64.207489 0 0 1 127.880338 639.488388V192.694717A64.102729 64.102729 0 0 1 192.030028 128.602826h640.00858A63.799284 63.799284 0 0 1 895.884854 192.391272v447.451135z"
+                    fill="#adb5bd" p-id="33867"></path>
+                <path
+                    d="M608.154093 288.092004A31.970084 31.970084 0 0 0 576.184009 320.062089v160.078006l-134.650049-179.278119A31.970084 31.970084 0 0 0 384.002258 320.062089v255.760676a31.970084 31.970084 0 0 0 63.940169 0v-159.958796l134.650048 179.274507a31.970084 31.970084 0 0 0 57.531703-19.200113V320.062089a31.970084 31.970084 0 0 0-31.970085-31.970085z"
+                    fill="#adb5bd" p-id="33868"></path>
+            </svg>
+            7019 字</span>&nbsp;
+        <span>
+            
+            <svg t="1656737462334" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                p-id="32892" width="12" height="12">
+                <path
+                    d="M512 74.666667C270.933333 74.666667 74.666667 270.933333 74.666667 512S270.933333 949.333333 512 949.333333 949.333333 753.066667 949.333333 512 753.066667 74.666667 512 74.666667z m0 810.666666c-204.8 0-373.333333-168.533333-373.333333-373.333333S307.2 138.666667 512 138.666667 885.333333 307.2 885.333333 512 716.8 885.333333 512 885.333333z"
+                    p-id="32893" fill="#adb5bd"></path>
+                <path
+                    d="M695.466667 567.466667l-151.466667-70.4V277.333333c0-17.066667-14.933333-32-32-32s-32 14.933333-32 32v238.933334c0 12.8 6.4 23.466667 19.2 29.866666l170.666667 81.066667c4.266667 2.133333 8.533333 2.133333 12.8 2.133333 12.8 0 23.466667-6.4 29.866666-19.2 6.4-14.933333 0-34.133333-17.066666-42.666666z"
+                    p-id="32894" fill="#adb5bd"></path>
+            </svg>
+            15 分钟</span>
+        <div class="container-ctgtag">
+	<div class="taxonomy">
+		<div class="tag">
+			
+			
+			<a href="/tags/database">database</a>
+			
+		</div>
+	</div>
+</div>
+        
+    </div>
+
+    <div class="toc">
+        <div class="container-page-operation">
+	<div class="page-operation">
+		<div><a href="/"><img src="/imgs/icons/home-2.svg" alt=""></a></div>
+		<div><a href="/nav"><img src="/imgs/icons/iov-navigate-1.svg" alt=""></a></div>
+		<div><a href="/wiki"><img src="/imgs/icons/wiki.svg" alt=""></a></div>
+		<div><a href="/tags"><img src="/imgs/icons/treetags.svg" alt=""></a></div>
+		<div id="light-dark"><a><img src="/imgs/icons/moon2.svg" alt=""></a></div>
+		<div><a href="#"><img src="/imgs/icons/up2.svg" alt=""></a></div>
+	</div>
+</div>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一分布式事务基础">一、分布式事务基础</a>
+      <ul>
+        <li><a href="#事务">事务</a></li>
+        <li><a href="#分布式事务">分布式事务</a></li>
+        <li><a href="#cap原则">CAP原则</a></li>
+        <li><a href="#base理论">Base理论</a></li>
+      </ul>
+    </li>
+    <li><a href="#二2pc协议">二、2PC协议</a></li>
+    <li><a href="#三xa方案">三、XA方案</a></li>
+    <li><a href="#四tcc模式">四、TCC模式</a></li>
+    <li><a href="#五3pc协议">五、3PC协议</a></li>
+    <li><a href="#六消息最终一致性">六、消息最终一致性</a></li>
+    <li><a href="#七最大努力通知">七、最大努力通知</a>
+      <ul>
+        <li><a href="#最大努力通知与可靠消息一致性区别">最大努力通知与可靠消息一致性区别</a></li>
+        <li><a href="#最大努力通知的设计方案">最大努力通知的设计方案</a></li>
+      </ul>
+    </li>
+    <li><a href="#八汇总">八、汇总</a></li>
+  </ul>
+</nav>
+    </div>
+
+    <div class='content  '>
+        <h2 id="一分布式事务基础">一、分布式事务基础</h2>
+<h3 id="事务">事务</h3>
+<p>指的就是一个操作单元，在这个操作单元中的所有操作最终要保持一致的行为，要么所有操作都成功，要么所有的操作都被撤销。</p>
+<p><strong>事务的4个特性</strong></p>
+<img src="imgs/distributed-tx/事务特性.png" alt="事务特性" style="zoom:80%;" />
+<p>原子性（Atomicity）：操作这些指令时，要么全部执行成功，要么全部不执行。只要其中一个指令执行失败，所有的指令都执行失败，数据进行回滚，回到执行指令前的数据状态。</p>
+<hr>
+<p>一致性（Consistency）：事务的执行使数据从一个状态转换为另一个状态，数据库的完整性约束没有被破坏。</p>
+<hr>
+<p>隔离性（Isolation）：隔离性是当多个用户并发访问数据库时，比如操作同一张表时，数据库为每一个用户开启的事务，不能被其他事务的操作所干扰，多个并发事务之间要相互隔离。</p>
+<hr>
+<p>持久性（Durability）：当事务正确完成后，它对于数据的改变是永久性的</p>
+<h3 id="分布式事务">分布式事务</h3>
+<p>①、跨JVM进程产生分布式事务。典型的场景就是微服务之间通过远程调用完成事务操作。 比如：订单微服务和库存微服务，下单的同时订单微服务请求库存微服务减库存。</p>
+<img src="/img/distributed-tx/JVM进程产生分布式事务.png" style="zoom:80%;" />
+<p>②、跨数据库实例。一个服务或者单体系统访问多个数据库实例时就会产生分布式事务。比如:用户信息和订单信息分别在两个MySQL实例存储，用户管理系统删除用户信息，需要分别删除用户信息及用户的订单信息，由于数据分布在不同的数据实例，需要通过不同的数据库链接去操作数据，此时产生分布式事务。</p>
+<img src="/img/distributed-tx/跨数据库实例.png" alt="image-20201217141118868跨数据库实例" style="zoom: 67%;" />
+<h3 id="cap原则">CAP原则</h3>
+<p>CAP原则又叫CAP定理，同时又被称作布鲁尔定理（Brewer&rsquo;s theorem），指的是在一个分布式系统中，<strong>不可能同时满足以下三点</strong></p>
+<img src="/img/distributed-tx/CAP.jpg" style="zoom:50%;" />
+<p><strong>一致性（Consistency）</strong></p>
+<p>指强一致性，在写操作完成后开始的任何读操作都必须返回该值，或者后续写操作的结果</p>
+<p><strong>可用性（Availability）</strong></p>
+<p>可用性是指，每次向未崩溃的节点发送请求，总能保证收到响应数据（允许不是最新数据）</p>
+<p><strong>分区容忍性（Partition tolerance）</strong></p>
+<p>分布式系统在遇到任何网络分区故障的时候,仍然能够对外提供满足一致性和可用性的服务,也就是说，服务器A和B发送给对方的任何消息都是可以放弃的，也就是说A和B可能因为各种意外情况，导致无法成功进行同步，分布式系统要能容忍这种情况。除非整个网络环境都发生了故障</p>
+<table>
+<thead>
+<tr>
+<th>组合</th>
+<th>分析</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CA</td>
+<td>满足原子和可用，放弃分区容错。即就是一个整体的应用</td>
+</tr>
+<tr>
+<td>CP</td>
+<td>满足原子和分区容错，即要放弃高可用。当系统被分区，为了保证原子性，必须放弃可用性，让服务停用</td>
+</tr>
+<tr>
+<td>AP</td>
+<td>满足可用性和分区容错，当出现分区，同时为了保证可用性，必须让节点继续对外服务，这样必然导致失去原子性</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>舍弃P（选择C/A）：单点的传统关系型数据库DBMS(MySQL/Oracle)，如果采用集群就必须考虑P了</li>
+<li>舍弃A（选择C/P）：分布式系统要保证P，且保证一致性，如ZooKeeper / Redis / MongoDB / HBase; .</li>
+<li>舍弃C（选择A/P）：分布式系统要保证P，而且保证可用性，如CoachDB / Cassandra / DynamoDB。</li>
+</ul>
+<h3 id="base理论">Base理论</h3>
+<p><strong>BA: Basic Available基本可用</strong>
+整个系统在某些不可抗力的情况下，仍然能够保证&quot;可用性&quot;，即定时间内仍然能够返回一个明确的结果。”基本可用”和”可用”的区别是:</p>
+<ul>
+<li>一定时间可以适当延长当，例如双十一响应时间可以适当延长</li>
+<li>给部分用户直接返回一个降级页面，从而缓解服务器压力。但要注意， 返回降级页面仍然是返回明确结果。</li>
+</ul>
+<p><strong>S: Soft State柔性状态</strong></p>
+<p>是指允许系统中的数据存在中间状态，并认为该中间状态的存在不会影响系统的整体可用性，即允许系统不同节点的数据副本之间进行数据同步的过程存在延时。</p>
+<p><strong>E: Eventual Consisstency最终一致性</strong></p>
+<p>同一数据的不同副本的状态，可以不需要实时一致，但要保证经过一定时间后是一致的。</p>
+<blockquote>
+<p>BASE理论是对CAP中的一致性和可用性进行一个权衡的结果，理论的核心思想就是:我们无法做到强一致,但每个应用都可以根据自身的业务特点，采用适当的方式来使系统达到最终一致性( Eventual consistency )</p>
+</blockquote>
+<h2 id="二2pc协议">二、2PC协议</h2>
+<p>2PC即两阶段提交协议，是将整个事务流程分为两个阶段，<code>准备阶段（Prepare phase）</code>、<code>提交阶段（commit phase</code>），2是指两个阶段，P是指准备阶段，C是指提交阶段。</p>
+<p>在计算机中部分关系数据库如Oracle、MySQL支持两阶段提交协议：</p>
+<p>①、准备阶段（Prepare phase）：事务管理器【TM】给每个参与者【RM】发送Prepare消息，每个数据库参与者在本地执行事务，并写本地的Undo/Redo日志，此时事务没有提交。【Undo日志是记录修改前的数据，用于数据库回滚，Redo日志是记录修改后的数据，用于提交事务后写入数据文件】。如参与者执行成功，给协调者反馈同意，否则反馈中止。</p>
+<img src="/img/distributed-tx/2PC-Prepare.png" alt="2PC-Prepare" style="zoom:80%;" />
+<p>②、提交阶段（commit phase）：如果事务管理器收到了参与者的执行失败或者等待超时，直接给每个参与者发送回滚(Rollback)消息；否则，发送提交(Commit)消息；参与者根据事务管理器的指令执行提交或者回滚操作，并释放事务处理过程中使用的锁资源。</p>
+<img src="/img/distributed-tx/2PC-commit.png" alt="2PC-commit" style="zoom:80%;" />
+<p><span style="color:blue">不管最后结果如何，第二阶段都会结束当前事务</span></p>
+<img src="/img/distributed-tx/2PC-ALL.png" style="zoom:80%;" />
+<p>二阶段提交有以下缺点：</p>
+<ul>
+<li><strong>同步阻塞问题</strong>。执行过程中所有参与节点都是事务阻塞型的。当参与者占有公共资源时其他第三方节点访问公共资源不得不处于阻塞状</li>
+<li><strong>单点故障</strong>。由于协调者的重要性，一旦协调者发生故障，参与者会一直阻塞下去。尤其在第二阶段, 协调者发生故障，那么所有的参与者还都处于锁定事务资源的状态中，无法继续完成事务操作。(如果是协调者挂掉，可以重新选举一个协调者，但是无法解决因为协调者宕机导致的参与处于阻塞状态的问题)</li>
+<li><strong>数据不一致</strong>。在二阶段提交的阶段二中，当协调者向参与者发送commit请求之后，发生了局部网络异常或者在发送commit请求过程中协调发生了故障，这会导致只有一部分参与者接受到了commit请求。而在这部分参与者接到commit请求之后就会执行commit操作。但是其他部分未接到commit请求的机器则无法执行事务提交。于整个分布式系统便出现了数据不致性的现象。</li>
+<li><strong>二阶段无法解决的问题</strong>。协调者再发出commit消息之后宕机，而唯一接收到这条消息的参与者同时也宕机了。那么即使协调者通过选举协议产生了新的协调者，这条事务的状态也是不确定的，没人知道事务是否被已经提交。</li>
+</ul>
+<h2 id="三xa方案">三、XA方案</h2>
+<p>​	2PC的传统方案是在数据库层面实现的，如Oracle、MySQL都支持2PC协议，但是接口不一样。为了统一标准减少行业内不必要的对接成本，需要制定标准化的处理模型及接口标准，国际开放标准组织Open Group定义了分布式事务处理模型DTP（Distributed Transaction Processing Reference Model）。<span style="color:red">2PC的缺陷也是XA方案的缺陷。</span></p>
+<img src="/img/distributed-tx/XA.png" style="zoom:67%;" />
+<p>DTP模型定义如下角色：</p>
+<p><strong>AP(Application Program)</strong></p>
+<p>即应用程序，可以理解为使用DTP分布式事务的程序</p>
+<p><strong>RM(Resource Manager)</strong></p>
+<p>即资源管理器，可以理解为事务的参与者。一般情况下是指一个数据库实例</p>
+<p><strong>TM(Transaction Manager)</strong></p>
+<p>事务管理器，负责协调和管理事务，事务管理器控制着全局事务，管理事务生命周期，并协调各个RM。全局事务是指分布式事务处理环境中，需要操作多个数据库共同完成一个工作，这个工作即是一个全局事务</p>
+<hr>
+<p>执行流程如下：</p>
+<p>1、应用程序（AP）分别向俩RM提出执行SQL，RM此时并未提交事务</p>
+<p>2、TM收到RM的执行回复有失败超时，分别向其他RM发起回滚事务，回滚完毕，资源锁释放</p>
+<p>3、TM收到RM执行回复全部成功，此时向所有RM发起提交事务，提交完毕，资源锁释放</p>
+<hr>
+<p>DTP模型定义TM和RM之间通讯的接口规范叫XA，可简单理解为数据库提供的2PC接口协议，基于数据库的XA协议来实现2PC又称为XA方案。</p>
+<p>以上三个角色之间的交互方式如下：</p>
+<p>1、TM向AP提供 应用程序编程接口，AP通过TM提交及回滚事务。</p>
+<p>2、TM交易中间件通过XA接口来通知RM数据库事务的开始、结束以及提交、回滚等。</p>
+<h2 id="四tcc模式">四、TCC模式</h2>
+<p>​	TCC编程模式本质上也是一种二阶段协议，不同在于TCC编程模式需要与具体业务耦合。TCC是Try、Confirm、Cancel三个词语的缩写，TCC要求每个分支事务实现三个操作：预处理Try、确认Confirm、撤销Cancel。Try操作做业务检查及资源预留，Confirm做业务确认操作，Cancel实现一个与Try相反的操作即回滚操作。TM首先发起所有的分支事务的try操作，任何一个分支事务的try操作执行失败，TM将会发起所有分支事务的Cancel操作，若try操作全部成功，TM将会发起所有分支事务的Confirm操作，其中Confirm/Cancel操作若执行失败，TM会进行重试。TCC模式一般用于和第三方自己无法掌控的系统进行对接操作。</p>
+<p><strong>分支事务成功情况</strong></p>
+<img src="/img/distributed-tx/confirm.png" style="zoom:67%;" />
+<p><strong>分支事务失败情况</strong></p>
+<img src="/img/distributed-tx/cancel.png" style="zoom:67%;" />
+<ul>
+<li><code>Try </code>阶段是做业务检查(一致性)及资源预留(隔离)，此阶段仅是一个初步操作，它和后续的<code>Confirm</code>一起才能真正构成一个完整的业务逻辑。</li>
+<li><code>Confirm</code>阶段是做确认提交，<code>Try</code>阶段所有分支事务执行成功后开始执行<code>Confirm</code>。通常情况下，采用TCC则认为<code>Confirm</code>阶段是不会出错的。即：只要<code>Try</code>成功，<code>Confirm</code>一定成功。若<code>Confirm</code>阶段真的出错了，需引入重试机制或人工处理。</li>
+<li><code>Cancel</code>阶段是在业务执行错误需要回滚的状态下执行分支事务的业务取消，预留资源释放。通常情况下，采用TCC则认为<code>Cance</code>l阶段也是一定成功的。若<code>Cancel</code>阶段真的出错了，需引入重试机制或人工处理。</li>
+<li><code>TM事务管理器</code>可以实现为独立的服务，也可以让全局事务发起方充当TM的角色，TM独立出来是为了成为公用组件，是为了考虑系统结构和软件复用。TM在发起全局事务时生成全局事务记录，全局事务ID贯穿整个分布式事务调用链条，用来记录事务上下文，追踪和记录状态，由于<code>Confirm</code>和<code>cancel</code>失败需进行重试，因此需要实现为幂等，幂等性是指同一个操作无论请求多少次，其结果都相同。</li>
+</ul>
+<p><strong>TCC事务要考虑允许空回滚、防悬挂控制、幂等控制</strong></p>
+<img src="/img/distributed-tx/null_rollback.jpg" style="zoom:80%;" />
+<p>Cancel接口设计时需要允许空回滚。在Try接口因为丢包时没有收到，事务管理器会触发回滚。这时会触发Cancel接口，这时Cancel执行时发现没有对应的事务xid或主键时，需要返回回滚成功。让事务服务管理器认为己回滚，否则会不断重试，而Cancel又没有对应的业务数据可以进行回滚。</p>
+<hr>
+<img src="/img/distributed-tx/xuangua.jpg" alt="img" style="zoom:67%;" />
+<p>悬挂的意思是：Cancel比Try接口先执行，出现的原因是Try由于网络拥堵而超时，事务管理器生成回滚，触发Cancel接口，而最终又收到了Try接口调用，但是Cancel比Try先到。按照前面允许空回滚的逻辑，回滚会返回成功，事务管理器认为事务已回滚成功，则此时的Try接口不应该执行，则会产生数据不一致，所以我们在Cancel空回滚返回成功之前先记录该条事务xid或业务主键，标识这条记录已经回滚过，Try 接口先检查这条事务xid或业务主键如果已经标记为为滚成功过，则不执行Try的业务操作。</p>
+<hr>
+<img src="/img/distributed-tx/幂等.jpg" alt="img" style="zoom:80%;" />
+<p>幂等性的意思是：因为网络抖动或拥堵可能会超时，事务管理器会对资源进行重试操作，所以很可能一个业务操作会被重复调用，为了不因为重复调用而多次占用资源，需要对服务设计时进行幂等控制，通常我们可以用事务xid或业务主键判重来控制。</p>
+<h2 id="五3pc协议">五、3PC协议</h2>
+<p>​	三阶段提交又称3PC，其在两阶段提交的基础上<strong>增加了CanCommit阶段</strong>，并<strong>引入了超时机制</strong>。一旦事务参与者迟迟没有收到协调者的Commit请求，就会自动进行本地commit，这样相对有效地解决了协调者单点故障的问题。但是性能问题和不一致问题仍然没有根本解决。</p>
+<p><strong>第一阶段：CanCommit阶段</strong></p>
+<p>​		这个阶段类似于2PC中的第二个阶段中的Ready阶段，是一种事务询问操作，事务的协调者向所有参与者询问&quot;<strong>是否可以完成本次事务？</strong>&quot;，如果参与者节点认为自身可以完成事务就返回&quot;YES&quot;，否则&quot;NO&quot;。而在实际的场景中参与者节点会对自身逻辑进行事务尝试，其实说白了就是检查下自身状态的健康性，看有没有能力进行事务操作。</p>
+<img src="/img/distributed-tx/CanCommit.png" alt="img" style="zoom:80%;" />
+<p><strong>第二阶段：PreCommit阶段</strong></p>
+<p>在阶段一中，如果所有的参与者都返回Yes的话，那么就会进入PreCommit阶段进行事务预提交。此时分布式事务协调者会向所有的参与者节点发送PreCommit请求，参与者收到后开始执行事务操作，并将Undo和Redo信息记录到事务日志中。参与者执行完事务操作后（此时属于未提交事务的状态），就会向协调者反馈&quot;Ack&quot;表示我已经准备好提交了，并等待协调者的下一步指令。</p>
+<p>否则，如果阶段一中有任何一个参与者节点返回的结果是No响应，或者协调者在等待参与者节点反馈的过程中超时（<strong>2PC中只有协调者可以超时，参与者没有超时机制）</strong>。整个分布式事务就会中断，协调者就会向所有的参与者发送**&ldquo;abort&rdquo;**请求。</p>
+<img src="/img/distributed-tx/PreCommit.png" style="zoom:80%;" />
+<p><strong>第三阶段：DoCommit阶段</strong></p>
+<p>在阶段二中如果所有的参与者节点都可以进行PreCommit提交，那么协调者就会从<strong>预提交状态-&gt;提交状态</strong>。然后向所有的参与者节点发送**&ldquo;doCommit&rdquo;<strong>请求，参与者节点在收到提交请求后就会各自执行事务提交操作，并向协调者节点反馈</strong>&ldquo;Ack&rdquo;**消息，协调者收到所有参与者的Ack消息后完成事务。相反，如果有一个参与者节点未完成PreCommit的反馈或者反馈超时，那么协调者都会向所有的参与者节点发送abort请求，从而中断事务。</p>
+ <img src="/img/distributed-tx/DoCommit.png" style="zoom:80%;" />
+<p>相比较2PC而言，3PC对于协调者（<strong>Coordinator</strong>）和参与者（<strong>Partcipant</strong>）都设置了超时时间，而2PC只有协调者才拥有超时机制。这个优化点，主要是避免了参与者在长时间无法与协调者节点通讯（协调者挂掉了）的情况下，无法释放资源的问题，因为参与者自身拥有超时机制会在超时后，自动进行本地commit从而进行释放资源。而这种机制也侧面降低了整个事务的阻塞时间和范围。</p>
+<h2 id="六消息最终一致性">六、消息最终一致性</h2>
+<p>利用消息中间件的ACK机制来实现</p>
+<img src="/img/distributed-tx/消息最终一致性.png" alt="image-20210104132630332" style="zoom:67%;" />
+<ul>
+<li>服务A必须确保消息发送到MQ</li>
+<li>服务B消费完成必须要签收消息</li>
+<li>服务B的消息可能会被重复收到，所以服务B必须做幂等性保证</li>
+</ul>
+<h2 id="七最大努力通知">七、最大努力通知</h2>
+<p>最大努力通知也是一种解决分布式事务的方案，以下是一个是充值的例</p>
+<img src="/img/distributed-tx/最大努力通知-例子.png"  style="zoom:60%;" />
+<ul>
+<li>有一定的消息重复通知机制：因为接收通知方可能没有接收到通知，此时要有一定的机制对消息重复通知</li>
+<li>有消息校对机制：如果尽最大努力也没有通知到接收方，或者接收方消费消息后要再次消费，此时可由接收方主动向通知方查询消息
+信息来满足需求</li>
+</ul>
+<h3 id="最大努力通知与可靠消息一致性区别">最大努力通知与可靠消息一致性区别</h3>
+<p><strong>1）解决方案思想不同</strong></p>
+<p>​	可靠消息一致性，发起通知方需要保证将消息发出去，并且将消息发到接收通知方，消息的可靠性关键由发起通知方来保证。最大努力通知，发起通知方尽最大的努力将业务处理结果通知为接收通知方，但是可能消息接收不到，此时需要接收通知方主动调用发起通知方的接口查询业务处理结果，通知的可靠性关键在接收通知方。</p>
+<p><strong>2）两者的业务应用场景不同</strong></p>
+<p>可靠消息一致性关注的是过程的事务一致，以异步的方式完成事务</p>
+<p>最大努力通知关注的是结果后的通知事务，即将结果可靠的通知出去</p>
+<p><strong>3）技术解决方向不同</strong></p>
+<p>可靠消息一致性要解决消息从发出到接收的一致性，即消息发出并且被接收到</p>
+<p>最大努力通知无法保证消息从发出到接收的一致性，只提供消息接收的可靠性机制。可靠机制是，最大努力的将消息通知给接收方，当消息无法被接收方接收时，由接收方主动查询消息（业务处理结果）</p>
+<h3 id="最大努力通知的设计方案">最大努力通知的设计方案</h3>
+<h4 id="方案一">方案一</h4>
+<img src="/img/distributed-tx/最大努力通知方案一.png" style="zoom:67%;" />
+<p>①、发起通知方将通知发给MQ，使用普通消息机制将通知发给MQ（不用保证消息一定到达）</p>
+<p>②、接收通知方监听 MQ</p>
+<p>③、接收通知方接收消息，业务处理完成回应ack</p>
+<p>④、接收通知方若没有回应ack则MQ会重复通知（通知时间间隔会变大）</p>
+<p>⑤、长时间没收到通知，接收通知方可通过消息校对接口来校对消息的一致性（弥补第①步）</p>
+<h4 id="方案二">方案二</h4>
+<img src="/img/distributed-tx/最大努力通知方案二.png" style="zoom:67%;" />
+<p>①、发起通知方将通知发给MQ。使用可靠消息一致方案中的事务消息保证本地事务与消息的原子性，最终确保将通知先发给MQ</p>
+<p>②、通知程序监听 MQ，接收MQ的消息</p>
+<p>③、通知程序通过互联网接口协议（如http、webservice）调用接收通知方案接口，完成通知。通知程序调用接收通知方案接口成功就表示通知成功，即消费MQ消息成功，发起通知发将不再向通知程序投递通知消息</p>
+<p>④、接收通知方可通过消息校对接口来校对消息的一致性</p>
+<h4 id="方案一和方案二的区别">方案一和方案二的区别</h4>
+<ul>
+<li>方案1中接收通知方与MQ接口，即接收通知方案监听 MQ，此方案主要应用与内部应用之间的通知</li>
+<li>方案2中由通知程序与MQ接口，通知程序监听MQ，收到MQ的消息后由通知程序通过互联网接口协议调用接收通知方。此方案主要应用于外部应用之间的通知，例如支付宝、微信的支付结果通知</li>
+</ul>
+<h2 id="八汇总">八、汇总</h2>
+<table>
+<thead>
+<tr>
+<th>分布式事务模式</th>
+<th>介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AT 模式</strong></td>
+<td>无侵入的分布式事务解决方案，适用于不希望对业务进行改造的场景，几乎0学习成本（sql都由框架托管统一执行，会存在<strong>脏写</strong>问题）</td>
+</tr>
+<tr>
+<td><strong>TCC 模式</strong></td>
+<td>高性能分布式事务解决方案，适用于核心系统等对性能有很高要求的场景（第一阶段会产生行锁，事务执行太久会<strong>锁行很久</strong>）</td>
+</tr>
+<tr>
+<td><strong>Saga 模式</strong></td>
+<td>长事务解决方案，适用于业务流程长且需要保证事务最终一致性的业务系统（第一阶段就操作DB，会存在<strong>脏读</strong>问题）</td>
+</tr>
+<tr>
+<td><strong>XA模式</strong></td>
+<td>分布式强一致性的解决方案，但<strong>性能低</strong>而使用较少。</td>
+</tr>
+<tr>
+<td><strong>消息最终一致性</strong></td>
+<td>利用MQ的ACK机制实现，有侵入性，适合内部系统的数据流动</td>
+</tr>
+<tr>
+<td><strong>最大努力通知</strong></td>
+<td>需要消息接收方对消息处理进行保障，一般用于作为接入者对接第三方系统</td>
+</tr>
+</tbody>
+</table>
+
+    </div>
+
+    
+
+    <div class="container-comment-giscus">
+        <script src="https://giscus.app/client.js"
+        data-repo="loveminimal/comment"
+        data-repo-id="R_kgDOJNJQ8g"
+        data-category="General"
+        data-category-id="DIC_kwDOJNJQ8s4CYl0m"
+        data-mapping="title"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="noborder_light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+        </script>
+</div>
+</div>
+
+        </div>
+        <div id="footer"><div class="container-footer">
+    
+
+    <div class="beian">
+        
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41092802000242">
+            
+
+        </a>
+
+        
+        <a href="//beian.miit.gov.cn" target="_blank">
+            
+            <span class="some">icp...<span>
+            
+        </a>
+    </div>
+
+    
+    <div class="info">
+        
+        <a href="https://github.com/loveminimal/hugo-theme-virgo">🕊️</a> 2016 - <span id="info-date"></span>
+    </div>
+
+</div></div>
+        <div class="cool-after" style="
+            
+                background-color: rgba(255, 255, 255, 0.49); 
+                backdrop-filter: saturate(100%) blur(6px);
+            
+            "></div>
+    </body>
+</html>

@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="description" content="logstash的使用 - https://hobocat.github.io/post/searchengine/2020-08-09-logstash/">
+    <meta name="author" content="Jack - https://hobocat.github.io/">
+    
+    <meta name="msvalidate.01" content="B46311949B856F2A7015F366FB3CE878" />
+    <title>logstash的使用</title>
+    
+    <base target="_blank">
+    <link rel="icon" type="image/png" href="/favicon.ico">
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="https://hobocat.github.io/style.min.94e7ed14b48117025ebd1148adc11f7268f1ebf50d97297ac663edf1aa6f52dc.css">
+    
+    <script>const DARK =  false ;</script>
+    
+    <script type="text/javascript" src="/main.js" defer></script>
+    
+</head>
+<body class="active-animate cool">
+        <div class="container-floating-box">
+	<div class="box box1"></div>
+	<div class="box box11"></div>
+	<div class="box box12"></div>
+	<div class="box box2"></div>
+	<div class="box box3"></div>
+	<div class="box box4"></div>
+	<div class="box box5"></div>
+	<div class="box box6"></div>
+	<div class="box box7"></div>
+	<div class="box box8"></div>
+	<div class="box box9"></div>
+</div>
+        <div class="cool-before" style="background: url('/imgs/bg/wallhaven-6qr21l.jpg') left top/100% no-repeat fixed;"></div>
+        <div id="header" class=""><div class="container-header">
+
+    
+    
+    
+    <div class="right">
+        
+        <h1 class="title">logstash的使用</h1>
+    
+        
+        
+            <div id="toc">📜</div>
+        
+    </div>
+</div>
+</div>
+        <div id="content">
+
+
+
+
+
+
+
+
+
+
+<div class="container-main container-page ">
+
+    
+
+    
+    
+    
+    
+
+    <div class="desc">
+        
+        <span>
+            
+            <svg t="1656736000388" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                p-id="7409" width="12" height="12">
+                <path
+                    d="M524.885333 338.986667L200.362667 663.466667c-17.28 15.274667-27.989333 36.693333-29.696 56.234666v133.76l130.730666 0.085334c22.784-1.621333 43.989333-12.245333 61.013334-31.701334l322.688-322.645333-160.213334-160.213333z m60.373334-60.330667l160.170666 160.213333 102.144-102.144a19.712 19.712 0 0 0 0-27.861333L715.093333 176.426667a19.456 19.456 0 0 0-27.605333 0L585.258667 278.613333zM701.312 85.333333c27.946667 0 54.741333 11.136 74.282667 30.848l132.309333 132.309334a105.045333 105.045333 0 0 1 0 148.565333L424.874667 879.957333c-29.824 34.346667-72.106667 55.466667-120.448 58.794667H85.333333v-42.666667l0.128-179.84c3.626667-44.970667 24.576-86.826667 56.448-114.944l485.12-485.034666A104.789333 104.789333 0 0 1 701.269333 85.333333z"
+                    p-id="7410" fill="#adb5bd"></path>
+            </svg>
+            2020-08-09&nbsp;&nbsp;&nbsp;
+            <svg t="1656737270708" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                p-id="23838" width="11" height="11">
+                <path
+                    d="M824.264 95.36c0-23.859 25.043-44.16 48.902-44.16s49.714 20.301 49.714 44.16v190.08c0 23.859-19.054 52.868-42.913 52.868h-190.08c-23.859 0-46.696-25.96-46.696-49.819s22.55-46.249 46.409-46.249h82.025C702.344 175.534 610.22 155.853 512 155.853c-206.775 0-360.398 149.372-360.398 356.147 0 206.775 153.623 358.23 360.398 358.23 206.775 0 357.467-151.455 357.467-358.23 0-23.859 23.634-50.706 53.413-50.706 29.78 0 49.92 26.847 49.92 50.706 0 254.493-206.307 460.8-460.8 460.8-254.493 0-460.8-206.307-460.8-460.8C51.2 257.507 257.507 51.2 512 51.2c122.4 0 226.684 33.296 312.264 117.369 0.358 0.351 0.358-24.052 0-73.209z"
+                    p-id="23839" fill="#adb5bd"></path>
+            </svg>
+            2024-05-15&nbsp;&nbsp;&nbsp;
+        </span>
+        <span>
+            
+            <svg t="1656737548689" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                p-id="33866" width="12" height="12">
+                <path
+                    d="M832.038608 64.662657H192.030028C121.255125 64.662657 63.940169 121.98845 63.940169 192.694717v446.793671C63.940169 710.205493 121.255125 767.643272 192.030028 767.643272h133.353183a63.940169 63.940169 0 0 1 55.219742 31.576328l76.099638 129.83828c12.358154 21.093031 33.790754 31.626903 55.216129 31.626903s42.832688-10.544709 55.198067-31.619678l76.222461-129.870792a63.940169 63.940169 0 0 1 55.212517-31.551041h133.54103c70.576219 0 127.732228-57.289669 127.732227-127.800865V192.391272C959.825022 121.85479 902.643727 64.662657 832.038608 64.662657zM895.884854 639.842407A63.85347 63.85347 0 0 1 832.092795 703.703103h-133.54103a127.753903 127.753903 0 0 0-110.349172 63.09847l-76.222461 129.856342a0.274545 0.274545 0 0 1 0-0.050574h-0.032512s-0.021675 0.061411-0.032512 0.061412l-76.1466-129.85273A127.804477 127.804477 0 0 0 325.383211 703.703103H192.030028A64.207489 64.207489 0 0 1 127.880338 639.488388V192.694717A64.102729 64.102729 0 0 1 192.030028 128.602826h640.00858A63.799284 63.799284 0 0 1 895.884854 192.391272v447.451135z"
+                    fill="#adb5bd" p-id="33867"></path>
+                <path
+                    d="M608.154093 288.092004A31.970084 31.970084 0 0 0 576.184009 320.062089v160.078006l-134.650049-179.278119A31.970084 31.970084 0 0 0 384.002258 320.062089v255.760676a31.970084 31.970084 0 0 0 63.940169 0v-159.958796l134.650048 179.274507a31.970084 31.970084 0 0 0 57.531703-19.200113V320.062089a31.970084 31.970084 0 0 0-31.970085-31.970085z"
+                    fill="#adb5bd" p-id="33868"></path>
+            </svg>
+            6467 字</span>&nbsp;
+        <span>
+            
+            <svg t="1656737462334" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                p-id="32892" width="12" height="12">
+                <path
+                    d="M512 74.666667C270.933333 74.666667 74.666667 270.933333 74.666667 512S270.933333 949.333333 512 949.333333 949.333333 753.066667 949.333333 512 753.066667 74.666667 512 74.666667z m0 810.666666c-204.8 0-373.333333-168.533333-373.333333-373.333333S307.2 138.666667 512 138.666667 885.333333 307.2 885.333333 512 716.8 885.333333 512 885.333333z"
+                    p-id="32893" fill="#adb5bd"></path>
+                <path
+                    d="M695.466667 567.466667l-151.466667-70.4V277.333333c0-17.066667-14.933333-32-32-32s-32 14.933333-32 32v238.933334c0 12.8 6.4 23.466667 19.2 29.866666l170.666667 81.066667c4.266667 2.133333 8.533333 2.133333 12.8 2.133333 12.8 0 23.466667-6.4 29.866666-19.2 6.4-14.933333 0-34.133333-17.066666-42.666666z"
+                    p-id="32894" fill="#adb5bd"></path>
+            </svg>
+            13 分钟</span>
+        <div class="container-ctgtag">
+	<div class="taxonomy">
+		<div class="tag">
+			
+			
+		</div>
+	</div>
+</div>
+        
+    </div>
+
+    <div class="toc">
+        <div class="container-page-operation">
+	<div class="page-operation">
+		<div><a href="/"><img src="/imgs/icons/home-2.svg" alt=""></a></div>
+		<div><a href="/nav"><img src="/imgs/icons/iov-navigate-1.svg" alt=""></a></div>
+		<div><a href="/wiki"><img src="/imgs/icons/wiki.svg" alt=""></a></div>
+		<div><a href="/tags"><img src="/imgs/icons/treetags.svg" alt=""></a></div>
+		<div id="light-dark"><a><img src="/imgs/icons/moon2.svg" alt=""></a></div>
+		<div><a href="#"><img src="/imgs/icons/up2.svg" alt=""></a></div>
+	</div>
+</div>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一logstash架构简介">一、Logstash架构简介</a>
+      <ul>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#架构">架构</a></li>
+        <li><a href="#pipeline和logstash-event">Pipeline和Logstash Event</a></li>
+        <li><a href="#queue的分类">Queue的分类</a></li>
+        <li><a href="#logstash配置文件">Logstash配置文件</a></li>
+        <li><a href="#pipeline配置语法">Pipeline配置语法</a></li>
+      </ul>
+    </li>
+    <li><a href="#二input插件">二、Input插件</a>
+      <ul>
+        <li><a href="#stdin插件">stdin插件</a></li>
+        <li><a href="#file插件">file插件</a></li>
+        <li><a href="#kafka插件">kafka插件</a></li>
+        <li><a href="#http插件">http插件</a></li>
+      </ul>
+    </li>
+    <li><a href="#三codec插件">三、Codec插件</a>
+      <ul>
+        <li><a href="#plaindotsrubydebug">plain&amp;dots&amp;rubydebug</a></li>
+        <li><a href="#linejson">line&amp;json</a></li>
+        <li><a href="#multiline">multiline</a></li>
+      </ul>
+    </li>
+    <li><a href="#四filter插件">四、Filter插件</a>
+      <ul>
+        <li><a href="#date-filter">Date Filter</a></li>
+        <li><a href="#grok-filter">Grok Filter</a></li>
+        <li><a href="#dissect-filter">Dissect Filter</a></li>
+        <li><a href="#mutate-filter">Mutate Filter</a></li>
+        <li><a href="#json-filter">Json Filter</a></li>
+        <li><a href="#geoip-filter">GeoIp Filter</a></li>
+        <li><a href="#ruby-filter">ruby Filter</a></li>
+      </ul>
+    </li>
+    <li><a href="#五output插件">五、Output插件</a>
+      <ul>
+        <li><a href="#stdout插件">stdout插件</a></li>
+        <li><a href="#file插件-1">file插件</a></li>
+        <li><a href="#elasticsearch插件">elasticsearch插件</a></li>
+      </ul>
+    </li>
+    <li><a href="#六调试技巧">六、调试技巧</a>
+      <ul>
+        <li><a href="#特殊字段">特殊字段</a></li>
+        <li><a href="#监控">监控</a></li>
+      </ul>
+    </li>
+    <li><a href="#七从mysql导入数据到es">七、从MySQL导入数据到ES</a></li>
+    <li><a href="#八从csv中导出数据到es">八、从CSV中导出数据到ES</a></li>
+  </ul>
+</nav>
+    </div>
+
+    <div class='content  '>
+        <h2 id="一logstash架构简介">一、Logstash架构简介</h2>
+<h3 id="简介">简介</h3>
+<p>logstash是一个数据收集处理引擎，可是视之为一个ETL工具。</p>
+<h3 id="架构">架构</h3>
+<img src="/img/searchengine/logstash-struct.png" style="zoom:67%;" />
+<ul>
+<li>Input        用于从数据源获取数据，常见的插件如<code>file</code>，<code> syslog</code>，<code> redis</code>， <code>beats</code> 等</li>
+<li>Codec      在输入和输出等插件中用于数据转换的模块，用于对数据进行编码处理，常见的插件如<code>json</code>，<code>multiline</code></li>
+<li>Queue     数据回经过Queue进行分发，有<code>In Memory</code>和<code>Persistent Queue In Disk</code>两种</li>
+<li>Batcher   批量的从Queue中取数据，向后传递数据。默认50ms或者待处理文档数大于125时向后传递</li>
+<li>Filter        用于处理数据如格式转换，数据派生等，常见的插件如<code>grok</code>，<code>mutate</code>， <code>drop</code>， <code>clone</code>， <code>geoip</code>等</li>
+<li>Output    用于数据输出，常见的如<code>elastcisearch</code>，<code>file</code>，<code> graphite</code>, <code>statsd</code>等</li>
+</ul>
+<h3 id="pipeline和logstash-event">Pipeline和Logstash Event</h3>
+<p><code>Pipline</code>由【<code>Input</code>】-【<code>Filter</code>】-【<code>Output</code>】3个阶段处理流程组成，包含了队列管理和插件生命周期管理</p>
+<p><code>Logstash Event</code>是内部流转的数据的表现形式。原数据在<code>Input</code>转换为<code>Event</code>，在<code>Output event</code>时被转换为目标数据格式，在配置文件中可以对<code>Event</code>中的属性进行判断和增删改查</p>
+<img src="/img/searchengine/logstash-event.png" style="zoom:67%;" />
+<h3 id="queue的分类">Queue的分类</h3>
+<p><strong>In Memory</strong></p>
+<p>是一个内存的Queue，无法通过参数设置。无法处理进程崩溃、机器宕机等情况，会导致数据丢失</p>
+<p><strong>Persistent Queue In Disk</strong></p>
+<p>可保证在出现意外的情况下保证数据不丢失，而且能保证数据至少被消费一次</p>
+<blockquote>
+<p><code>Persistent Queue In Disk</code>对性能影响估计是在5%以内，如果没有特殊需求一般建议打开</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>queue.type</td>
+<td>队列类型可选值：persisted、memory【默认】</td>
+</tr>
+<tr>
+<td>queue.max_bytes</td>
+<td>队列存储的最大容量，默认1gb</td>
+</tr>
+<tr>
+<td>path.queue</td>
+<td>Persistent Queue In Disk存到磁盘的哪个位置</td>
+</tr>
+<tr>
+<td>queue.page_capacity</td>
+<td>控制消息队列每一个文件的大小，默认64mb</td>
+</tr>
+<tr>
+<td>queue.checkpoint.writes</td>
+<td>提升容灾能力，如果是1 表示每写一个数据都去做盘，默认1024</td>
+</tr>
+<tr>
+<td>pipeline.workers</td>
+<td>filter_output的线程数，默认CPU核心数</td>
+</tr>
+<tr>
+<td>pipeline.batch.size</td>
+<td>批处理延迟文档数，默认125</td>
+</tr>
+<tr>
+<td>pipeline.batch.delay</td>
+<td>批处理延迟，默认50ms</td>
+</tr>
+</tbody>
+</table>
+<h3 id="logstash配置文件">Logstash配置文件</h3>
+<p><strong>在conf文件夹中被称之为setting files</strong></p>
+<ul>
+<li><code>logstash.yml</code>中是logstash相关配置比如<code>node.name</code>，<code>path.data</code>，<code>pipline.workers</code>、<code>queue.type</code>等，这些配置可以被命令行参数替代</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>node.name</td>
+<td>节点名，便于识别</td>
+</tr>
+<tr>
+<td>path.data</td>
+<td>持久化存储数据文件夹，默认logstash下的data目录，多实例不能相同</td>
+</tr>
+<tr>
+<td>path.config</td>
+<td>设定pipeline的路径，如果是目录则扫描目录下的所有.conf文件</td>
+</tr>
+<tr>
+<td>path.log</td>
+<td>pipeline日志文件的目录</td>
+</tr>
+<tr>
+<td>pipeline.workers</td>
+<td>设定pipeline的线程数</td>
+</tr>
+<tr>
+<td>pipeline.batch.size/delay</td>
+<td>批处理延迟</td>
+</tr>
+<tr>
+<td>queue.type</td>
+<td>队列类型可选值：persisted、memory</td>
+</tr>
+<tr>
+<td>queue.max_bytes</td>
+<td>队列存储的最大容量，默认1gb</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>命令行参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&ndash;node.name</td>
+<td>同node.name</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>同path.config</td>
+</tr>
+<tr>
+<td>&ndash;path.settings</td>
+<td>logstash文件夹目录主要包含logstash.yml，启动多实例时会用</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>指明pipeline文件内容，多用于测试</td>
+</tr>
+<tr>
+<td>-w</td>
+<td>同pipeline.workers</td>
+</tr>
+<tr>
+<td>-b</td>
+<td>同pipeline.batch.size</td>
+</tr>
+<tr>
+<td>&ndash;path.data</td>
+<td>同path.data</td>
+</tr>
+<tr>
+<td>&ndash;debug</td>
+<td>打开调试日志</td>
+</tr>
+<tr>
+<td>-t</td>
+<td>检测pipeline文件语法是否正确</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>jvm.options</code>是修改jvm的相关参数</li>
+</ul>
+<p><strong>pipeline文件</strong></p>
+<ul>
+<li>
+<p>定义数据处理流程的文件，默认以<code>.conf</code>结尾，结构如下</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>input {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>filter {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>output {}
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="pipeline配置语法">Pipeline配置语法</h3>
+<p><strong>数据类型</strong></p>
+<ul>
+<li>
+<p>布尔类型       isFailed =&gt; true</p>
+</li>
+<li>
+<p>数值类型       num =&gt; 23</p>
+</li>
+<li>
+<p>字符串类型   name =&gt; &ldquo;Hello&rdquo;</p>
+</li>
+<li>
+<p>数组类型       user =&gt; [ { &ldquo;id&rdquo; =&gt;1, &ldquo;name&rdquo; =&gt; &ldquo;bob&rdquo; }, { &ldquo;id&rdquo; =&gt; 2, &ldquo;name&rdquo;  =&gt; &ldquo;tom&rdquo; } ]   | name =&gt; [ &ldquo;bob&rdquo; , &ldquo;tom&rdquo; ]</p>
+</li>
+<li>
+<p>哈希类型</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>match =&gt; { 
+</span></span><span style="display:flex;"><span>  &#34;k1&#34; =&gt; &#34;v1&#34;
+</span></span><span style="display:flex;"><span>  &#34;k2&#34; =&gt; &#34;v2&#34;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p><strong>注释</strong></p>
+<p>井号开头<code># This is a comment</code></p>
+<p><strong>取属性</strong></p>
+<ul>
+<li>直接引用字段              使用[]取出，嵌套使用多层[]即可</li>
+<li>字符串使用引用值      使用引用sprintf语法%{}</li>
+</ul>
+<p><strong>判断值</strong></p>
+<ul>
+<li>可以if、else if、else语法</li>
+<li>判断的表达式
+<ul>
+<li>比较                      ==，!=，&lt;，&gt;，&lt;=，&gt;=</li>
+<li>正则是否匹配      =~，!~</li>
+<li>包含                      in，not in</li>
+<li>布尔操作符          and，or，nand，xor，!</li>
+</ul>
+</li>
+</ul>
+<h2 id="二input插件">二、Input插件</h2>
+<p>input插件指定了数据输入源，一个pipeline可以有多个input插件。</p>
+<h3 id="stdin插件">stdin插件</h3>
+<p>最简单的输入类型，从标准输入流读入数据，通用配置为</p>
+<ul>
+<li>codec，类型为codec</li>
+<li>type，类型为string，自定义该事件的类型，可用于后续判断</li>
+<li>tags，类型为array，自定义该事件的tag，可用于后续判断</li>
+<li>add_field，类型为hash，为该事件添加字段</li>
+</ul>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>input {
+</span></span><span style="display:flex;"><span>  stdin {
+</span></span><span style="display:flex;"><span>    codec =&gt; &#34;plain&#34;
+</span></span><span style="display:flex;"><span>    type =&gt; &#34;std&#34;
+</span></span><span style="display:flex;"><span>    tags =&gt; [&#34;info log&#34;]
+</span></span><span style="display:flex;"><span>    add_field =&gt; {
+</span></span><span style="display:flex;"><span>    	&#34;info&#34; =&gt; &#34;this is info message&#34;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>output {
+</span></span><span style="display:flex;"><span>  stdout {
+</span></span><span style="display:flex;"><span>    codec =&gt; &#34;rubydebug&#34;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="file插件">file插件</h3>
+<p>file插件会定时检查文件是否更新和文件夹下是否有新文件生成，为了不重复读取内容，使用了<code>sincedb</code>记录了文件读取的行号。文件记录的的底层的<code>nodeId</code>所以当文件发生归档时也不会发生错误。其配置为</p>
+<ul>
+<li>path，类型为数组，指明读取文件的路径，基于<code>glob</code>语法</li>
+<li>exclude，类型为数组，排除不想监听的文件规则，基于<code>glob</code>语法</li>
+<li>sincedb_path，类型为字符串，记录<code>sincedb</code>文件路径</li>
+<li>start_position，类型为字符串，<code>beginning</code> or <code>end</code>，是否从头读取文件</li>
+<li>stat_interval，类型为数值，单位秒，定时检查文件是否有更新，默认为1s</li>
+<li>discover_interval，类型为数值，单位秒，定时检查是否有新文件待读取，默认15s</li>
+<li>ignore_older，类型为数值，单位秒，扫描文件列表时，如果该文件上次更改时间超过设定时长，则不做处理，但依然会监控是否有新的内容，默认关闭</li>
+<li>close_older，类型为数值，单位秒，如果监听的文件在超过的时间范围内没有更新则关闭文件句柄，释放资源。但是依然会继续监控，默认时间3600秒</li>
+</ul>
+<blockquote>
+<p>start_postion有两个参数可选，默认是end，表示运行logstash运行之后只会读取从logstash运行之后新进来的数据。如果想让logstash从头读取要设置为beginning。注意只有在第一次读取的时候这个beginning才生效，一旦读取过这个文件在sincedb中有记录了，logstash之后再去跑发现在sincedb中有记录了，就不会生效了也就是不会再从头读取了。这个的坏处就是我们做一些调试的时候比较麻烦只能把sincedb文件给删掉。我们可以把sincedb_path设置为/dev/null 这是个特殊的文件，所有写入到这个文件的内容都不会存储，那么这样再把start_postion设置为beginning这样每一次运行logstash的时候都是从头读取的。</p>
+</blockquote>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>input {
+</span></span><span style="display:flex;"><span>  file {
+</span></span><span style="display:flex;"><span>    path =&gt; &#34;/var/log/*.log&#34;
+</span></span><span style="display:flex;"><span>    sincedb_path =&gt; &#34;/dev/null&#34;
+</span></span><span style="display:flex;"><span>    start_position =&gt; &#34;beginning&#34;
+</span></span><span style="display:flex;"><span>    discover_interval =&gt; 15
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>output {
+</span></span><span style="display:flex;"><span>  stdout {codec =&gt; rubydebug {}}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="kafka插件">kafka插件</h3>
+<p>kafka是最流行的消息队列，在Elastic Stack架构中常用，使用相对简单</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>input {
+</span></span><span style="display:flex;"><span>  kafka {
+</span></span><span style="display:flex;"><span>    zk_connect =&gt; &#34;kafka:2181&#34;
+</span></span><span style="display:flex;"><span>    group_id =&gt; &#34;logstash&#34;
+</span></span><span style="display:flex;"><span>    topic_id =&gt; &#34;apache_logs&#34;
+</span></span><span style="display:flex;"><span>    consumer_threads =&gt; 16
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>output {
+</span></span><span style="display:flex;"><span>  stdout {codec =&gt; rubydebug {}}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="http插件">http插件</h3>
+<p>常和启动参数<code>-r</code>连用，用于热调试</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>input {
+</span></span><span style="display:flex;"><span>  http {
+</span></span><span style="display:flex;"><span>    port =&gt; &#34;5555&#34;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>output {
+</span></span><span style="display:flex;"><span>  stdout {codec =&gt; rubydebug {}}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="三codec插件">三、Codec插件</h2>
+<p><code>codec</code>插件作用于<code>input</code>插件和<code>output</code>插件，负责将数据在原始于<code>logstash event</code>之间转换，常见的codec有</p>
+<ul>
+<li>plain              读取原始内容</li>
+<li>dots               将内容简化为点进行输出</li>
+<li>rubydebug    将<code>Logstash Event</code>按照ruby格式输出，便于调试</li>
+<li>line                处理带有换行符的内容</li>
+<li>json               处理json内容</li>
+<li>multiline       处理多行数据的内容</li>
+</ul>
+<h3 id="plaindotsrubydebug">plain&amp;dots&amp;rubydebug</h3>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>bin/logstash -e &#34;input{stdin{codec=&gt;\&#34;plain\&#34;}} output{stdout{codec=&gt;\&#34;rubydebug\&#34;}}&#34;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>bin/logstash -e &#34;input{stdin{codec=&gt;\&#34;plain\&#34;}} output{stdout{codec=&gt;\&#34;dots\&#34;}}&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="linejson">line&amp;json</h3>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>bin/logstash -e &#34;input{stdin{codec=&gt;\&#34;line\&#34;}} output{stdout{codec=&gt;\&#34;rubydebug\&#34;}}&#34;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>bin/logstash -e &#34;input{stdin{codec=&gt;\&#34;json\&#34;}} output{stdout{codec=&gt;\&#34;rubydebug\&#34;}}&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="multiline">multiline</h3>
+<p>当一个Event的message由多行组成时需要使用<code>mutiline codec</code>，常见的情况时处理Java堆栈异常。主要参数如下</p>
+<ul>
+<li>pattern                            设置行匹配的正则表达式，可以使用<code>grok</code>语法</li>
+<li>what previous | next    如果匹配成功，那么匹配行是属于上一个时间还剩下一个事件</li>
+<li>negate true | false        是否对<code>pattern</code>匹配结果取反，默认false</li>
+</ul>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>##################################以下可以用于简单读取java堆栈跟踪日志##################################
+</span></span><span style="display:flex;"><span>input {
+</span></span><span style="display:flex;"><span>  stdin {
+</span></span><span style="display:flex;"><span>    codec =&gt; multiline {
+</span></span><span style="display:flex;"><span>      what =&gt; &#34;next&#34;
+</span></span><span style="display:flex;"><span>      negate =&gt; false
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>output {
+</span></span><span style="display:flex;"><span>  stdout {
+</span></span><span style="display:flex;"><span>    codec =&gt; &#34;rubydebug&#34;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="四filter插件">四、Filter插件</h2>
+<p>Filter是logstash功能强大的主要原因，它可以对<code>Logstash Event</code>进行丰富的处理，比如数据解析、删除字段、类型转换等等。常见如下：</p>
+<ul>
+<li>date        日期解析</li>
+<li>grok        正则匹配解析</li>
+<li>dissect    分割符解析</li>
+<li>mutate    对字段处理，比如重命名、删除、替换等</li>
+<li>json         按照json解析字段内容到指定字段中</li>
+<li>geoip       增加地理位置数据</li>
+<li>ruby         利用ruby代码来修改<code>Logstash Event</code></li>
+</ul>
+<h3 id="date-filter">Date Filter</h3>
+<p>将日期字符串解析为日期类型</p>
+<ul>
+<li>match        类型为数组，用于指定日期匹配格式，可以一次指定多种日期格式</li>
+<li>target         类型为字符串，用于指定赋值的字段名，默认为@timestamp</li>
+<li>timezone   类型为字符串，用于指定时区</li>
+</ul>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>input {
+</span></span><span style="display:flex;"><span>  stdin {
+</span></span><span style="display:flex;"><span>    codec =&gt; json
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>filter {
+</span></span><span style="display:flex;"><span>  date {
+</span></span><span style="display:flex;"><span>    # 匹配的字段
+</span></span><span style="display:flex;"><span>    match =&gt; [&#34;log_date&#34;, &#34;yyyy-MM-dd HH:mm:ss&#34;]
+</span></span><span style="display:flex;"><span>    # 赋值目标字段，如果不设置则会覆盖@timestamp，如果设置时区而且覆盖本字段，时区无效
+</span></span><span style="display:flex;"><span>    target =&gt; &#34;log_data&#34;
+</span></span><span style="display:flex;"><span>    # 时区设置
+</span></span><span style="display:flex;"><span>    timezone =&gt; &#34;Asia/Shanghai&#34;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>output{
+</span></span><span style="display:flex;"><span>  stdout {
+</span></span><span style="display:flex;"><span>    codec =&gt; rubydebug
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="grok-filter">Grok Filter</h3>
+<p>使用定义好的或者自定义的正则表达式进行匹配，已定义的常用正则查看<a href="https://github.com/logstash-plugins/logstash-patterns-core/tree/master/patterns">参考</a></p>
+<p>Grok语法为<code>%{SYNTAX:SEMANTIC}</code>，<code>SYNTAX</code>为<code>grok pattern</code>的名称，<code>SEMANTIC</code>为赋值字段名称。<code>%{NUMBER:duration}</code>可以用于匹配数值类型，可以在后跟<code>int</code>或<code>float</code>来进行强制类型转换，例如<code>%{NUMBER:duration:int}</code>。<span style="color:red">如果匹配失败将会有一个<code>_grokparsefailure</code>字段产生，可用于后续判断</span></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>##################################使用系统定义的pattern##################################
+</span></span><span style="display:flex;"><span>filter {
+</span></span><span style="display:flex;"><span>  grok {
+</span></span><span style="display:flex;"><span>    match =&gt; { &#34;message&#34;=&gt;&#34;%{IP:ip} %{GREEDYDATA:data}&#34;}
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>##################################使用自定义的pattern##################################
+</span></span><span style="display:flex;"><span>filter {
+</span></span><span style="display:flex;"><span>  grok {
+</span></span><span style="display:flex;"><span>    match =&gt; { &#34;message&#34;=&gt;&#34;%{IP:ip} %{SERVICE_NAME:service_name} %{GREEDYDATA:data}&#34;}
+</span></span><span style="display:flex;"><span>    pattern_definitions =&gt; {
+</span></span><span style="display:flex;"><span>      &#34;SERVICE_NAME&#34; =&gt; &#34;[a-zA-Z]{5}&#34;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>###################################overwrite的使用###################################
+</span></span><span style="display:flex;"><span>filter {
+</span></span><span style="display:flex;"><span>  grok {
+</span></span><span style="display:flex;"><span>    match =&gt; { &#34;message&#34;=&gt;&#34;%{IP:ip} %{GREEDYDATA:message}&#34;}
+</span></span><span style="display:flex;"><span>    overwrite =&gt; [&#34;message&#34;] #将上述匹配的message信息覆盖到message，如果没有overwrite将不执行覆盖操作
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="dissect-filter">Dissect Filter</h3>
+<p>基于分隔符的原理进行解析数据，数据比<code>grok</code>快，但是使用具有局限性</p>
+<ul>
+<li><code>+</code>具有拼接效果</li>
+<li><code>/num</code>代表拼接的顺序</li>
+<li><code>?</code>代表创建一个属性名，<code>&amp;</code>代表给<code>?</code>的属性名赋值</li>
+<li><code>convert_datatype</code>可以进行类型转换</li>
+</ul>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>filter {
+</span></span><span style="display:flex;"><span>  dissect {
+</span></span><span style="display:flex;"><span>    mapping =&gt; {
+</span></span><span style="display:flex;"><span>      &#34;message&#34; =&gt; &#34;%{+ts/2} %{+ts/1}&#34;
+</span></span><span style="display:flex;"><span>      &#34;urlParams&#34; =&gt; &#34;%{?username}=%{&amp;username}&#34;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    convert_datatype =&gt; {
+</span></span><span style="display:flex;"><span>      &#34;age&#34; =&gt; &#34;int&#34;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="mutate-filter">Mutate Filter</h3>
+<p>可以对各种字段进行各种操作，比如重命名、删除、替换、更新等。主要操作如下：</p>
+<ul>
+<li>convert                  类型转换</li>
+<li>gsub                       字符串替换</li>
+<li>split/join/merge   字符串切割、数组合并为字符串、数组合并为数组</li>
+<li>rename                  字段重命名</li>
+<li>update/rename    字段重命名</li>
+<li>remove_field         删除字段</li>
+</ul>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">64
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">65
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">66
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>############################################################################
+</span></span><span style="display:flex;"><span>#convert 实现字段类型转换，类型为hash，支持转换为integer、float、string和boolean  #
+</span></span><span style="display:flex;"><span>############################################################################
+</span></span><span style="display:flex;"><span>filter {
+</span></span><span style="display:flex;"><span> mutate {
+</span></span><span style="display:flex;"><span>   convert =&gt; {
+</span></span><span style="display:flex;"><span>     &#34;age&#34; =&gt; &#34;integer&#34;
+</span></span><span style="display:flex;"><span>     &#34;isLived&#34; =&gt; &#34;boolean&#34;
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span> }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>############################################################################
+</span></span><span style="display:flex;"><span>#gsub 对字段内容进行替换，类型为数组，每三项为一个替换配置                          #
+</span></span><span style="display:flex;"><span>############################################################################
+</span></span><span style="display:flex;"><span>filter {
+</span></span><span style="display:flex;"><span>  mutate {
+</span></span><span style="display:flex;"><span>    gsub =&gt; [
+</span></span><span style="display:flex;"><span>      &#34;path&#34;,&#34;[\\]&#34;,&#34;/&#34;,
+</span></span><span style="display:flex;"><span>      &#34;urlParams&#34;,&#34;[\\?#-]&#34;,&#34;.&#34;
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>############################################################################
+</span></span><span style="display:flex;"><span>#split/join/merge 字符串切割、数组合并为字符串、数组合并为数组                    #
+</span></span><span style="display:flex;"><span>############################################################################
+</span></span><span style="display:flex;"><span>filter {
+</span></span><span style="display:flex;"><span>  mutate {
+</span></span><span style="display:flex;"><span>    split =&gt; {&#34;jobs&#34; =&gt; &#34;,&#34;}
+</span></span><span style="display:flex;"><span>    join  =&gt; {&#34;hobby&#34; =&gt; &#34;,&#34;}
+</span></span><span style="display:flex;"><span>    merge =&gt; {&#34;dest_arr&#34; =&gt; &#34;source_arr&#34;}
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>############################################################################
+</span></span><span style="display:flex;"><span>#rename   将字段重命名                                                       #
+</span></span><span style="display:flex;"><span>############################################################################
+</span></span><span style="display:flex;"><span>filter {
+</span></span><span style="display:flex;"><span>  mutate {
+</span></span><span style="display:flex;"><span>    rename =&gt; {
+</span></span><span style="display:flex;"><span>    &#34;message&#34; =&gt; &#34;source&#34;
+</span></span><span style="display:flex;"><span>    &#34;@timestamp&#34; =&gt; &#34;create_time&#34;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>############################################################################
+</span></span><span style="display:flex;"><span>#update    只在字段存在时生效                                                 #   
+</span></span><span style="display:flex;"><span>#replace   如果字段不存在会执行新增操作                                        #
+</span></span><span style="display:flex;"><span>############################################################################
+</span></span><span style="display:flex;"><span>filter {
+</span></span><span style="display:flex;"><span>  mutate {
+</span></span><span style="display:flex;"><span>    replace =&gt; {&#34;source&#34; =&gt; &#34;source: %{message}&#34;}
+</span></span><span style="display:flex;"><span>    update =&gt; {&#34;age&#34; =&gt; &#34;This is %{age}&#34;}
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>############################################################################
+</span></span><span style="display:flex;"><span>#remove_field  删除字段                                                     #
+</span></span><span style="display:flex;"><span>############################################################################
+</span></span><span style="display:flex;"><span>filter {
+</span></span><span style="display:flex;"><span>  mutate {
+</span></span><span style="display:flex;"><span>    remove_field =&gt; [&#34;@timestamp&#34;]
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="json-filter">Json Filter</h3>
+<p>将字段内容为json格式的数据进行解析</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span># 注意不能在http的Post的entity为Json的状态下测试
+</span></span><span style="display:flex;"><span>filter {
+</span></span><span style="display:flex;"><span>  json {
+</span></span><span style="display:flex;"><span>    source =&gt; &#34;message&#34;
+</span></span><span style="display:flex;"><span>    # 如果没有target它将会被放在root级别，如果有target将会放在target下
+</span></span><span style="display:flex;"><span>    target =&gt; &#34;msg_json&#34;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="geoip-filter">GeoIp Filter</h3>
+<p>提供了根据Ip地址对应的经纬度、城市名等数据的查询，方便进行地理位置的分析</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>filter {
+</span></span><span style="display:flex;"><span>  geoip {
+</span></span><span style="display:flex;"><span>    source =&gt; &#34;ip&#34;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="ruby-filter">ruby Filter</h3>
+<p>最灵活的插件，可以通过ruby代码来修改<code>Logstash Event</code></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>filter {
+</span></span><span style="display:flex;"><span>  ruby {
+</span></span><span style="display:flex;"><span>    codec =&gt; &#39;size = event.get(&#34;message&#34;).size;
+</span></span><span style="display:flex;"><span>              event.set(&#34;message_size&#34;, size)&#39;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="五output插件">五、Output插件</h2>
+<h3 id="stdout插件">stdout插件</h3>
+<p>输出到标准输出流，一般用于调试</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>output {
+</span></span><span style="display:flex;"><span>  stdout {
+</span></span><span style="display:flex;"><span>    codec =&gt; rubydebug
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="file插件-1">file插件</h3>
+<p>输出到文件，一般用于将多地分散日志统一的需求</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span># 默认以json格式进行输出，下面改为了行输出，输出Event中的format字段
+</span></span><span style="display:flex;"><span>output {
+</span></span><span style="display:flex;"><span>  file {
+</span></span><span style="display:flex;"><span>    path =&gt; &#34;/opt/web.log&#34;
+</span></span><span style="display:flex;"><span>    codec =&gt; line{ format =&gt; &#34;%{message}&#34;}
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="elasticsearch插件">elasticsearch插件</h3>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>output {
+</span></span><span style="display:flex;"><span>  elasticsearch {
+</span></span><span style="display:flex;"><span>    hosts =&gt; [&#34;127.0.0.1:9200&#34;]
+</span></span><span style="display:flex;"><span>    index =&gt; &#34;nginx-%{+YYYY.MM.dd}&#34;
+</span></span><span style="display:flex;"><span>    document_id =&gt; &#34;%{id}&#34;  #作为ID的字段
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="六调试技巧">六、调试技巧</h2>
+<h3 id="特殊字段">特殊字段</h3>
+<p>存在一个<code>@metadata</code>的字段，其内容不会输出在output中，此字段适合用于做条件判断，临时存储等。相比<code>remove_field</code>性能好。</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>input {
+</span></span><span style="display:flex;"><span>  http {
+</span></span><span style="display:flex;"><span>    port =&gt; 5555
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>filter {
+</span></span><span style="display:flex;"><span>  mutate {
+</span></span><span style="display:flex;"><span>    add_field =&gt; {
+</span></span><span style="display:flex;"><span>      &#34;[@metadata][debug]&#34;=&gt; true
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>output {
+</span></span><span style="display:flex;"><span>  if([@metadata][debug]) {
+</span></span><span style="display:flex;"><span>    stdout {
+</span></span><span style="display:flex;"><span>      codec =&gt; rubydebug
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }else {
+</span></span><span style="display:flex;"><span>    elasticsearch {
+</span></span><span style="display:flex;"><span>      hosts =&gt; [&#34;127.0.0.1:9200&#34;]
+</span></span><span style="display:flex;"><span>      index =&gt; &#34;nginx-%{+YYYY.MM.dd}&#34;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="监控">监控</h3>
+<p>在<code>logstash.yml</code>下打开<code>xpack</code>监控配置，即可在elasticsearch中查看logstash状态</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#000080">xpack.monitoring.elasticsearch.hosts</span>:<span style="color:#bbb"> </span>[<span style="color:#d14">&#34;http://192.168.1.155:9200&#34;</span>]<span style="color:#bbb">  </span><span style="color:#998;font-style:italic">#注意http</span><span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="七从mysql导入数据到es">七、从MySQL导入数据到ES</h2>
+<p><strong>第一步：环境准备</strong></p>
+<ul>
+<li>
+<p>数据库如果做增量数据导入，必须提高一个可控边界。可控边界一般使用自增主键或者时间戳</p>
+</li>
+<li>
+<p>logstash不能创建ElasticSearch中的索引，所以需要手工创建索引或使用索引模板</p>
+</li>
+<li>
+<p>导入mysql驱动jar包。最佳保存在$logstash_home/config目录中</p>
+</li>
+</ul>
+<p><strong>第二步：定义logstash-mysql增量导入配置文件</strong></p>
+<p>$logstash_home/config创建文件logstash-mysql-es.conf</p>
+<pre tabindex="0"><code class="language-conf" data-lang="conf">input {
+  jdbc {
+    # mysql相关jdbc配置
+    jdbc_connection_string =&gt; &#34;jdbc:mysql://192.168.1.117:3306/logstash?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false&#34;
+    jdbc_user =&gt; &#34;root&#34;
+    jdbc_password =&gt; &#34;123456&#34;
+
+    # jdbc连接mysql驱动的文件目录
+    jdbc_driver_library =&gt; &#34;./config/mysql-connector-java-5.1.5.jar&#34;
+    jdbc_driver_class =&gt; &#34;com.mysql.jdbc.Driver&#34;
+    jdbc_paging_enabled =&gt; true
+    jdbc_page_size =&gt; &#34;50000&#34;
+
+    jdbc_default_timezone =&gt;&#34;Asia/Shanghai&#34;
+
+    # 可以直接写SQL语句在此处，使用大于等于避免丢失数据。如下：
+    statement =&gt; &#34;select * from test_logstash where update_time &gt;= :sql_last_value&#34;
+    
+    # 也可以将SQL定义在文件中，如下：
+    #statement_filepath =&gt; &#34;./config/jdbc.sql&#34;
+
+    # 这里类似crontab,可以定制定时操作，比如每分钟执行一次同步(分 时 天 月 年)
+    schedule =&gt; &#34;* * * * *&#34;
+    
+    # 在ES6.x版本中，不需要定义type。即使定义，logstash也是自动创建索引type为doc
+    #type =&gt; &#34;doc&#34;
+
+    # 是否记录上次执行结果, 如果为真，将会把上次执行到的tracking_column字段的值记录下来，保存到last_run_metadata_path指定的文件中，对磁盘的存储压力太大
+    #record_last_run =&gt; true
+
+    # 是否需要记录某个column的值，如果record_last_run为真，可以自定义我们需要track的column名称，此时该参数就要为true。否则默认track的是timestamp的值
+    use_column_value =&gt; true
+
+    # 如果use_column_value为真,需配置此参数.track的数据库column名,该column必须是递增的. 一般是mysql主键
+    tracking_column =&gt; &#34;update_time&#34;
+    
+    tracking_column_type =&gt; &#34;timestamp&#34;
+
+    last_run_metadata_path =&gt; &#34;./logstash_capital_bill_last_id&#34;
+
+    # 是否清除last_run_metadata_path的记录,如果为真那么每次都相当于从头开始查询所有的数据库记录
+    clean_run =&gt; false
+
+    #是否将字段(column)名称转小写
+    lowercase_column_names =&gt; false
+  }
+}
+
+output {
+  elasticsearch {
+    hosts =&gt; &#34;localhost:9200&#34;       #如果是多个ES,使用逗号分隔多个ip和端口
+    index =&gt; &#34;mysql_datas&#34;          #索引名称 
+    document_id =&gt; &#34;%{id}&#34;          #数据库中数据与ES中document数据关联的字段，此处代表数据库中的id字段和ES中的document的id关联
+    template_overwrite =&gt; true      #是否使用模板，开启效率更高
+  }
+
+  # 这里输出调试，正式运行时可以注释掉
+  stdout {
+      codec =&gt; json_lines
+  } 
+}
+</code></pre><p><strong>第三步：启动</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>bin/logstash -f config/logstash-mysql-es.conf
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="八从csv中导出数据到es">八、从CSV中导出数据到ES</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>input {
+</span></span><span style="display:flex;"><span>  file {
+</span></span><span style="display:flex;"><span>    path =&gt; &#34;/opt/elasticsearch/logstash/instance2/earthquakes.csv&#34;
+</span></span><span style="display:flex;"><span>    sincedb_path =&gt; &#34;/dev/null&#34;
+</span></span><span style="display:flex;"><span>    start_position =&gt; &#34;beginning&#34;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>filter {
+</span></span><span style="display:flex;"><span>  csv {
+</span></span><span style="display:flex;"><span>    columns =&gt; [&#34;dateTime&#34;,&#34;latitude&#34;,&#34;longitude&#34;,&#34;depth&#34;,&#34;magnitude&#34;,&#34;magType&#34;,
+</span></span><span style="display:flex;"><span>                &#34;nbStations&#34;,&#34;gap&#34;,&#34;distance&#34;,&#34;rms&#34;,&#34;source&#34;,&#34;eventID&#34;]
+</span></span><span style="display:flex;"><span>    convert =&gt; {
+</span></span><span style="display:flex;"><span>      &#34;latitude&#34; =&gt; &#34;float&#34;
+</span></span><span style="display:flex;"><span>      &#34;longitude&#34; =&gt; &#34;float&#34;
+</span></span><span style="display:flex;"><span>      &#34;depth&#34; =&gt; &#34;float&#34;
+</span></span><span style="display:flex;"><span>      &#34;rms&#34; =&gt; &#34;float&#34;
+</span></span><span style="display:flex;"><span>      &#34;gap&#34; =&gt; &#34;float&#34;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  date {
+</span></span><span style="display:flex;"><span>    match =&gt; [&#34;dateTime&#34;, &#34;yyyy/MM/dd HH:mm:ss.SS&#34;]
+</span></span><span style="display:flex;"><span>    timezone =&gt; &#34;Asia/Shanghai&#34;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  mutate {
+</span></span><span style="display:flex;"><span>    add_field =&gt; {
+</span></span><span style="display:flex;"><span>      &#34;[@metadata][debug]&#34;=&gt; true
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>output {
+</span></span><span style="display:flex;"><span>   if([@metadata][debug]) {
+</span></span><span style="display:flex;"><span>    stdout {
+</span></span><span style="display:flex;"><span>      codec =&gt; rubydebug
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }else {
+</span></span><span style="display:flex;"><span>    elasticsearch {
+</span></span><span style="display:flex;"><span>      hosts =&gt; [&#34;127.0.0.1:9200&#34;]
+</span></span><span style="display:flex;"><span>      index =&gt; &#34;csv_datas&#34;   
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    
+
+    <div class="container-comment-giscus">
+        <script src="https://giscus.app/client.js"
+        data-repo="loveminimal/comment"
+        data-repo-id="R_kgDOJNJQ8g"
+        data-category="General"
+        data-category-id="DIC_kwDOJNJQ8s4CYl0m"
+        data-mapping="title"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="noborder_light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+        </script>
+</div>
+</div>
+
+        </div>
+        <div id="footer"><div class="container-footer">
+    
+
+    <div class="beian">
+        
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41092802000242">
+            
+
+        </a>
+
+        
+        <a href="//beian.miit.gov.cn" target="_blank">
+            
+            <span class="some">icp...<span>
+            
+        </a>
+    </div>
+
+    
+    <div class="info">
+        
+        <a href="https://github.com/loveminimal/hugo-theme-virgo">🕊️</a> 2016 - <span id="info-date"></span>
+    </div>
+
+</div></div>
+        <div class="cool-after" style="
+            
+                background-color: rgba(255, 255, 255, 0.49); 
+                backdrop-filter: saturate(100%) blur(6px);
+            
+            "></div>
+    </body>
+</html>

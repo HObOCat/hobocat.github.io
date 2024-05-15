@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Network on hobocat home</title>
+    <link>https://hobocat.github.io/categories/network/</link>
+    <description>Recent content in Network on hobocat home</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 15 May 2024 15:24:47 +0800</lastBuildDate>
+    <atom:link href="https://hobocat.github.io/categories/network/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Netty的基本使用</title>
+      <link>https://hobocat.github.io/post/network/2022-03-09-netty/</link>
+      <pubDate>Wed, 09 Mar 2022 10:50:33 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/network/2022-03-09-netty/</guid>
+      <description>一、NIO基础 BIO Blocking IO： 同步阻塞的编程方式。 JDK1.4版本提供了BIO编程方式。编程实现过程为：首先在服务端启动一个ServerSocket来监听网络请求，客</description>
+    </item>
+  </channel>
+</rss>

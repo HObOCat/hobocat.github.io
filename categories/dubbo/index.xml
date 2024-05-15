@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dubbo on hobocat home</title>
+    <link>https://hobocat.github.io/categories/dubbo/</link>
+    <description>Recent content in Dubbo on hobocat home</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 15 May 2024 15:24:47 +0800</lastBuildDate>
+    <atom:link href="https://hobocat.github.io/categories/dubbo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>dubbo应用开发</title>
+      <link>https://hobocat.github.io/post/dubbo/2019-03-01-dubbo/</link>
+      <pubDate>Fri, 01 Mar 2019 09:34:33 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/dubbo/2019-03-01-dubbo/</guid>
+      <description>一、基础知识 分布式系统 ​ 分布式系统是若干独立计算机的集合，这些计算机对于用户来说就像单个相关系统。 架构发展演变 单一应用架构 一个war包将所有功能都部署在一起搞定</description>
+    </item>
+  </channel>
+</rss>

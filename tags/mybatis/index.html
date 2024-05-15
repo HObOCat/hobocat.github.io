@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="description" content="Mybatis - https://hobocat.github.io/tags/mybatis/">
+    <meta name="author" content="Jack - https://hobocat.github.io/">
+    
+    <meta name="msvalidate.01" content="B46311949B856F2A7015F366FB3CE878" />
+    <title>Mybatis</title>
+    
+    <base target="_blank">
+    <link rel="icon" type="image/png" href="/favicon.ico">
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="https://hobocat.github.io/style.min.94e7ed14b48117025ebd1148adc11f7268f1ebf50d97297ac663edf1aa6f52dc.css">
+    
+    <script>const DARK =  false ;</script>
+    
+    <script type="text/javascript" src="/main.js" defer></script>
+    
+</head>
+<body class="active-animate cool">
+        <div class="container-floating-box">
+	<div class="box box1"></div>
+	<div class="box box11"></div>
+	<div class="box box12"></div>
+	<div class="box box2"></div>
+	<div class="box box3"></div>
+	<div class="box box4"></div>
+	<div class="box box5"></div>
+	<div class="box box6"></div>
+	<div class="box box7"></div>
+	<div class="box box8"></div>
+	<div class="box box9"></div>
+</div>
+        <div class="cool-before" style="background: url('/imgs/bg/wallhaven-6qr21l.jpg') left top/100% no-repeat fixed;"></div>
+        <div id="header" class=""><div class="container-header">
+
+    
+    
+    
+    <div class="right">
+        
+        <h1 class="title">Mybatis</h1>
+    
+        
+        
+            <div id="toc">📜</div>
+        
+    </div>
+</div>
+</div>
+        <div id="content">
+<div class="container-main container-list">
+    <div class="toc"><div class="container-page-operation">
+	<div class="page-operation">
+		<div><a href="/"><img src="/imgs/icons/home-2.svg" alt=""></a></div>
+		<div><a href="/nav"><img src="/imgs/icons/iov-navigate-1.svg" alt=""></a></div>
+		<div><a href="/wiki"><img src="/imgs/icons/wiki.svg" alt=""></a></div>
+		<div><a href="/tags"><img src="/imgs/icons/treetags.svg" alt=""></a></div>
+		<div id="light-dark"><a><img src="/imgs/icons/moon2.svg" alt=""></a></div>
+		<div><a href="#"><img src="/imgs/icons/up2.svg" alt=""></a></div>
+	</div>
+</div><div class="list post-list">
+             
+            <div class="count">文章列表： 3 篇</div>
+            
+            
+            
+            
+            
+            
+            
+                
+                
+                <div class="item" >
+                   
+                    
+                    <a href="https://hobocat.github.io/post/mybatis/2020-08-16-mybatis-plus/">
+                        <span> <img src="/imgs/icons/post-3.svg" width="16" /> </span>
+                        <span> mybatis plus使用指南 <sup></sup></span>
+                    </a>
+                </div>
+                
+            
+                
+                
+                <div class="item" >
+                   
+                    
+                    <a href="https://hobocat.github.io/post/mybatis/2018-10-08-mapper/">
+                        <span> <img src="/imgs/icons/post-3.svg" width="16" /> </span>
+                        <span> 通用mapper使用指南 <sup></sup></span>
+                    </a>
+                </div>
+                
+            
+                
+                
+                <div class="item" >
+                   
+                    
+                    <a href="https://hobocat.github.io/post/mybatis/2018-09-27-mybatis/">
+                        <span> <img src="/imgs/icons/post-3.svg" width="16" /> </span>
+                        <span> mybatis使用指南 <sup></sup></span>
+                    </a>
+                </div>
+                
+            
+            </div>
+    </div>
+
+    <div class="content">
+        
+    </div>
+
+     
+        
+    
+
+    <div class="list list-single-col ">
+    
+        
+        
+        <div class="item" >
+            <div class="c-date">2020-08-16</div>
+
+            
+            <a href="https://hobocat.github.io/post/mybatis/2020-08-16-mybatis-plus/">
+                <span> <img src="/imgs/icons/post-3.svg" width="16" /> </span>
+                <span> mybatis plus使用指南 <sup></sup></span>
+            </a>
+
+            
+            <div class="desc">
+                <span class="date">
+                    
+                    
+                    2020-08-16 ~ 2024-05-15
+                </span>
+            </div>
+            
+            
+            <div class="container-ctgtag">
+	<div class="taxonomy">
+		<div class="tag">
+			
+			
+			<a href="/tags/mybatis">mybatis</a>
+			
+		</div>
+	</div>
+</div><div class="summary">一、集成Spring boot 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &lt;dependency&gt; &lt;groupId&gt;com.baomidou&lt;/groupId&gt; &lt;artifactId&gt;mybatis-plus-boot-starter&lt;/artifactId&gt; &lt;version&gt;[version]&lt;/version&gt; &lt;/dependency&gt; &lt;!&ndash; 用于生成逆向工程 &ndash;&gt; &lt;dependency&gt; &lt;groupId&gt;com.baomidou&lt;/groupId&gt; &lt;artifactId&gt;mybatis-plus-generator&lt;/artifactId&gt; &lt;version&gt;[version]&lt;/version&gt; &lt;scope&gt;test&lt;/scope&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.freemarker&lt;/groupId&gt; &lt;artifactId&gt;freemarker&lt;/artifactId&gt; &lt;version&gt;[version]&lt;/version&gt; &lt;scope&gt;test&lt;/scope&gt; &lt;/dependency&gt; 二、逆向工程配置 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15</div>
+				
+				
+				<div class="read-more">
+                    
+				  <a href="/post/mybatis/2020-08-16-mybatis-plus/">····</a>
+				</div>
+				
+            
+
+        </div>
+        
+    
+        
+        
+        <div class="item" >
+            <div class="c-date">2018-10-08</div>
+
+            
+            <a href="https://hobocat.github.io/post/mybatis/2018-10-08-mapper/">
+                <span> <img src="/imgs/icons/post-3.svg" width="16" /> </span>
+                <span> 通用mapper使用指南 <sup></sup></span>
+            </a>
+
+            
+            <div class="desc">
+                <span class="date">
+                    
+                    
+                    2018-10-08 ~ 2024-05-15
+                </span>
+            </div>
+            
+            
+            <div class="container-ctgtag">
+	<div class="taxonomy">
+		<div class="tag">
+			
+			
+			<a href="/tags/mybatis">mybatis</a>
+			
+		</div>
+	</div>
+</div><div class="summary">一、概述 ​ 通用 Mapper是一个可以实现任意 MyBatis 通用方法的框架，项目提供了常规的增删改查操作以及查询相关的单表操作。通用 Mapper 是为了解决 MyBatis 使用中 90% 的基本操作，使用它可</div>
+				
+				
+				<div class="read-more">
+                    
+				  <a href="/post/mybatis/2018-10-08-mapper/">····</a>
+				</div>
+				
+            
+
+        </div>
+        
+    
+        
+        
+        <div class="item" >
+            <div class="c-date">2018-09-27</div>
+
+            
+            <a href="https://hobocat.github.io/post/mybatis/2018-09-27-mybatis/">
+                <span> <img src="/imgs/icons/post-3.svg" width="16" /> </span>
+                <span> mybatis使用指南 <sup></sup></span>
+            </a>
+
+            
+            <div class="desc">
+                <span class="date">
+                    
+                    
+                    2018-09-27 ~ 2024-05-15
+                </span>
+            </div>
+            
+            
+            <div class="container-ctgtag">
+	<div class="taxonomy">
+		<div class="tag">
+			
+			
+			<a href="/tags/mybatis">mybatis</a>
+			
+		</div>
+	</div>
+</div><div class="summary">一、简介 ​ MyBatis 是一款优秀的持久层框架，它支持定制化 SQL、存储过程以及高级映射。MyBatis 避免了几乎所有的 JDBC 代码和手动设置参数以及获取结果集。MyBatis 可</div>
+				
+				
+				<div class="read-more">
+                    
+				  <a href="/post/mybatis/2018-09-27-mybatis/">····</a>
+				</div>
+				
+            
+
+        </div>
+        
+    
+    </div>
+
+    <div class="container-pagination">
+    
+    </div>
+</div>
+
+        </div>
+        <div id="footer"><div class="container-footer">
+    
+
+    <div class="beian">
+        
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41092802000242">
+            
+
+        </a>
+
+        
+        <a href="//beian.miit.gov.cn" target="_blank">
+            
+            <span class="some">icp...<span>
+            
+        </a>
+    </div>
+
+    
+    <div class="info">
+        
+        <a href="https://github.com/loveminimal/hugo-theme-virgo">🕊️</a> 2016 - <span id="info-date"></span>
+    </div>
+
+</div></div>
+        <div class="cool-after" style="
+            
+                background-color: rgba(255, 255, 255, 0.49); 
+                backdrop-filter: saturate(100%) blur(6px);
+            
+            "></div>
+    </body>
+</html>

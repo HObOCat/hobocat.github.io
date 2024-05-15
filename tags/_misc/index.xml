@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>_Misc on hobocat home</title>
+    <link>https://hobocat.github.io/tags/_misc/</link>
+    <description>Recent content in _Misc on hobocat home</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 15 May 2024 15:24:47 +0800</lastBuildDate>
+    <atom:link href="https://hobocat.github.io/tags/_misc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>归档</title>
+      <link>https://hobocat.github.io/archive/</link>
+      <pubDate>Wed, 15 May 2024 14:51:02 +0800</pubDate>
+      <guid>https://hobocat.github.io/archive/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

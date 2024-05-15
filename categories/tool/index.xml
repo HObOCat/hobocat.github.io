@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tool on hobocat home</title>
+    <link>https://hobocat.github.io/categories/tool/</link>
+    <description>Recent content in Tool on hobocat home</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 15 May 2024 15:24:47 +0800</lastBuildDate>
+    <atom:link href="https://hobocat.github.io/categories/tool/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MapStruct的使用</title>
+      <link>https://hobocat.github.io/post/tool/2022-02-27-mapstruct/</link>
+      <pubDate>Sun, 27 Feb 2022 18:16:37 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/tool/2022-02-27-mapstruct/</guid>
+      <description>一、简介 ​ 在一个成熟的工程中，尤其是现在的分布式系统中，应用与应用之间，还有单独的应用细分模块之后，对象需要经过转换包装才能对外提供服务（比如使用VO返回与HT</description>
+    </item>
+    <item>
+      <title>分布式锁</title>
+      <link>https://hobocat.github.io/post/tool/2022-02-15-distributed-lock/</link>
+      <pubDate>Tue, 15 Feb 2022 19:37:37 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/tool/2022-02-15-distributed-lock/</guid>
+      <description>一、分布式锁起因 分布式锁出现的原因 ​ 在传统单体应用单机部署的情况下，可以使用并发处相关的功能（如java并发处理相关的API：ReentrantLock或者sy</description>
+    </item>
+    <item>
+      <title>Canal的使用</title>
+      <link>https://hobocat.github.io/post/tool/2022-02-15-canal/</link>
+      <pubDate>Tue, 15 Feb 2022 19:06:37 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/tool/2022-02-15-canal/</guid>
+      <description>一、Canal简介 Canal是用Java开发的基于数据库增量日志解析，提供增量数据订阅&amp;amp;消费的中间件。Canal（Canal Deployer）主要支持了</description>
+    </item>
+    <item>
+      <title>Prometheus&amp;Grafana的使用</title>
+      <link>https://hobocat.github.io/post/tool/2022-01-29-prometheus-grafana/</link>
+      <pubDate>Sat, 29 Jan 2022 16:06:27 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/tool/2022-01-29-prometheus-grafana/</guid>
+      <description>一、Prometheus简介 Prometheus是一个开源监控和警报系统。Prometheus将其指标收集并存储在时序数据库中，用于灵活展示当前监控应用的状态。</description>
+    </item>
+    <item>
+      <title>Guava的使用</title>
+      <link>https://hobocat.github.io/post/tool/2021-02-07-guava/</link>
+      <pubDate>Sun, 07 Feb 2021 17:06:37 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/tool/2021-02-07-guava/</guid>
+      <description>一、介绍 ​ Guava工程包含了若干被Google的Java项目广泛依赖的核心库，例如：集合、缓存、原生类型支持、并发库、通用注解、字符串处理、I/O等等 二、工具</description>
+    </item>
+    <item>
+      <title>Git使用指南</title>
+      <link>https://hobocat.github.io/post/tool/2018-09-20-git/</link>
+      <pubDate>Thu, 20 Sep 2018 10:50:33 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/tool/2018-09-20-git/</guid>
+      <description>一、版本控制工具应具备的功能 协调修改 多人并行不悖的修改服务器端的同一个文件 数据备份 不仅保持目录和文件的当前状态，还能够保持每个提交过的历史状态 版本管理 在保存每一</description>
+    </item>
+  </channel>
+</rss>

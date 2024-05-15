@@ -1,0 +1,2940 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="description" content="MySQL DBA视角 - https://hobocat.github.io/post/database/2023-01-10-mysql_dba_%E8%A7%86%E8%A7%92/">
+    <meta name="author" content="Jack - https://hobocat.github.io/">
+    
+    <meta name="msvalidate.01" content="B46311949B856F2A7015F366FB3CE878" />
+    <title>MySQL DBA视角</title>
+    
+    <base target="_blank">
+    <link rel="icon" type="image/png" href="/favicon.ico">
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="https://hobocat.github.io/style.min.94e7ed14b48117025ebd1148adc11f7268f1ebf50d97297ac663edf1aa6f52dc.css">
+    
+    <script>const DARK =  false ;</script>
+    
+    <script type="text/javascript" src="/main.js" defer></script>
+    
+</head>
+<body class="active-animate cool">
+        <div class="container-floating-box">
+	<div class="box box1"></div>
+	<div class="box box11"></div>
+	<div class="box box12"></div>
+	<div class="box box2"></div>
+	<div class="box box3"></div>
+	<div class="box box4"></div>
+	<div class="box box5"></div>
+	<div class="box box6"></div>
+	<div class="box box7"></div>
+	<div class="box box8"></div>
+	<div class="box box9"></div>
+</div>
+        <div class="cool-before" style="background: url('/imgs/bg/wallhaven-6qr21l.jpg') left top/100% no-repeat fixed;"></div>
+        <div id="header" class=""><div class="container-header">
+
+    
+    
+    
+    <div class="right">
+        
+        <h1 class="title">MySQL DBA视角</h1>
+    
+        
+        
+            <div id="toc">📜</div>
+        
+    </div>
+</div>
+</div>
+        <div id="content">
+
+
+
+
+
+
+
+
+
+
+<div class="container-main container-page ">
+
+    
+
+    
+    
+    
+    <div class="rel">
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    </div>
+    
+    
+
+    <div class="desc">
+        
+        <span>
+            
+            <svg t="1656736000388" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                p-id="7409" width="12" height="12">
+                <path
+                    d="M524.885333 338.986667L200.362667 663.466667c-17.28 15.274667-27.989333 36.693333-29.696 56.234666v133.76l130.730666 0.085334c22.784-1.621333 43.989333-12.245333 61.013334-31.701334l322.688-322.645333-160.213334-160.213333z m60.373334-60.330667l160.170666 160.213333 102.144-102.144a19.712 19.712 0 0 0 0-27.861333L715.093333 176.426667a19.456 19.456 0 0 0-27.605333 0L585.258667 278.613333zM701.312 85.333333c27.946667 0 54.741333 11.136 74.282667 30.848l132.309333 132.309334a105.045333 105.045333 0 0 1 0 148.565333L424.874667 879.957333c-29.824 34.346667-72.106667 55.466667-120.448 58.794667H85.333333v-42.666667l0.128-179.84c3.626667-44.970667 24.576-86.826667 56.448-114.944l485.12-485.034666A104.789333 104.789333 0 0 1 701.269333 85.333333z"
+                    p-id="7410" fill="#adb5bd"></path>
+            </svg>
+            2023-01-10&nbsp;&nbsp;&nbsp;
+            <svg t="1656737270708" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                p-id="23838" width="11" height="11">
+                <path
+                    d="M824.264 95.36c0-23.859 25.043-44.16 48.902-44.16s49.714 20.301 49.714 44.16v190.08c0 23.859-19.054 52.868-42.913 52.868h-190.08c-23.859 0-46.696-25.96-46.696-49.819s22.55-46.249 46.409-46.249h82.025C702.344 175.534 610.22 155.853 512 155.853c-206.775 0-360.398 149.372-360.398 356.147 0 206.775 153.623 358.23 360.398 358.23 206.775 0 357.467-151.455 357.467-358.23 0-23.859 23.634-50.706 53.413-50.706 29.78 0 49.92 26.847 49.92 50.706 0 254.493-206.307 460.8-460.8 460.8-254.493 0-460.8-206.307-460.8-460.8C51.2 257.507 257.507 51.2 512 51.2c122.4 0 226.684 33.296 312.264 117.369 0.358 0.351 0.358-24.052 0-73.209z"
+                    p-id="23839" fill="#adb5bd"></path>
+            </svg>
+            2023-01-10&nbsp;&nbsp;&nbsp;
+        </span>
+        <span>
+            
+            <svg t="1656737548689" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                p-id="33866" width="12" height="12">
+                <path
+                    d="M832.038608 64.662657H192.030028C121.255125 64.662657 63.940169 121.98845 63.940169 192.694717v446.793671C63.940169 710.205493 121.255125 767.643272 192.030028 767.643272h133.353183a63.940169 63.940169 0 0 1 55.219742 31.576328l76.099638 129.83828c12.358154 21.093031 33.790754 31.626903 55.216129 31.626903s42.832688-10.544709 55.198067-31.619678l76.222461-129.870792a63.940169 63.940169 0 0 1 55.212517-31.551041h133.54103c70.576219 0 127.732228-57.289669 127.732227-127.800865V192.391272C959.825022 121.85479 902.643727 64.662657 832.038608 64.662657zM895.884854 639.842407A63.85347 63.85347 0 0 1 832.092795 703.703103h-133.54103a127.753903 127.753903 0 0 0-110.349172 63.09847l-76.222461 129.856342a0.274545 0.274545 0 0 1 0-0.050574h-0.032512s-0.021675 0.061411-0.032512 0.061412l-76.1466-129.85273A127.804477 127.804477 0 0 0 325.383211 703.703103H192.030028A64.207489 64.207489 0 0 1 127.880338 639.488388V192.694717A64.102729 64.102729 0 0 1 192.030028 128.602826h640.00858A63.799284 63.799284 0 0 1 895.884854 192.391272v447.451135z"
+                    fill="#adb5bd" p-id="33867"></path>
+                <path
+                    d="M608.154093 288.092004A31.970084 31.970084 0 0 0 576.184009 320.062089v160.078006l-134.650049-179.278119A31.970084 31.970084 0 0 0 384.002258 320.062089v255.760676a31.970084 31.970084 0 0 0 63.940169 0v-159.958796l134.650048 179.274507a31.970084 31.970084 0 0 0 57.531703-19.200113V320.062089a31.970084 31.970084 0 0 0-31.970085-31.970085z"
+                    fill="#adb5bd" p-id="33868"></path>
+            </svg>
+            25519 字</span>&nbsp;
+        <span>
+            
+            <svg t="1656737462334" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                p-id="32892" width="12" height="12">
+                <path
+                    d="M512 74.666667C270.933333 74.666667 74.666667 270.933333 74.666667 512S270.933333 949.333333 512 949.333333 949.333333 753.066667 949.333333 512 753.066667 74.666667 512 74.666667z m0 810.666666c-204.8 0-373.333333-168.533333-373.333333-373.333333S307.2 138.666667 512 138.666667 885.333333 307.2 885.333333 512 716.8 885.333333 512 885.333333z"
+                    p-id="32893" fill="#adb5bd"></path>
+                <path
+                    d="M695.466667 567.466667l-151.466667-70.4V277.333333c0-17.066667-14.933333-32-32-32s-32 14.933333-32 32v238.933334c0 12.8 6.4 23.466667 19.2 29.866666l170.666667 81.066667c4.266667 2.133333 8.533333 2.133333 12.8 2.133333 12.8 0 23.466667-6.4 29.866666-19.2 6.4-14.933333 0-34.133333-17.066666-42.666666z"
+                    p-id="32894" fill="#adb5bd"></path>
+            </svg>
+            51 分钟</span>
+        <div class="container-ctgtag">
+	<div class="taxonomy">
+		<div class="tag">
+			
+			
+			<a href="/tags/database">database</a>
+			
+		</div>
+	</div>
+</div>
+        
+    </div>
+
+    <div class="toc">
+        <div class="container-page-operation">
+	<div class="page-operation">
+		<div><a href="/"><img src="/imgs/icons/home-2.svg" alt=""></a></div>
+		<div><a href="/nav"><img src="/imgs/icons/iov-navigate-1.svg" alt=""></a></div>
+		<div><a href="/wiki"><img src="/imgs/icons/wiki.svg" alt=""></a></div>
+		<div><a href="/tags"><img src="/imgs/icons/treetags.svg" alt=""></a></div>
+		<div id="light-dark"><a><img src="/imgs/icons/moon2.svg" alt=""></a></div>
+		<div><a href="#"><img src="/imgs/icons/up2.svg" alt=""></a></div>
+	</div>
+</div>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1mysql部署前准备">1、MySQL部署前准备</a></li>
+    <li><a href="#2mysql80二进制安装过程">2、MySQL8.0二进制安装过程</a></li>
+    <li><a href="#3mysql体系总览">3、MySQL体系总览</a>
+      <ul>
+        <li><a href="#架构介绍">架构介绍</a></li>
+        <li><a href="#线程介绍">线程介绍</a></li>
+        <li><a href="#mysql-80-innodb结构">MySQL 8.0 Innodb结构</a></li>
+        <li><a href="#存储结构">存储结构</a></li>
+        <li><a href="#系统库表介绍">系统库表介绍</a></li>
+      </ul>
+    </li>
+    <li><a href="#4mysql的日常管理">4、MySQL的日常管理</a>
+      <ul>
+        <li><a href="#用户管理">用户管理</a></li>
+        <li><a href="#权限管理">权限管理</a></li>
+      </ul>
+    </li>
+    <li><a href="#5mysql系统的日志">5、MySQL系统的日志</a>
+      <ul>
+        <li><a href="#日志类型">日志类型</a></li>
+        <li><a href="#日志参数查询设置">日志参数查询设置</a></li>
+      </ul>
+    </li>
+    <li><a href="#6sql知识相关">6、SQL知识相关</a>
+      <ul>
+        <li><a href="#sql_mode">SQL_MODE</a></li>
+        <li><a href="#列的数据类型">列的数据类型</a></li>
+        <li><a href="#常用函数">常用函数</a></li>
+      </ul>
+    </li>
+    <li><a href="#7索引执行计划">7、索引&amp;执行计划</a>
+      <ul>
+        <li><a href="#sql的执行流程">SQL的执行流程</a></li>
+        <li><a href="#索引">索引</a></li>
+        <li><a href="#执行计划">执行计划</a></li>
+        <li><a href="#优化器针对索引的算法">优化器针对索引的算法</a></li>
+        <li><a href="#表连接算法">表连接算法</a></li>
+      </ul>
+    </li>
+    <li><a href="#8innodb-存储引擎">8、InnoDB 存储引擎</a>
+      <ul>
+        <li><a href="#核心特性总览">核心特性总览</a></li>
+        <li><a href="#存储引擎的管理">存储引擎的管理</a></li>
+        <li><a href="#表空间">表空间</a></li>
+        <li><a href="#行格式">行格式</a></li>
+        <li><a href="#页结构">页结构</a></li>
+        <li><a href="#日志与数据刷新">日志与数据刷新</a></li>
+        <li><a href="#innodb-事务详解"><strong>InnoDB</strong> 事务详解</a></li>
+        <li><a href="#innodb-锁机制">InnoDB 锁机制</a></li>
+        <li><a href="#不同情况下的锁处理示例">不同情况下的锁处理示例</a></li>
+        <li><a href="#mvcc-多版本并发控制">MVCC 多版本并发控制</a></li>
+        <li><a href="#rr级别下当前读的幻读问题">RR级别下当前读的幻读问题</a></li>
+      </ul>
+    </li>
+    <li><a href="#9备份恢复与迁移">9、备份恢复与迁移</a>
+      <ul>
+        <li><a href="#binlog-日志的格式">binlog 日志的格式</a></li>
+        <li><a href="#gtid">GTID</a></li>
+        <li><a href="#binlog操作">binlog操作</a></li>
+        <li><a href="#slow-log的查看">slow log的查看</a></li>
+        <li><a href="#物理备份">物理备份</a></li>
+        <li><a href="#clone-plugin">Clone Plugin</a></li>
+      </ul>
+    </li>
+    <li><a href="#10各种架构体系">10、各种架构体系</a></li>
+    <li><a href="#附录">附录</a>
+      <ul>
+        <li><a href="#80版本相对于57版本的变化">8.0版本相对于5.7版本的变化</a></li>
+        <li><a href="#各版本innodb表文件结构的变化">各版本InnoDB表文件结构的变化</a></li>
+        <li><a href="#mysql57升级到80">MySQL5.7升级到8.0</a></li>
+        <li><a href="#innodb-undoredo在增删改操作时的工作">InnoDB Undo、Redo在增删改操作时的工作</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+
+    <div class='content  '>
+        <h2 id="1mysql部署前准备">1、MySQL部署前准备</h2>
+<ul>
+<li>
+<p>关闭NUMA</p>
+<p>NUMA（Non-Uniform Memory Access，非一致性内存访问）服务器的基本特征是 Linux 将系统的硬件资源划分为多个软件抽象，称为节点。每个节点上有单独的 CPU、内存和 I/O 槽口等。CPU 访问自身 Node 内存的速度将远远高于访问远地内存（系统内其它节点的内存）的速度，这也是非一致内存访问 NUMA 的由来。</p>
+<p>简单来比方就是如果是8G内存，4核CPU，那么一个核心分得2G内存，减少共享内存带来的资源争夺。但是MySQL分配了6G内存。某些线程超出节点本地内存部分会被 SWAP 到磁盘上，而不是使用其他节点的物理内存，引发性能问题。</p>
+<pre tabindex="0"><code>bios级别关闭【推荐】
+在bios层面numa关闭时，无论os层面的numa是否打开，都不会影响性能。一般在bios的Advanced下
+
+使用如下命令可以查看numactl是否被关闭
+numactl --hardware
+available: 1 nodes (0) #如果是2或多个nodes就说明numa没关掉
+============================================================================
+OS级别关闭
+注意：在os层numa关闭时,bios层是打开的话会影响性能，QPS会下降15-30%;
+vi /boot/grub2/grub.cfg
+
+找到并安装如下设置numa=off
+kernel /boot/vmlinuz-2.6.18-128.1.16.0.1.el5 root=LABEL=DBSYS ro bootarea=dbsys
+rhgb quiet console=ttyS0,115200n8 console=tty1 crashkernel=128M@16M numa=off
+initrd /boot/initrd-2.6.18-128.1.16.0.1.el5.img
+============================================================================
+数据库级别关闭
+mysql&gt; show variables like &#39;%numa%&#39;;
++------------------------+-------+
+| Variable_name          | Value |
++------------------------+-------+
+| innodb_numa_interleave | OFF   |
++------------------------+-------+
+或者修改etc/init.d/mysqld
+将$bindir/mysqld_safe --datadir=&#34;$datadir&#34;这一行修改为：
+/usr/bin/numactl --interleave all $bindir/mysqld_safe --datadir=&#34;$datadir&#34; --pid-file=&#34;$mysqld_pid_file_path&#34; $other_args &gt;/dev/null &amp; wait_for_pid created &#34;$!&#34; &#34;$mysqld_pid_file_path&#34;; return_value=$?
+</code></pre></li>
+<li>
+<p>开启CPU高性能模式</p>
+<p>Bios设置Operator Mode设置为Maximum Performance</p>
+</li>
+<li>
+<p>阵列卡RAID配置</p>
+<p>建议配置为raid10</p>
+</li>
+<li>
+<p>关闭THP</p>
+<p>THP（transparent_hugepage）即分配大页内存，MySQL有自己的内存分配机制。</p>
+<pre tabindex="0"><code>chomd +x /etc/rc.d/rc.local
+修改 /etc/rc.local
+在文件末尾添加如下指令
+if test -f /sys/kernel/mm/transparent_hugepage/enabled; then
+echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled
+fi
+if test -f /sys/kernel/mm/transparent_hugepage/defrag; then
+echo never &gt; /sys/kernel/mm/transparent_hugepage/defrag
+fi
+
+# 查看transparent hugepage是否关闭
+cat /sys/kernel/mm/transparent_hugepage/enabled
+# 显示这样为关闭 always madvise [never]
+</code></pre></li>
+<li>
+<p>网卡绑定</p>
+</li>
+</ul>
+<pre tabindex="0"><code>bonding技术，业务数据库服务器都要配置bonding继续。建议是主备模式。交换机一定要堆叠。
+</code></pre><ul>
+<li>
+<p>系统层面参数优化</p>
+<pre tabindex="0"><code>更改文件句柄和进程数
+修改 /etc/sysctl.conf
+vm.swappiness = 5                       # 交换分区（也可以设置为0）的攻击性。较高的值会更激进
+vm.dirty_ratio = 20                     # 文件系统缓存脏页数量达到系统内存百分之多少时，系统阻塞处理缓存脏页
+vm.dirty_background_ratio = 10          # 文件系统缓存脏页数量达到系统内存百分之多少时，系统异步处理缓存脏页
+net.ipv4.tcp_max_syn_backlog = 819200   # 半连接队列大小
+net.core.netdev_max_backlog = 400000    # 内核从网卡收到数据包后，交由协议栈（如IP、TCP）处理之前的缓冲队列
+net.core.somaxconn = 4096               # 指服务端所能accept即处理数据的最大客户端数量，即完成连接上限
+net.ipv4.tcp_tw_reuse=1                 # 表示开启重用。允许将TIME-WAIT sockets重新用于新的TCP连接，默认为0，表示关闭
+net.ipv4.tcp_tw_recycle=0               # 表示开启TCP连接中TIME-WAIT sockets的快速回收，默认为0，表示关闭
+
+=====================================================================
+防火墙
+禁用selinux
+/etc/sysconfig/selinux 更改SELINUX=disabled.
+iptables如果不使用可以关闭。如果需要打开MySQL需要的端口号
+
+=====================================================================
+文件系统优化
+推荐使用XFS文件系统
+MySQL数据分区独立 ，例如挂载点为: /data
+fdisk /dev/sdb
+依次安装提示键入
+p n l w
+
+修改 /etc/fstab 加入
+/dev/sdb /data xfs defaults,noatime,nodiratime,nobarrier
+
+- defaults    默认值包括rw、suid、dev、exec、auto、nouser和async,文件挂载配置的很多情况下都使用默认值
+- noatime     不更新文件访问时间
+- nodiratime  不更新目录访问时间
+- nobarrier   不开启barrier
+
+=====================================================================
+不使用LVM
+
+=====================================================================
+io调度
+SAS: deadline
+SSD&amp;PCI-E: noop   
+
+- deadline 对读写请求进行了分类管理，并且在调度处理的过程中读请求具有较高优先级。这主要是因为读请求往往是同步操作，对延迟时间比较敏感，而写操作往往是异步操作，可以尽可能的将相邻访问地址的请求进行合并，但是，合并的效率越高，延迟时间会越长。
+- noop电梯式调度器，实现了一个简单的FIFO队列,它像电梯的工作方式一样对I/O请求进行组织。它是基于先入先出（FIFO）队列概念的 Linux 内核里最简单的I/O 调度器。此调度程序最适合于固态硬盘。
+
+centos 7 默认是deadline，使用如下命令查看
+cat /sys/block/sda/queue/scheduler
+
+修改调度算法
+grubby --update-kernel=ALL --args=&#34;elevator=noop&#34;
+</code></pre></li>
+<li>
+<p>预装MySQL前硬件烤机压测</p>
+<pre tabindex="0"><code>yum install -y epel-release
+yum install -y stress
+
+# 烤机CPU
+stress -c 4
+# 烤机 MEM
+stress -m 3 --vm-bytes 300M
+# 烤机多参数
+stress -c 4 -m 2 -d 1
+
+# 重要参数解读
+-c                # forks 产生多个处理sqrt()函数的CPU进程
+-m                # 产生多个处理malloc()内存分配
+--vm-bytes bytes  # 指定内存的byte数，默认值是1
+-d                # 写进程，写入固定大小，通过mkstemp()函数写入当前目录
+--hdd-bytes bytes # 指定写的字节数，默认1G
+</code></pre></li>
+</ul>
+<h2 id="2mysql80二进制安装过程">2、MySQL8.0二进制安装过程</h2>
+<p>①、创建用户，用户组</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 创建用户组</span>
+</span></span><span style="display:flex;"><span>groupadd mysql
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 创建用户加入用户组，且不允许登录</span>
+</span></span><span style="display:flex;"><span>useradd -r -g mysql -s /bin/false mysql
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 安装基础库</span>
+</span></span><span style="display:flex;"><span>yum install libaio 
+</span></span><span style="display:flex;"><span>yum install library
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>②、解压</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>tar -xvf mysql-8.0.30-linux-glibc2.12-x86_64.tar.xz -C /opt/module/
+</span></span><span style="display:flex;"><span>mv /opt/module/文件夹 /opt/module/mysql80
+</span></span><span style="display:flex;"><span>ln -s /opt/module/mysql80 /usr/local/mysql
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>③、加入PATH</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 修改 /etc/profile,加入</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">PATH</span><span style="color:#000;font-weight:bold">=</span>/usr/local/mysql/bin:<span style="color:#008080">$PATH</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 更新环境变量</span>
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">source</span> /etc/profile
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 测试环境变量</span>
+</span></span><span style="display:flex;"><span>mysql -V
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>④、挂载硬盘</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 查看未挂载的硬盘</span>
+</span></span><span style="display:flex;"><span>fdisk -l
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 依次安装提示键入</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># p n l w</span>
+</span></span><span style="display:flex;"><span>fdisk /dev/未挂载的硬盘
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 格式化文件系统</span>
+</span></span><span style="display:flex;"><span>mkfs.xfs 未挂载硬盘
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 挂载</span>
+</span></span><span style="display:flex;"><span>mount /dev/未挂载硬盘 /data
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 开机挂载，修改/etc/fstab，加入</span>
+</span></span><span style="display:flex;"><span>/dev/未挂载硬盘 /data  defaults,noatime,nodiratime,nobarrier
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 查看挂载</span>
+</span></span><span style="display:flex;"><span>df -hT /dev/未挂载的硬盘
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>⑤、修改目录权限</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>mkdir -p /data/mysql80
+</span></span><span style="display:flex;"><span>chown -R mysql:mysql /data
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>⑥、创建/etc/my.cnf</p>
+<pre tabindex="0"><code>[mysqld]
+user=mysql                   # 管理用户
+datadir=/data/mysql80        # 数据路径
+basedir=/usr/local/mysql     # 软件路径
+socket=/tmp/mysql.sock       # socket文件位置
+server_id=51                 # 服务器ID,主从时标识不同主机
+default_authentication_plugin=mysql_native_password   #使用旧版本密码插件
+log_bin=/data/mysql80/binlog # 二进制日志
+binlog_format=row            # 二进制日志行格式
+gtid-mode=on                 # 开启gtid模式，会记录gtid的标识符
+enforce-gtid-consistency=on  # 强制GTID一致性，保证事务的安全
+log-slave-updates=on         # MySQL5.7之前必须配置
+port=3306                    # 端口
+log_error=/data/mysql80/log/mysql-err.log  # 错误日志路径
+log_bin=/data/mysql80/log/mysql-bin        # binlog日志路径
+slow_query_log=on                          # 开启慢查询日志
+slow_query_log_file=/data/mysql80/log/mysql-slow.log # 慢查询日志位置
+long_query_time=0.5                           # 记录执行时间（real time）超过该值以上的SQL，默认值为10秒
+log_queries_not_using_indexes=1               # 未使用索引的查询是否写入慢日志
+log_throttle_queries_not_using_indexes=1000   # 限制每分钟所记录的slow log数量
+innodb_log_file_size=2048M                    # redo log大小，建议大小 512M-4G
+innodb_log_files_in_group=4                   # redo log组数，建议 2-4组
+innodb_temp_data_file_path=ibtmp1:512M;ibtmp2:512M:autoextend:max:512M # 临时表空间，一般2-3个，大小512M-1G
+innodb_undo_tablespaces=4                     #undo文件个数，建议3-5个
+
+[mysql]
+
+[client]
+
+[server]
+
+[mysqld_safe]
+
+[mysqldump]
+</code></pre><p>⑦、初始化&amp;启动&amp;登录</p>
+<p>初始化</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 不设置密码，root密码为空</span>
+</span></span><span style="display:flex;"><span>mysqld --initialize-insecure
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>启动方式</p>
+<p>systemd【系统管理】 -&gt;  /etc/init.d/mysqld 【系统管理】 -&gt;mysql.server 【系统管理】-&gt; mysqld_safe【安全启动，crash会重启服务】-&gt;mysqld</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>mysqld_safe --defaults-file<span style="color:#000;font-weight:bold">=</span>/etc/my.cnf &amp;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>可加参数
+</span></span><span style="display:flex;"><span>--skip-grant-tables ：跳过授权表
+</span></span><span style="display:flex;"><span>--skip-networking   ：不启动网络
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>关闭命令<code>shutdown</code></p>
+<h2 id="3mysql体系总览">3、MySQL体系总览</h2>
+<h3 id="架构介绍">架构介绍</h3>
+<img src="/img/dba/mysql-struct.jpg" alt="mysql-struct" style="zoom:80%;" />
+<p><strong>客户端连接器 【Connectors】</strong></p>
+<p>提供编程语言层级和MySQL交互的API接口，以及本地MySQL客户端程序和MySQL服务端连接交互</p>
+<ul>
+<li>
+<p>本地连接Socket方式：mysql -u用户名 -p密码 -S socket文件路径</p>
+</li>
+<li>
+<p>TCP/IP远程连接：mysql  -u用户名 -p密码 -h地址 -P端口</p>
+</li>
+</ul>
+<p><strong>服务层【MySQL Server】</strong>
+服务层是MySQL Server的核心，主要包含系统管理和控制工具、连接池、SQL接口、解析器、查询优化器和缓存六个部分</p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>连接池（Connection Pool）</td>
+<td>负责存储和管理客户端与数据库的连接，一个线程负责管理一个连接</td>
+</tr>
+<tr>
+<td>系统管理和控制工具（Management Services &amp; Utilities）</td>
+<td>例如备份恢复、安全管理、集群管理等</td>
+</tr>
+<tr>
+<td>SQL接口（SQL Interface）</td>
+<td>用于接受客户端发送的各种SQL命令，并返回结果。比如DML、DDL、存储过程、视图、触发器等</td>
+</tr>
+<tr>
+<td>解析器（Parser）</td>
+<td>负责将请求的SQL解析生成一个&quot;解析树&quot;。然后根据一些MySQL规则进一步检查解析树是否合法</td>
+</tr>
+<tr>
+<td>查询优化器（Optimizer）</td>
+<td>当“解析树”通过解析器语法检查后，将交由优化器将其转化成执行计划，然后与存储引擎交互</td>
+</tr>
+<tr>
+<td>缓存（Cache&amp;Buffer）</td>
+<td>缓存机制是由一系列小缓存组成的。比如表缓存，记录缓存，权限缓存，引擎缓存等。如果查询缓存有命中的查询结果，查询语句就可以直接去查询缓存中取数据</td>
+</tr>
+<tr>
+<td>存储引擎层（Pluggable Storage Engines）</td>
+<td>储引擎负责MySQL中数据的存储与提取，与底层系统文件进行交互。MySQL存储引擎是插件式的，服务器中的查询执行引擎通过接口与存储引擎进行通信，接口屏蔽了不同存储引擎之间的差异 。现在有很多种存储引擎，各有各的特点，最常见的是MyISAM和InnoDB</td>
+</tr>
+</tbody>
+</table>
+<h3 id="线程介绍">线程介绍</h3>
+<p>![MySQL Thread](/img/dba/MySQL Thread.png)</p>
+<p><strong>Master Thread</strong></p>
+<p>核心线程，负责缓冲池的数据异步入盘，包括脏页刷新、合并插入缓冲、undo页回收等</p>
+<ol>
+<li>控制刷新脏页到磁盘（CKPT）</li>
+<li>控制日志缓冲刷新到磁盘（log buffer &ndash;&gt; redo）</li>
+<li>undo页回收</li>
+<li>合并插入缓冲(change buffer)</li>
+<li>控制IO刷新数量</li>
+</ol>
+<p>参数说明：</p>
+<ul>
+<li>
+<p><code>innodb_io_capacity</code>：表示每秒刷新脏页的数量，默认为200。</p>
+</li>
+<li>
+<p><code>innodb_max_dirty_pages_pct</code>：设置刷盘的脏页百分比，即当脏页占到缓冲区数据达到这个百分比时，就会刷新<code>innodb_io_capacity</code>个脏页到磁盘</p>
+</li>
+<li>
+<p><code>innodb_adaptive_flushing</code>：自适应刷新MySQL根据当前运行信息绝对何时刷新，默认开启。回合<code>innodb_max_dirty_pages_pct</code>配合管理</p>
+</li>
+</ul>
+<p><strong>IO Thread</strong></p>
+<p>在InnoDB存储引擎中大量使用Async IO来处理写IO请求,IO Thread的工作主要是负责这些IO请求的回调处理。写线程和读线程分别由<code>innodb_write_threads</code>和<code>innodb_read_threads</code>参数控制，默认都为4，使用<code>show variables like '%innodb_%io_thread%';</code>查看</p>
+<p><strong>Purge Thread</strong></p>
+<p>回收事务提交后不再需要的undo log，可以在配置文件中添加<code>innodb_purge_threads=threadNum</code>来开启独立的Purge Thread，等号后边控制该线程数量，默认为4个，通过<code>show variables like '%innodb_purge_threads%';</code> 查看</p>
+<p><strong>Page clear thread</strong></p>
+<p>脏页的刷新操作，从master thread分离出来，减轻master thread的工作，提高性能</p>
+<h3 id="mysql-80-innodb结构">MySQL 8.0 Innodb结构</h3>
+<img src="/img/dba/存储引擎结构.png" alt="存储引擎结构" style="zoom:67%;" />
+<p><strong>innodb buffer pool</strong></p>
+<p>查看MySQL的<code>innodb_buffer_pool</code>大小<code>select @@innodb_buffer_pool_size/1024/1024; --单位M</code></p>
+<p><code>Buffer Pool</code>中存在三个双向链表。分别是<code>FreeList</code>、<code>LRUList</code>以及<code>FlushList</code></p>
+<img src="/img/dba/innodb_buffer_pool.png" alt="innodb_buffer_pool" style="zoom:80%;" />
+<p><code>FreeList</code>存放了空闲的缓存页的描述信息，即哪些区域是空闲状态，用于管理分配内存</p>
+<p><code>LRUList</code>冷热数据分离优化，5/8的区域是热数据区域，3/8的区域算是冷数据区域。新加载的数据页会被放在冷数据区的靠前的位置上。如果该数据页读取出来加载进缓存页中后，间隔没到1s，就使用该缓存页。那么是不会将这个描述信息移动到5/8的热数据区域的。但是当超过1s后，你又去读这个数据页。那这个数据页的描述信息就会被放到热数据区域。</p>
+<p><code>FlushList</code>中的节点存放的是被修改了脏数据页的描述信息块。随着MySQL被使用的时间越来越长，<code>BufferPool</code>的大小就越来越小。等它不够用的时候，就会将部分LRU中的数据页描述信息移除出去，这时如果发现被移除出来的数据页在<code>FLushList</code>中，就会触发fsync的操作，触发随机写磁盘。如果该数据页是干净的，那移除出去就好，不需要其它操作</p>
+<p><strong>change buffer</strong></p>
+<p>MySQL写的性能提升提升主要依赖<code>change buffer</code>，以前 <code>change buffer</code>称为<code>insert buffer</code>，因为以前只做了insert操作的性能优化，之后版本更新之后，也能对于修改和删除做缓存处理，所以改名为<code>change buffer</code></p>
+<p>例如：update xx set name = &ldquo;赐我100w&rdquo; where id = 5；【name是个非唯一的二级索引】</p>
+<p>执行时不仅要更新聚簇索引，还要加载name这个辅助索引进行更新，如果现在name这个非唯一二级索引没有在内存中，将会进行IO操作，浪费性能。所以MySQL进行了改进：当这些二级索引页不在内存中时，对它们的操作会被缓存在change buffer中（目的是省去这次随机的磁盘IO）。等之后MySQL空闲了、或者是MySQL关闭前、或者是有读取操作时再将这部分缓存操作merge到B+Tree中</p>
+<p>要求二级索引不能唯一。这个很好理解。如果name列是唯一的。那我每次DML之前都必须去看下有没有已经存在的相同值的索引。这也就意味着这个DML操作必须加载无法缓存</p>
+<p><strong>adaptive Hash Index</strong></p>
+<p>自适应哈希索引，InnoDB存储引擎会监控对表上索引的查找，如果观察到建立哈希索引可以带来速度的提升，则建立自适应哈希索引，实现本质上就是一个哈希表：从某个检索条件到某个数据页的哈希表</p>
+<p><strong>Log Buffer</strong></p>
+<p><code>log buffer</code>的作用是缓存<code>redo log</code>的写入操作，考虑到一个大事务，在事务期间可能会有很多次数据库操作，不需要在事务中的每一次操作都写入<code>redo log</code>，可以缓存一定量的<code>redo log</code>，在合适的时间进行写盘。</p>
+<p>合适的时间取决于MySQL的配置（innodb_flush_log_at_trx_commit），值有0、1、2，默认是1</p>
+<ul>
+<li>如果设置为0，每隔一秒把<code>log buffer</code>刷到文件系统中(os buffer)去，并且调用文件系统的“flush”操作将缓存刷新到磁盘上去。也就是说一秒之前的日志都保存在日志缓冲区，如果机器宕掉，可能丢失1秒的事务数据</li>
+<li>如果设置为1，在每次事务提交的时候会把<code>log buffer</code>刷到文件系统中(os buffer)去，并且调用文件系统的“flush”操作将缓存刷新到磁盘上去。保证ACID</li>
+<li>如果设置为2，在每次事务提交的时候会把<code>log buffer</code>刷到文件系统中去，但并不会立即刷写到磁盘</li>
+</ul>
+<h3 id="存储结构">存储结构</h3>
+<p><strong>文件存储结构（宏观）</strong></p>
+<p><img src="/img/dba/MySQL%E6%96%87%E4%BB%B6.png" alt="MySQL文件"></p>
+<hr>
+<p><strong>表的存储结构（微观）</strong></p>
+<img src="/img/dba/micr-store-file.png" alt="image-20230106144948002" style="zoom:50%;" />
+<p>表抽象为表空间，表空间由segment、extend、page组成</p>
+<p><strong>Segment (段)</strong></p>
+<p>常见的segment有数据段、索引段、回滚段等， 数据段为B+树的叶子节点(Leaf node segment)、索引段为B+树的非叶子节点(Non-leaf node segment)</p>
+<img src="/img/dba/Segment.png" alt="img" style="zoom:60%;" />
+<p><strong>Extent（区、簇）</strong></p>
+<p>每个区大小固定为1MB，为保证区中<code>page</code>的连续性通常InnoDB会一次从磁盘中申请4-5个区。在默认page的大小为16KB的情况下，一个区则由64个连续的page组成</p>
+<p><strong>Page（数据页）</strong></p>
+<p>默认16KB。InnoDB最小的IO单元。MySQL有预读机制，就是当从磁盘上加载一个数据页的时候，可能会把这个它相邻的其他数据页也进行加载</p>
+<h3 id="系统库表介绍">系统库表介绍</h3>
+<p><strong>MySQL 的数据字典 - information_schema</strong></p>
+<p><code> information_schema</code>数据库保存着其他数据库的元信息</p>
+<p><strong>控制和管理信息库 - mysql</strong></p>
+<p><code>mysql</code>库是MySQL 服务器的核心数据库，主要负责存储数据库的用户、权限、关键字等等</p>
+<table>
+<thead>
+<tr>
+<th>表名</th>
+<th>介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user</td>
+<td>用户信息、用户密码、针对所有库的权限</td>
+</tr>
+<tr>
+<td>db</td>
+<td>用户对某个数据库的操作权限信息</td>
+</tr>
+<tr>
+<td>tables_priv</td>
+<td>单个表进行权限设置时使用</td>
+</tr>
+<tr>
+<td>columns_priv</td>
+<td>单个数据列进行权限设置时使用</td>
+</tr>
+<tr>
+<td>procs_priv</td>
+<td>存储过程和存储函数进行权限设置</td>
+</tr>
+<tr>
+<td>slave_master_info</td>
+<td>主从信息存储的地方</td>
+</tr>
+<tr>
+<td>slave_relay_log_info</td>
+<td>salve的中继日志信息</td>
+</tr>
+<tr>
+<td>slave_worker_info</td>
+<td>slave的工作信息</td>
+</tr>
+<tr>
+<td>slow_log</td>
+<td>慢查询日志</td>
+</tr>
+</tbody>
+</table>
+<p><strong>服务器性能指标 - performance_schema</strong></p>
+<p><code>performance_schema</code>是运行在较低级别的用于监控MySQL Server运行过程中的资源消耗、资源等待等情况</p>
+<table>
+<thead>
+<tr>
+<th>表名</th>
+<th>介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>processlist</td>
+<td>当前连接信息</td>
+</tr>
+<tr>
+<td>threads</td>
+<td></td>
+</tr>
+<tr>
+<td>events_statements_current</td>
+<td>当前语句事件表</td>
+</tr>
+<tr>
+<td>events_statements_history</td>
+<td>历史语句事件表</td>
+</tr>
+<tr>
+<td>events_statements_history_long</td>
+<td>长语句历史事件表</td>
+</tr>
+<tr>
+<td>summary 类表</td>
+<td>聚合后的摘要表</td>
+</tr>
+</tbody>
+</table>
+<p><strong>DBA 的好帮手 - sys</strong></p>
+<p><code>sys</code>库对<code>information_schema</code>和<code>performance_schema</code>统计的各种信息进行记录并生成新的视图表，通过 sys，我们可以快速的查询出：哪些语句使用了临时表、哪个线程占用了最多的内存、哪些索引是冗余的等等，sys库的功能需要单独配置开启</p>
+<h2 id="4mysql的日常管理">4、MySQL的日常管理</h2>
+<h3 id="用户管理">用户管理</h3>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#998;font-style:italic">-- 创建用户，MYSQL8.0的密码插件有更改，兼容不行（特别是主从），建议还是使用mysql_native_password
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">create</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">user</span><span style="color:#bbb"> </span>[<span style="color:#a61717;background-color:#e3d2d2">用户名</span>]<span style="color:#000;font-weight:bold">@</span><span style="color:#d14">&#39;[IP描述]&#39;</span><span style="color:#bbb"> </span>identified<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">with</span><span style="color:#bbb"> </span>mysql_native_password<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">by</span><span style="color:#bbb"> </span><span style="color:#d14">&#39;[密码]&#39;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">-- 查询用户
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">select</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">user</span>,<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">host</span>,<span style="color:#bbb"> </span>plugin<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">from</span><span style="color:#bbb"> </span>mysql.<span style="color:#000;font-weight:bold">user</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">-- 删除用户
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">drop</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">user</span><span style="color:#bbb"> </span>[<span style="color:#a61717;background-color:#e3d2d2">用户名</span>]<span style="color:#000;font-weight:bold">@</span><span style="color:#d14">&#39;[IP描述]&#39;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">-- 修改用户密码
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">alter</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">user</span><span style="color:#bbb"> </span>[<span style="color:#a61717;background-color:#e3d2d2">用户名</span>]<span style="color:#000;font-weight:bold">@</span><span style="color:#d14">&#39;[IP描述]&#39;</span><span style="color:#bbb"> </span>identified<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">with</span><span style="color:#bbb"> </span>mysql_native_password<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">by</span><span style="color:#bbb"> </span><span style="color:#d14">&#39;[密码]&#39;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">-- 密码过期设置
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">select</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">@@</span>default_password_lifetime;<span style="color:#bbb">  </span><span style="color:#998;font-style:italic">-- 查看过期时间
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">ALTER</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">USER</span><span style="color:#bbb"> </span>[<span style="color:#a61717;background-color:#e3d2d2">用户名</span>]<span style="color:#000;font-weight:bold">@</span><span style="color:#d14">&#39;[IP描述]&#39;</span><span style="color:#bbb"> </span>PASSWORD<span style="color:#bbb"> </span>EXPIRE<span style="color:#bbb"> </span><span style="color:#0086b3">INTERVAL</span><span style="color:#bbb"> </span>[<span style="color:#a61717;background-color:#e3d2d2">天数</span>]<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">DAY</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">ALTER</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">USER</span><span style="color:#bbb"> </span>[<span style="color:#a61717;background-color:#e3d2d2">用户名</span>]<span style="color:#000;font-weight:bold">@</span><span style="color:#d14">&#39;[IP描述]&#39;</span><span style="color:#bbb"> </span>PASSWORD<span style="color:#bbb"> </span>EXPIRE<span style="color:#bbb"> </span>NEVER;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">-- 锁定用户
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">ALTER</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">USER</span><span style="color:#bbb"> </span>[<span style="color:#a61717;background-color:#e3d2d2">用户名</span>]<span style="color:#000;font-weight:bold">@</span><span style="color:#d14">&#39;[IP描述]&#39;</span><span style="color:#bbb"> </span>ACCOUNT<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">LOCK</span>;<span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="权限管理">权限管理</h3>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#998;font-style:italic">-- 显示所有权限
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">show</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">privileges</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">-- 授予权限
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">GRANT</span><span style="color:#bbb"> </span><span style="color:#a61717;background-color:#e3d2d2">权限</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">ON</span><span style="color:#bbb"> </span><span style="color:#a61717;background-color:#e3d2d2">权限级别</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">TO</span><span style="color:#bbb"> </span><span style="color:#a61717;background-color:#e3d2d2">用户</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">GRANT</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">ALL</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">ON</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">*</span>.<span style="color:#000;font-weight:bold">*</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">TO</span><span style="color:#bbb"> </span>[<span style="color:#a61717;background-color:#e3d2d2">用户名</span>]<span style="color:#000;font-weight:bold">@</span><span style="color:#d14">&#39;[IP描述]&#39;</span>;<span style="color:#bbb">  </span><span style="color:#998;font-style:italic">-- 授予用户所有权限
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">GRANT</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">select</span>,<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">update</span>,<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">delete</span>,<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">insert</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">ON</span><span style="color:#bbb"> </span><span style="color:#a61717;background-color:#e3d2d2">数据库名称</span>.<span style="color:#000;font-weight:bold">*</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">TO</span><span style="color:#bbb"> </span>[<span style="color:#a61717;background-color:#e3d2d2">用户名</span>]<span style="color:#000;font-weight:bold">@</span><span style="color:#d14">&#39;[IP描述]&#39;</span>;<span style="color:#bbb"> </span><span style="color:#998;font-style:italic">-- 授予用户DML给指定数据库
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">-- 查看用户权限
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">SHOW</span><span style="color:#bbb"> </span>GRANTS<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">FOR</span><span style="color:#bbb"> </span>[<span style="color:#a61717;background-color:#e3d2d2">用户名</span>]<span style="color:#000;font-weight:bold">@</span><span style="color:#d14">&#39;[IP描述]&#39;</span><span style="color:#bbb"> </span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">-- 回收权限
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">REVOKE</span><span style="color:#bbb"> </span><span style="color:#a61717;background-color:#e3d2d2">权限</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">ON</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">*</span>.<span style="color:#000;font-weight:bold">*</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">FROM</span><span style="color:#bbb"> </span>[<span style="color:#a61717;background-color:#e3d2d2">用户名</span>]<span style="color:#000;font-weight:bold">@</span><span style="color:#d14">&#39;[IP描述]&#39;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">-- 角色创建及授权
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">CREATE</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">ROLE</span><span style="color:#bbb"> </span>[<span style="color:#a61717;background-color:#e3d2d2">角色名</span>]<span style="color:#000;font-weight:bold">@</span><span style="color:#d14">&#39;[IP描述]&#39;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">GRANT</span><span style="color:#bbb"> </span><span style="color:#a61717;background-color:#e3d2d2">权限</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">ON</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">*</span>.<span style="color:#000;font-weight:bold">*</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">TO</span><span style="color:#bbb"> </span>[<span style="color:#a61717;background-color:#e3d2d2">角色名</span>]<span style="color:#000;font-weight:bold">@</span><span style="color:#d14">&#39;[IP描述]&#39;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">GRANT</span><span style="color:#bbb"> </span><span style="color:#a61717;background-color:#e3d2d2">角色名</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">TO</span><span style="color:#bbb"> </span>[<span style="color:#a61717;background-color:#e3d2d2">用户名</span>]<span style="color:#000;font-weight:bold">@</span><span style="color:#d14">&#39;[IP描述]&#39;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">-- 查看角色和用户的映射关系
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">select</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">*</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">from</span><span style="color:#bbb"> </span>mysql.role_edges;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">-- 查看用户和角色的权限
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">select</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">*</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">from</span><span style="color:#bbb"> </span>information_schema.user_privileges;<span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>生产环境的权限分配</p>
+<ul>
+<li>管理员：ALL</li>
+<li>开发：create, create routine, create temporary tables, create view, show view, delete, event, execute, insert, references, select, trigger, update</li>
+<li>监控：select, replication slave, replication client, super</li>
+<li>备份：select, show databases, process, lock tables, reload</li>
+<li>主从：replication slave, replication client</li>
+<li>业务：insert, update, delete, select</li>
+</ul>
+<h2 id="5mysql系统的日志">5、MySQL系统的日志</h2>
+<h3 id="日志类型">日志类型</h3>
+<blockquote>
+<p>建议日志都设置到单独的文件夹，不要和数据目录混着</p>
+</blockquote>
+<p><strong>错误日志</strong></p>
+<p>默认位置：log_error=$DATDDIR/hostname.err，默认是开启的，看错误日志时主要关注 [ERROR],deadlock</p>
+<pre tabindex="0"><code>log_error=/data/mysql80/log/mysql-err.log  #错误日志路径
+</code></pre><p><strong>二进制日志（binlog）</strong></p>
+<p>记录了MySQL 发生过的修改的操作的日志。MySQL8.0 默认开启 binlog，默认在 datadir 文件夹内</p>
+<p>①备份恢复必须依赖二进制日志；②复制环境必须依赖二进制日志</p>
+<pre tabindex="0"><code>log_bin=/data/mysql80/log/mysql-bin    #binlog日志路径
+</code></pre><p><strong>慢日志（slow_log）</strong></p>
+<p>记录MySQL工作中，运行较慢的语句。用来定位SQL语句性能问题，默认关闭，建议开启</p>
+<pre tabindex="0"><code>slow_query_log=on                             # 开启慢查询日志
+slow_query_log_file=/data/mysql80/log/mysql-slow.log # 慢查询日志位置
+long_query_time=0.5                           # 记录执行时间（real time）超过该值以上的SQL，默认值为10秒
+log_queries_not_using_indexes=1               # 未使用索引的查询是否写入慢日志
+log_throttle_queries_not_using_indexes=1000   # 限制每分钟所记录的slow log数量
+
+也可用 set global 进行修改
+</code></pre><p><strong>普通日志（general_log）</strong></p>
+<p>普通日志，会记录所有数据库发生的事件及语句，文件信息较大，生成、测试都不建议打开，默认关闭</p>
+<h3 id="日志参数查询设置">日志参数查询设置</h3>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">show</span><span style="color:#bbb"> </span>variables<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">like</span><span style="color:#bbb"> </span><span style="color:#d14">&#39;log_output&#39;</span>;<span style="color:#bbb"> </span><span style="color:#998;font-style:italic">-- 看看日志输出类型 table或file
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="6sql知识相关">6、SQL知识相关</h2>
+<h3 id="sql_mode">SQL_MODE</h3>
+<p>查看SQL_MODEL<code>select @@sql_mode;</code></p>
+<table>
+<thead>
+<tr>
+<th>SQL_MODE</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ONLY_FULL_GROUP_BY</td>
+<td>对于GROUP BY聚合操作，如果在SELECT中的列、HAVING或者ORDER BY子句的列，没有在GROUP BY中出现，或者不在函数中聚合，那么这个SQL是不合法的</td>
+</tr>
+<tr>
+<td>STRICT_TRANS_TABLES</td>
+<td>严格模式，进行数据的严格校验，错误数据不能插入，报error错误。如果不能将给定的值插入到事务表中，则放弃该语句。对于非事务表，如果值出现在单行语句或多行语句的第1行，则放弃该语句</td>
+</tr>
+<tr>
+<td>NO_ZERO_IN_DATE</td>
+<td>在严格模式，不接受月或日部分为0的日期</td>
+</tr>
+<tr>
+<td>NO_ZERO_DATE</td>
+<td>在严格模式，不要将 &lsquo;0000-00-00&rsquo;做为合法日期</td>
+</tr>
+<tr>
+<td>ERROR_FOR_DIVISION_BY_ZERO</td>
+<td>在严格模式，在INSERT或UPDATE过程中，如果被零除(或MOD(X，0))，则产生错误(否则为警告)</td>
+</tr>
+<tr>
+<td>NO_ENGINE_SUBSTITUTION</td>
+<td>如果需要的存储引擎被禁用或未编译，那么抛出错误</td>
+</tr>
+</tbody>
+</table>
+<h3 id="列的数据类型">列的数据类型</h3>
+<p><strong>数字类型-整型</strong></p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>占用字节</th>
+<th>无符号范围</th>
+<th>有符号范围</th>
+<th>数据长度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tinyint</td>
+<td>1</td>
+<td>0-255</td>
+<td>-128-127</td>
+<td>3</td>
+</tr>
+<tr>
+<td>smallint</td>
+<td>2</td>
+<td>0-65535</td>
+<td>-32768~32767</td>
+<td>5</td>
+</tr>
+<tr>
+<td>mediumint</td>
+<td>3</td>
+<td>0~16777215</td>
+<td>-8388608~8388607</td>
+<td>8</td>
+</tr>
+<tr>
+<td>int</td>
+<td>4</td>
+<td>0~2^32</td>
+<td>-2^31~ 2^32-1</td>
+<td>10</td>
+</tr>
+<tr>
+<td>bigint</td>
+<td>5</td>
+<td>0~2^64</td>
+<td>-2^63~ 2^63-1</td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>解惑：int(11) 啥意思？不是长度已经一定了吗？</p>
+<p>11 代表的并不是长度，而是字符的显示宽度，在无符号且填充零（<code>UNSIGNED ZEROFILL</code>）下才有作用，例如：<code>b INT(11) UNSIGNED ZEROFILL NOT NULL</code></p>
+<pre tabindex="0"><code>+-------------+
+| b           |
++-------------+
+| 00000000001 |
+| 01234567890 |
++-------------+
+</code></pre></blockquote>
+<p><strong>数字类型-浮点型与定点数</strong></p>
+<p>建议：使用整形类型存储小数</p>
+<ul>
+<li>FLoat</li>
+</ul>
+<p>​       Float：表示不指定小数位的浮点数</p>
+<p>​       Float(M,D)：表示一共存储M个有效数字，其中小数部分占D位</p>
+<p>​       Float(10,2)：整数部分为8位，小数部分为2位</p>
+<ul>
+<li>Double</li>
+</ul>
+<p>​       Double又称之为双精度：系统用8个字节来存储数据，表示的范围更大，10^308次方，但是精度也只有15位左右</p>
+<ul>
+<li>Decimal</li>
+</ul>
+<p>​       Decimal系统自动根据存储的数据来分配存储空间，每大概9个数就会分配四个字节来进行存储，同时小数和整数部分是分开的。</p>
+<p>​       定点数：能够保证数据精确的小数（小数部分可能不精确，超出长度会四舍五入），整数部分一定精确</p>
+<p>​       Decimal(M,D)：M表示总长度，最大值不能超过65，D代表小数部分长度，最长不能超过30</p>
+<p><strong>字符串类型</strong></p>
+<ul>
+<li>
+<p>Char(L)</p>
+<p>系统一定会分配指定的空间用于存储数据，L取值范围0到255</p>
+</li>
+<li>
+<p>Varchar(L)</p>
+<p>变长字符：指定长度之后，系统会根据实际存储的数据长度和数据，所以每个varchar数据产生后，系统都会在数据后面增加1-2个字节的额外开销。如果数据本身小于255个字符：额外开销一个字节；如果大于255个，就开销两个字节</p>
+<p>基本语法：Varchar(L)，L的长度理论值位0到65535</p>
+</li>
+</ul>
+<p>​       <span style="color:red">如果数据长度超过255个字符，不论是否固定长度，都会使用text，不再使用char和varchar</span></p>
+<ul>
+<li>
+<p>长文本类型</p>
+<p>Text：允许存放65535字节内的文字字符串字段类型</p>
+<p>Mediumtext：允许存放16777215字节内的文字字符串字段类型</p>
+<p>Longtext：允许存放2147483647字节内的文字字符串字段类型</p>
+</li>
+</ul>
+<p><strong>时间类型</strong></p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>占用字节</th>
+<th>范围</th>
+<th>格式</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DATE</td>
+<td>3</td>
+<td>1000-01-01/9999-12-31</td>
+<td>YYYY-MM-DD</td>
+<td>日期</td>
+</tr>
+<tr>
+<td>TIME</td>
+<td>3</td>
+<td>&lsquo;-838:59:59&rsquo;/&lsquo;838:59:59&rsquo;</td>
+<td>HH:MM:SS</td>
+<td>时间值或持续时间</td>
+</tr>
+<tr>
+<td>YEAR</td>
+<td>1</td>
+<td>1901/2155</td>
+<td>YYYY</td>
+<td>年份</td>
+</tr>
+<tr>
+<td>DATETIME</td>
+<td>8</td>
+<td>1000-01-01 00:00:00/<br />9999-12-31 23:59:59</td>
+<td>YYYY-MM-DD HH:MM:SS</td>
+<td>混合日期和时间</td>
+</tr>
+<tr>
+<td>TIMESTAMP</td>
+<td>4</td>
+<td>1970-01-01 00:00:00/<br />2038-1-19 11:14:07</td>
+<td>YYYYMMDD</td>
+<td>时间戳</td>
+</tr>
+</tbody>
+</table>
+<h3 id="常用函数">常用函数</h3>
+<p><strong>字符函数</strong></p>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>作用</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>length</td>
+<td>获取字节量，收到字符集影响</td>
+<td>length(&lsquo;abc&rsquo;)</td>
+</tr>
+<tr>
+<td>concat</td>
+<td>拼接字符串</td>
+<td>concat(&rsquo;%&rsquo;, &lsquo;abc&rsquo;, &lsquo;%&rsquo;)</td>
+</tr>
+<tr>
+<td>upper&amp;lower</td>
+<td>转换大小写</td>
+<td>upper(&lsquo;abc&rsquo;)</td>
+</tr>
+<tr>
+<td>substr</td>
+<td>截取字符串</td>
+<td>substr(字符串,pos,[len])</td>
+</tr>
+<tr>
+<td>trim</td>
+<td>掐头去尾</td>
+<td>trim(&rsquo; s &lsquo;)</td>
+</tr>
+<tr>
+<td>lpad&amp;rpad</td>
+<td>左/右填充</td>
+<td>lpad(&lsquo;1&rsquo;,2, 0)</td>
+</tr>
+<tr>
+<td>replace</td>
+<td>替换</td>
+<td>replace(uuid(), &lsquo;-&rsquo;, &lsquo;&rsquo;)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>数学函数</strong></p>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>作用</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>round</td>
+<td>四舍五入</td>
+<td>round(3.1415, 2)</td>
+</tr>
+<tr>
+<td>ceil</td>
+<td>向上取整</td>
+<td>ceil(3.14)</td>
+</tr>
+<tr>
+<td>floor</td>
+<td>向下取整</td>
+<td>floor(9.99)</td>
+</tr>
+<tr>
+<td>truncate</td>
+<td>小数点保留截断</td>
+<td>truncate(3.15, 1)</td>
+</tr>
+<tr>
+<td>mod</td>
+<td>取模</td>
+<td>mod(10, 3)</td>
+</tr>
+<tr>
+<td>rand</td>
+<td>生成（-∞, 0]范围内的随机整数</td>
+<td>rand()*10</td>
+</tr>
+</tbody>
+</table>
+<p><strong>日期函数</strong></p>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>作用</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>now</td>
+<td>返回当前时间，类型DATETIME</td>
+<td>now()</td>
+</tr>
+<tr>
+<td>curdate</td>
+<td>返回日期，类型DATE</td>
+<td>curdate()</td>
+</tr>
+<tr>
+<td>curtime</td>
+<td>返回时间值，类型TIME</td>
+<td>curtime()</td>
+</tr>
+<tr>
+<td>current_timestamp</td>
+<td>返回时间戳，类型TIMESTAMP</td>
+<td>current_timestamp()</td>
+</tr>
+<tr>
+<td>month<br />day<br />hour<br />minute<br />second<br />year</td>
+<td>截取时间信息</td>
+<td>year(now())</td>
+</tr>
+<tr>
+<td>str_to_date</td>
+<td>以指定格式识别日期</td>
+<td>str_to_date(&lsquo;2023-01-07 14:57:00&rsquo;,&rsquo;%y-%m-%d %h:%i:%s&rsquo;)</td>
+</tr>
+<tr>
+<td>date_format</td>
+<td>以指定字符串格式输出日期</td>
+<td>date_format(now(),&rsquo;%y-%m-%d %h:%i:%s&rsquo;)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>分组统计</strong></p>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sum</td>
+<td>数值型数据统计</td>
+</tr>
+<tr>
+<td>avg</td>
+<td>数值型数据平均值</td>
+</tr>
+<tr>
+<td>max</td>
+<td>任何类型数据最大值</td>
+</tr>
+<tr>
+<td>min</td>
+<td>任何类型数据最小值</td>
+</tr>
+<tr>
+<td>count</td>
+<td>非空值个数</td>
+</tr>
+<tr>
+<td>group_concat</td>
+<td>同一个分组中的值</td>
+</tr>
+</tbody>
+</table>
+<p><strong>流程控制函数</strong></p>
+<p>if函数，示例：</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">if</span>(<span style="color:#099">2</span><span style="color:#000;font-weight:bold">&gt;</span><span style="color:#099">1</span>,<span style="color:#bbb"> </span><span style="color:#d14">&#39;yes&#39;</span>,<span style="color:#bbb"> </span><span style="color:#d14">&#39;no&#39;</span>)<span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>case函数，示例：</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">SELECT</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">CASE</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">		</span><span style="color:#099">110</span><span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">		</span><span style="color:#000;font-weight:bold">WHEN</span><span style="color:#bbb"> </span><span style="color:#099">110</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">THEN</span><span style="color:#bbb"> </span><span style="color:#d14">&#39;警察&#39;</span><span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">		</span><span style="color:#000;font-weight:bold">WHEN</span><span style="color:#bbb"> </span><span style="color:#099">119</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">THEN</span><span style="color:#d14">&#39;消防队&#39;</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000;font-weight:bold">ELSE</span><span style="color:#bbb"> </span><span style="color:#d14">&#39;其它号码&#39;</span><span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">END</span><span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="7索引执行计划">7、索引&amp;执行计划</h2>
+<h3 id="sql的执行流程">SQL的执行流程</h3>
+<img src="/img/dba/SQL的执行流程.png" alt="SQL的执行流程" style="zoom:67%;" />
+<p>主要分为四个阶段：预处理、解析、优化、执行语句</p>
+<p><strong>预处理</strong>：判断语句中的语法、语义、权限处理等</p>
+<p><strong>解析</strong>    ：校验OK，就生成“解析树”，把语句拆分成多个块，生成一种树形结构来表示执行顺序。解析出来的树叫抽像语法树AST</p>
+<p><strong>优化</strong>    ：分为逻辑优化和物理优化。预估每条执行方式的成本，选择成本最小的执行方式，最终转化为执行计划explain</p>
+<ol>
+<li>逻辑优化：将 SQL 语法树中的谓词转化为逻辑代数操作符，对条件表达式进行等价谓词重写、条件简化，对视图进行重写，对子查询进行优化，对连接语义进行了外连接消除、嵌套连接消除等</li>
+<li>物理优化：统计信息（表的状态信息，比如表名、数据行、数据分布、索引状态信息）、选择索引和算法</li>
+</ol>
+<p><strong>执行</strong>    ：根据执行计划去执行语句</p>
+<h3 id="索引">索引</h3>
+<p><strong>BTREE 查找算法演变</strong></p>
+<p><img src="/img/dba/B-Tree.png" alt="B-Tree"></p>
+<p>B-树有如下特点:</p>
+<ol>
+<li>所有键值分布在整颗树中（索引值和具体data都在每个节点里）</li>
+<li>任何一个关键字出现且只出现在一个结点中</li>
+<li>搜索有可能在非叶子结点结束（最好情况O(1)就能找到数据）</li>
+<li>在关键字全集内做一次查找,性能逼近二分查找</li>
+</ol>
+<p><img src="/img/dba/B+Tree.png" alt="B+Tree"></p>
+<p>B+树有如下特点:</p>
+<ol>
+<li>所有关键字存储在叶子节点出现,内部节点(非叶子节点并不存储真正的 data)</li>
+<li>为所有叶子结点增加了一个链指针</li>
+</ol>
+<p><strong>聚簇索引</strong></p>
+<img src="/img/dba/聚簇索引.png" alt="聚簇索引" style="zoom:70%;" />
+<p>InnoDB表中一定是有聚簇索引的，聚簇索引的建立规则如下</p>
+<p>1、 如果表中设置了主键（例如ID列），自动根据ID列生成聚簇索引</p>
+<p>2、 如果没有设置主键，自动选择第一个非空唯一键的列作为聚簇索引</p>
+<p>3、 自动生成隐藏（6字节row_id）的聚簇索引</p>
+<p><strong>辅助索引</strong></p>
+<p>需要人为创建辅助索引，将经常作为查询条件的列创建辅助索引，起到加速查询的效果。叶子节点存储的是主键ID。使用辅助索引查出对应的主键ID，可能会用这些主键ID查询聚簇索引，这个过程叫做回表</p>
+<img src="/img/dba/辅助索引.png" alt="辅助索引" style="zoom:67%;" />
+<h3 id="执行计划">执行计划</h3>
+<p>获取语句的执行计划工具，只针对索引应用和优化器算法应用部分信息，不会执行语句。</p>
+<p><strong>使用方式</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">explain</span><span style="color:#000;font-weight:bold">/</span><span style="color:#000;font-weight:bold">desc</span><span style="color:#bbb"> </span>[formrt<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#39;json&#39;</span><span style="color:#000;font-weight:bold">/</span><span style="color:#d14">&#39;tree&#39;</span>]<span style="color:#bbb"> </span>SQL语句<span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>执行计划信息介绍</strong></p>
+<ul>
+<li>
+<p><span style="color:RGB(247,153,5)">id</span>：查询的顺序，表示执行的顺序，id越大越先执行，id一样的从上往下执行</p>
+<blockquote>
+<p>使用formrt=&lsquo;tree&rsquo;可更加直观看出执行顺序。从右到左，从上到下阅读</p>
+</blockquote>
+</li>
+<li>
+<p><span style="color:RGB(247,153,5)">select_type</span>：表示查询类型</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>simple</td>
+<td>表示不需要union操作或者不包含子查询的简单查询</td>
+</tr>
+<tr>
+<td>primary</td>
+<td>表示最外层查询</td>
+</tr>
+<tr>
+<td>union</td>
+<td>union操作中第二个及之后的查询</td>
+</tr>
+<tr>
+<td>dependent union</td>
+<td>union操作中第二个及之后的查询，并且该查询依赖于外部查询</td>
+</tr>
+<tr>
+<td>subquery</td>
+<td>子查询中的第一个查询</td>
+</tr>
+<tr>
+<td>dependent subquery</td>
+<td>子查询中的第一个查询，并且该查询依赖于外部查询</td>
+</tr>
+<tr>
+<td>derived</td>
+<td>派生表查询，既from字句中的子查询</td>
+</tr>
+<tr>
+<td>materialized</td>
+<td>物化查询</td>
+</tr>
+<tr>
+<td>uncacheable subquery</td>
+<td>无法被缓存的子查询，对外部查询的每一行都需要重新进行查询</td>
+</tr>
+<tr>
+<td>uncacheable union</td>
+<td>union操作中第二个及之后的查询，并且该查询属于uncacheable subquery</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><span style="color:RGB(247,153,5)">table</span>：此次查询访问的表</p>
+</li>
+<li>
+<p><span style="color:RGB(247,153,5)">partitions</span>：分区信息，非分区表为null</p>
+</li>
+<li>
+<p><span style="color:RGB(247,153,5)">type</span>：查询时使用索引的类型</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ALL</td>
+<td>没有使用到索引</td>
+</tr>
+<tr>
+<td>index</td>
+<td>全索引扫描，如果时聚簇索引列相当于全表扫描</td>
+</tr>
+<tr>
+<td>range</td>
+<td>索引范围扫描</td>
+</tr>
+<tr>
+<td>ref</td>
+<td>辅助索引等值查询</td>
+</tr>
+<tr>
+<td>eq_ref</td>
+<td>多表连接查询中，非驱动表的连接条件是主键或唯一键时</td>
+</tr>
+<tr>
+<td>const / system</td>
+<td>主键或唯一键等值查询</td>
+</tr>
+<tr>
+<td>NULL</td>
+<td>无需访问表或者索引</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><span style="color:RGB(247,153,5)">possible_keys</span>：可能会应用的索引</p>
+</li>
+<li>
+<p><span style="color:RGB(247,153,5)">key</span>：最终选择的索引</p>
+</li>
+<li>
+<p><span style="color:RGB(247,153,5)">key_len</span>：用来判断联合索引应用的部分。值是真实字节数，如果不是非空约束列，记得要加1</p>
+<blockquote>
+<p>format=json在used_key_parts字段上可以直观的看出</p>
+</blockquote>
+</li>
+<li>
+<p><span style="color:RGB(247,153,5)">ref</span>：表示连接查询的连接条件</p>
+</li>
+<li>
+<p><span style="color:RGB(247,153,5)">rows</span>：需要扫描的行数</p>
+</li>
+<li>
+<p><span style="color:RGB(247,153,5)">filtered</span>：某个表经过搜索条件过滤后剩余记录条数的百分比</p>
+</li>
+<li>
+<p><span style="color:RGB(247,153,5)">Extra</span>：额外信息，常见如下值</p>
+<table>
+<thead>
+<tr>
+<th>信息描述</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No tables used</td>
+<td>当查询语句的没有 FROM 子句时将会提示该额外信息</td>
+</tr>
+<tr>
+<td>Impossible WHERE</td>
+<td>查询语句的 WHERE 子句永远为 FALSE 时将会提示该额外信息</td>
+</tr>
+<tr>
+<td>Using index</td>
+<td>索引覆盖的情况</td>
+</tr>
+<tr>
+<td>Using index condition</td>
+<td>有些搜索条件中虽然出现了索引列，但却不能使用到索引</td>
+</tr>
+<tr>
+<td>Using where</td>
+<td>全表扫描来执行对某个表的查询，并且该语句的 WHERE 子句中有针对该表的搜索条件时</td>
+</tr>
+<tr>
+<td>Using filesort</td>
+<td>用到了索引做排序</td>
+</tr>
+<tr>
+<td>Using temporary</td>
+<td>使用了临时表</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h3 id="优化器针对索引的算法">优化器针对索引的算法</h3>
+<p><strong>优化器算法及开启状态查询</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">select</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">@@</span>optimizer_switch;<span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>索引下推（index_condition_pushdown，ICP）</strong></p>
+<p>作用：根据表数据分析，联合索引尽可能的多过滤数据，减少回表</p>
+<p>原理：下推到引擎层过滤</p>
+<p>例如：联合索引（a, b, c），执行查询条件 &quot; where a = and b &gt; and c = &quot;</p>
+<p>SQL层做完过滤后，联合索引（a, b, c）只能用（a, b）部分，索引下推可将c列条件的过滤下推到engine层，进行再次过滤，排除无用的数据页，最终去磁盘上拿数据页</p>
+<p><strong>索引多范围查找（Multi Range Read，MRR）</strong></p>
+<p>作用：减少对磁盘的随机访问，进而对基表执行更多的顺序扫描</p>
+<p>原理：由于MySQL 辅助索引的存储顺序并非与主键的顺序一致，所以根据辅助索引获取的主键来访问表中的数据会导致随机的IO。MRR将多个需要回表的二级索引根据主键进行排序，然后一起回表，将原来的回表时进行的随机IO，转变成顺序IO</p>
+<h3 id="表连接算法">表连接算法</h3>
+<p><strong>普通嵌套循环连接（Simple Nested-Loops Join，SNLJ）</strong></p>
+<p>优化器自动选择结果集小的表作为驱动表。对于两表连接，驱动表只会被访问一遍，被驱动表具体访问几遍取决于对驱动表执行单表查询后的结果集中的记录条数。这种驱动表只访问一次，但被驱动表却可能被多次访问的连接执行方式称之为嵌套循环连接。</p>
+<p><img src="/img/dba/SNLJ.webp" alt="SNLJ"></p>
+<blockquote>
+<p>可以用<code>left join</code>强制驱动表</p>
+</blockquote>
+<p><strong>索引嵌套循环连接（Index Nested Loops Join, INLJ）</strong></p>
+<p>有一方在连接字段上有索引，优化器会考虑选择有索引的一方作为被驱动表，双方都有索引则选择索引高度低的，索引高度一样则选择记录数多的作为被驱动表，对于驱动表的每一条记录，在被驱动表中使用索引查询，大大减少了比较次数，提高了查询效率</p>
+<img src="/img/dba/INLJ.webp" alt="INLJ" style="zoom:80%;" />
+<p><strong>基于块的嵌套循环连接（Block Nested-Loop Join，BNL）</strong></p>
+<p>被驱动表要被访问好多次，如果被驱动表中的数据特别多而且不能使用索引访问的话，那就相当于从磁盘上读好多次这个表，这个IO代价就非常大，所以应该尽量减少访问被驱动表的次数。</p>
+<p>在嵌套循环连接中，驱动表查询结果集中有多少条记录，就需要驱动表数据被加载多少次来进行匹配，那可不可以把被驱动表的记录加载到内存的时候，一次性和多条驱动表中的记录做匹配，这样就可以大大减少重复从磁盘上加载被驱动表的代价了。</p>
+<p>所以提出可join buffer的概念，join buffer就是执行连接查询前申请的一块固定大小的内存，先把若干条驱动表结果集中的记录装在这个join buffer中，然后扫描被驱动表，每一条被驱动表的记录一次性和join buffer中的多条驱动表记录进行匹配，因为匹配的过程是在内存中完成的，所以这样可以减少被驱动表的IO代价。</p>
+<p><img src="/img/dba/BNL.webp" alt="BNL"></p>
+<p><strong>批量键访问联接（Batched Key Access Join，BKA）</strong></p>
+<p>当被驱动表的链接字段有非主键索引时，通过范围扫描读取一部分记录放入内存中，然后按照主键排序，这样匹配到数据后需要按对应的主键索引去查询被驱动表的真实数据时，可以按照排好序的主键进行顺序访问。相当于（BNL + MRR）</p>
+<p><img src="/img/dba/bak.jpeg" alt="bak"></p>
+<p><strong>哈希连接（Hash Join）</strong></p>
+<p>Hash Join被应用的条件是那些不走索引，或者索引应用不好的时候。</p>
+<p>Hash Join 包含两个部分：<code>build</code>构建阶段和<code>probe</code>探测阶段</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">SELECT</span><span style="color:#bbb"> </span>persons.name,<span style="color:#bbb"> </span>countries.country_name<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">FROM</span><span style="color:#bbb"> </span>persons<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">JOIN</span><span style="color:#bbb"> </span>countries<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">ON</span><span style="color:#bbb"> </span>persons.country_id<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>countries.country_id;<span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><span style="color:RGB(25,113,192)">build 阶段 </span></p>
+<p>遍历驱动表，以join条件为key（countries.country_id），查询需要的列作为value（countries.country_id，countries.country_name）创建hash表。</p>
+<img src="/img/dba/build-1.webp" alt="MySQL 8.0之hash join_java" style="zoom:50%;" />
+<p>案例中对 countries.country_id 进行 hash 计算：hash(countries.country_id) 然后将值放入内存中 hash table 的相应位置。countries 表中的所有 country_id 都放入内存的哈希表中</p>
+<p><span style="color:RGB(25,113,192)">probe 探测阶段</span></p>
+<p>build阶段完成后，MySQL逐行遍历被驱动表，然后计算 join条件的hash值，并在hash表中查找，如果匹配，则输出给客户端，否则跳过。所有内表记录遍历完，则整个过程就结束了。</p>
+<img src="/img/dba/probe-1.webp" alt="MySQL 8.0之hash join_java_02" style="zoom:67%;" />
+<p>如图所示 ,MySQL 对 persons 表中每行中的 join 字段的值进行 hash 计算；hash(persons.country_id)，拿着计算结果到内存 hash table 中进行查找匹配</p>
+<p>如果驱动表的数据记录在内存中存不下时就会利用磁盘文件。此时MySQL 要构建临时文件做hash join。此时的过程如下：</p>
+<ol>
+<li>
+<p>build阶段会首先利用hash算将外表进行分区，并产生临时分片写到磁盘上</p>
+<img src="/img/dba/probe-2.webp" alt="MySQL 8.0之hash join_java_03" style="zoom:50%;" />
+</li>
+<li>
+<p>然后在probe阶段，对于内表使用同样的hash算法进行分区</p>
+<img src="/img/dba/probe-3.webp" alt="MySQL 8.0之hash join_java_04" style="zoom:50%;" />
+</li>
+<li>
+<p>由于使用分片hash函数相同，那么key相同(join条件相同)必然在同一个分片编号中。接下来，再对外表和内表中相同分片编号的数据进行内存hash join的过程，所有分片的内存hash join做完，整个join过程就结束了</p>
+<img src="/img/dba/probe-4.webp" alt="MySQL 8.0之hash join_java_05" style="zoom:50%;" />
+</li>
+</ol>
+<p>可以调整<code>join_buffer_size</code>和<code>open_files_limit</code>参数提高性能</p>
+<h2 id="8innodb-存储引擎">8、InnoDB 存储引擎</h2>
+<h3 id="核心特性总览">核心特性总览</h3>
+<ul>
+<li>MVCC： 多版本并发控制</li>
+<li>聚簇索引 ： 用来组织存储数据和优化查询</li>
+<li>支持事务 ： 数据最终一致提供保证</li>
+<li>支持行级锁 ： 并发控制</li>
+<li>外键 ： 多表之间的数据一致一致性</li>
+<li>多缓冲区支持</li>
+<li>自适应Hash索引： AHI</li>
+<li>复制中支持高级特性</li>
+<li>备份恢复： 支持热备</li>
+<li>自动故障恢复：CR Crash Recovery</li>
+<li>双写机制 ： DWB Double Write Buffer</li>
+</ul>
+<h3 id="存储引擎的管理">存储引擎的管理</h3>
+<p><strong>查看碎片情况</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#998;font-style:italic">-- 查看某个数据库下的碎片情况
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">select</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">table_name</span>,data_free,engine<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">from</span><span style="color:#bbb"> </span>information_schema.tables<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">where</span><span style="color:#bbb"> </span>table_schema<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#39;[数据库名称]&#39;</span>;<span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>整理碎片</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#998;font-style:italic">-- 以下两个操作相当于重新生成表，并更新统计信息
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">alter</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">table</span><span style="color:#bbb"> </span><span style="color:#a61717;background-color:#e3d2d2">表名</span><span style="color:#bbb"> </span>engine<span style="color:#000;font-weight:bold">=</span>InnoDB;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">analyze</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">table</span><span style="color:#bbb"> </span><span style="color:#a61717;background-color:#e3d2d2">表名</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">-- 对数据表优化
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>optimize<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">table</span><span style="color:#bbb"> </span><span style="color:#a61717;background-color:#e3d2d2">表名</span>;<span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>查询线程信息</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#998;font-style:italic">-- 前台线程查询（连接层）
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">show</span><span style="color:#bbb"> </span>processlist<span style="color:#bbb"> </span>;<span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">show</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">full</span><span style="color:#bbb"> </span>processlist;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">select</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">*</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">from</span><span style="color:#bbb"> </span>information_schema.processlist;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">-- 后台线程（Server\Engine）
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">select</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">*</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">from</span><span style="color:#bbb"> </span>performance_schema.threads;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">-- 查询连接线程和SQL线程关系
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">select</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">*</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">from</span><span style="color:#bbb"> </span>information_schema.processlist<span style="color:#bbb"> </span>;<span style="color:#bbb"> </span><span style="color:#998;font-style:italic">---&gt; ID=10
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">select</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">*</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">from</span><span style="color:#bbb"> </span>performance_schema.threads<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">where</span><span style="color:#bbb"> </span>processlist_id<span style="color:#000;font-weight:bold">=</span><span style="color:#099">10</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">select</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">*</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">from</span><span style="color:#bbb"> </span>performance_schema.events_statements_history<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">where</span><span style="color:#bbb"> </span>thread_id<span style="color:#000;font-weight:bold">=?</span><span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="表空间">表空间</h3>
+<p><strong>表空间的分类</strong></p>
+<ol>
+<li>system tablespace（系统表空间/共享表空间）</li>
+<li>file-per-table tablespace（独立表空间）</li>
+<li>undo tablespace（undo 表空间）</li>
+<li>temp tablespace（临时表空间）</li>
+</ol>
+<p><strong>system tablespace（系统表空间/共享表空间）</strong></p>
+<p><img src="/img/dba/%E5%85%B1%E4%BA%AB%E8%A1%A8%E7%A9%BA%E9%97%B4.png" alt="共享表空间"></p>
+<p>查询共享表空间信息</p>
+<p><code>select @@innodb_data_file_path;</code>默认（ibdata1:12M:autoextend）</p>
+<p><code>select @@innodb_autoextend_increment;</code>默认64M</p>
+<p>即ibdata1文件，默认初始大小12M，不够用会自动扩展，默认每次扩展64M。不建议使用默认大小，并发太小</p>
+<pre tabindex="0"><code># 如果已经初始化，第一个大小必须和硬盘中的第一个文件实际大小一致，否则会报错
+innodb_data_file_path=ibdata1:1024M;ibdata2:1024M:autoextend
+</code></pre><blockquote>
+<p>5.7 中建议：设置共享表空间2-3个，大小建议512M或者1G，最后一个定制为自动扩展。</p>
+<p>8.0 中建议：设置1-2个就ok，大小建议512M或者1G</p>
+</blockquote>
+<p><strong>file-per-table tablespace（独立表空间）</strong></p>
+<p>每个表的表空间包含单个 InnoDB表的数据和索引，并存储在文件系统上的单个数据文件中。MySQL每创建一个表，就会生成一个独立表空间以 table_name.idb 命名的。</p>
+<p><img src="/img/dba/%E7%8B%AC%E7%AB%8B%E8%A1%A8%E7%A9%BA%E9%97%B4.png" alt="独立表空间"></p>
+<p><strong>undo tablespace（undo 表空间）</strong></p>
+<p>用作撤销日志，回滚日志</p>
+<p>5.7版本，默认存储在共享表空间中（ibdataN）；8.0版本以后默认就是独立的（undo_001-undo_002）</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">SELECT</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">@@</span>innodb_undo_tablespaces;<span style="color:#bbb">    </span><span style="color:#998;font-style:italic">-- 打开独立undo模式，并设置undo的个数，建议3-5个
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">SELECT</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">@@</span>innodb_max_undo_log_size;<span style="color:#bbb">   </span><span style="color:#998;font-style:italic">-- undo日志的大小，默认1G。
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">SELECT</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">@@</span>innodb_undo_log_truncate;<span style="color:#bbb">   </span><span style="color:#998;font-style:italic">-- 开启undo自动回收的机制（undo_purge）。
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">SELECT</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">@@</span>innodb_purge_rseg_truncate_frequency;<span style="color:#bbb">  </span><span style="color:#998;font-style:italic">-- 触发自动回收的条件，单位是检测次数。
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>temp tablespace（临时表空间）</strong></p>
+<p>把临时表的数据从系统表空间中抽离出来，形成独立的表空间参数<code>innodb_temp_data_file_path</code>，独立表空间文件名为 ibtmp1，默认大小 12MB。建议进行修改。</p>
+<pre tabindex="0"><code># 建议数据初始化之前设定好，一般2-3个，大小512M-1G
+innodb_temp_data_file_path=ibtmp1:512M;ibtmp2:512M:autoextend:max:512M
+</code></pre><h3 id="行格式">行格式</h3>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">CREATE</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">TABLE</span><span style="color:#bbb"> </span>record_format_demo<span style="color:#bbb"> </span>(<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span>c1<span style="color:#bbb"> </span><span style="color:#0086b3">VARCHAR</span><span style="color:#bbb"> </span>(<span style="color:#099">10</span>),<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span>c2<span style="color:#bbb"> </span><span style="color:#0086b3">VARCHAR</span><span style="color:#bbb"> </span>(<span style="color:#099">10</span>)<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">NOT</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">NULL</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>c3<span style="color:#bbb"> </span><span style="color:#0086b3">CHAR</span>(<span style="color:#099">10</span>),<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>c4<span style="color:#bbb"> </span><span style="color:#0086b3">VARCHAR</span>(<span style="color:#099">10</span>))<span style="color:#bbb"> </span>CHARSET<span style="color:#000;font-weight:bold">=</span>ascii<span style="color:#bbb"> </span>ROW_FORMAT<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>COMPACT;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">-- 记录1
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">INSERT</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">INTO</span><span style="color:#bbb"> </span>record_format_demo(c1,<span style="color:#bbb"> </span>c2,<span style="color:#bbb"> </span>c3,<span style="color:#bbb"> </span>c4)<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">VALUES</span>(<span style="color:#d14">&#39;aaaa&#39;</span>,<span style="color:#bbb"> </span><span style="color:#d14">&#39;bbb&#39;</span>,<span style="color:#bbb"> </span><span style="color:#d14">&#39;cc&#39;</span>,<span style="color:#bbb"> </span><span style="color:#d14">&#39;d&#39;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">-- 记录2
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">INSERT</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">INTO</span><span style="color:#bbb"> </span>record_format_demo(c1,<span style="color:#bbb"> </span>c2,<span style="color:#bbb"> </span>c3,<span style="color:#bbb"> </span>c4)<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">VALUES</span>(<span style="color:#d14">&#39;eeee&#39;</span>,<span style="color:#bbb"> </span><span style="color:#d14">&#39;fff&#39;</span>,<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">NULL</span>,<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">NULL</span>);<span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>COMPACT行格式</strong></p>
+<p>一条完整的记录其实可以被分为<span style="color:RGB(25,113,192)"><strong>记录的额外信息</strong></span>和<span style="color:RGB(25,113,192)"><strong>记录的真实数据</strong></span>两大部分</p>
+<img src="/img/dba/COMPACT.png" alt="COMPACT" style="zoom:77%;" />
+<p>记录的额外信息：为了描述这条记录而不得不额外添加的一些信息，这些额外信息分为3类，分别是变长字段长度列表、NULL值列表和记录头信息</p>
+<ol>
+<li>
+<p>变长字段长度列表</p>
+<p>所有变长字段的真实数据占用的字节长度都存放在记录的开头部位，从而形成一个变长字段长度列表，各变长字段数据占用的字节数按照列的顺序<span style="color:red">逆序</span>存放，变长字段长度列表中只存储值为 非NULL 的列内容占用的长度，值为 NULL 的列的长度是不储存的</p>
+<img src="/img/dba/COMPACT-2.png" alt="COMPACT-2" style="zoom:77%;" />
+</li>
+<li>
+<p>NULL值列表</p>
+<p>表中如果没有允许存储 NULL 的列，则 NULL值列表也不存在了。否则将每个允许存储NULL的列对应一个标记【1-NULL，0-Not NULL】，标记位按照列的顺序逆序排列。NULL值列表必须用整数个字节的位表示，如果使用的二进制位个数不是整数个字节，则在字节的高位补0</p>
+<img src="/img/dba/COMPACT-3.png" alt="COMPACT-3" style="zoom:77%;" />
+</li>
+<li>
+<p>记录头信息</p>
+<p>由固定的5个字节组成。5个字节也就是40个二进制位，不同的位代表不同的意思</p>
+<img src="/img/dba/COMPACT-4.png" alt="COMPACT-4" />
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>大小（bit）</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>预留位1</td>
+<td>1</td>
+<td>没有使用</td>
+</tr>
+<tr>
+<td>预留位2</td>
+<td>1</td>
+<td>没有使用</td>
+</tr>
+<tr>
+<td>delete_mask</td>
+<td>1</td>
+<td>标记该记录是否被删除</td>
+</tr>
+<tr>
+<td>min_rec_mask</td>
+<td>1</td>
+<td>B+树的每层叶子节点中的最小记录都会添加该记标记</td>
+</tr>
+<tr>
+<td>n_owned</td>
+<td>4</td>
+<td>表示当前记录拥有的记录数</td>
+</tr>
+<tr>
+<td>heap_no</td>
+<td>13</td>
+<td>表示当前记录在记录堆的位置信息</td>
+</tr>
+<tr>
+<td>record_type</td>
+<td>3</td>
+<td>表示当前记录的类型，0表示普通记录，1表示B+树非叶子节点记录，2表示最小记录，3表示最大记录</td>
+</tr>
+<tr>
+<td>next_record</td>
+<td>16</td>
+<td>表示下一条记录的相对位置</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+<p>记录的真实数据：除了报错了自己定义列的存储数据以外，MySQ还L会为每个记录默认的添加一些列（也称为隐藏列），具体的列如下</p>
+<table>
+<thead>
+<tr>
+<th>列名</th>
+<th>是否必须</th>
+<th>占用空间（单位：B）</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DB_ROW_ID</td>
+<td>否</td>
+<td>6</td>
+<td>行ID，唯一标识一条记录</td>
+</tr>
+<tr>
+<td>DB_TRX_ID</td>
+<td>是</td>
+<td>6</td>
+<td>事务ID</td>
+</tr>
+<tr>
+<td>DB_ROLL_PTR</td>
+<td>是</td>
+<td>7</td>
+<td>回滚指针</td>
+</tr>
+</tbody>
+</table>
+<img src="/img/dba/COMPACT-5.png" alt="COMPACT-5" />
+<p><strong>DYNAMIC和COMPRESSED行格式</strong></p>
+<p>默认存储格式是DYNAMIC，这俩行格式和Compact行格式挺像，只不过在处理行溢出数据时有点儿分歧，它们不会在记录的真实数据处存储字段真实数据的前768个字节，而是把所有的字节都存储到其他页面中，只在记录的真实数据处存储其他页面的地址**。**Compressed行格式和Dynamic不同的一点是，Compressed行格式会采用压缩算法对页面进行压缩，以节省空间。</p>
+<h3 id="页结构">页结构</h3>
+<img src="/img/dba/通用页结构.png" alt="通用页结构" style="zoom:67%;" />
+<p><strong>页中使用/未使用空间（User Records / Free Space）</strong></p>
+<p>开始生成页的时候，其实并没有<code>User Records</code>这个部分，每当我们插入一条记录，都会从<code>Free Space</code>部分，也就是尚未使用的存储空间中申请一个记录大小的空间划分到<code>User Records</code>部分，当<code>Free Space</code>部分的空间全部被<code>User Records</code>部分替代掉之后，也就意味着这个页使用完了，如果还有新的记录插入的话，就需要去申请新的页了</p>
+<p><img src="/img/dba/page-1.png" alt="page-1"></p>
+<p><strong>最小记录和最大记录（Infimum+Supremum）</strong></p>
+<p><code>Infimum</code>和<code>Supremum</code>本质上就是两条数据行，只不过是虚拟的。<code>Infimum</code>记录（也就是最小记录） 的<code>next_record</code>记录就是本页中主键值最小的用户记录，而本页中主键值最大的用户记录的<code>next_record</code>记录就是<code>Supremum</code>记录（也就是最大记录）</p>
+<p><img src="/img/dba/page-2.png" alt="page-2"></p>
+<p>InnoDB会维护一条记录的单链表，链表中的各个节点是按照主键值由小到大的顺序连接起来的</p>
+<blockquote>
+<p><strong>当数据页中存在多条被删除掉的记录时，这些记录的next_record属性将会把这些被删除掉的记录组成一个垃圾链表，以备之后重用这部分存储空间。上面删除了一行记录，又将记录原封不动插回来的情况，原来的存储空间是会被重用的。</strong></p>
+<p><strong>还有一种情况是不会被重用的：删除原记录后，新插入的记录真实数据所占存储空间大于原先记录存储空间的时候，这时原空间不会被重用且被加入垃圾链表，新插入的记录会从Free Space申请新的空间，和已有的记录组合成新的链表。</strong></p>
+</blockquote>
+<p><strong>页目录（Page Directory）</strong></p>
+<p>做出页目录结构，用于在页内快速定位数据</p>
+<ol>
+<li>将所有正常的记录（包括最大和最小记录，不包括标记为已删除的记录）划分为几个组，有点类似与跳表思想</li>
+<li>每个组的最后一条记录（也就是组内最大的那条记录）的头信息中的n_owned属性表示该记录拥有多少条记录，也就是该组内共有几条记录</li>
+<li>将每个组的最后一条记录的地址偏移量单独提取出来按顺序存储到靠近页的尾部的地方，这个地方就是所谓的Page Directory，也就是页目录。页面目录中的这些地址偏移量被称为槽（Slot），所以这个页面目录就是由槽组成的</li>
+</ol>
+<p><img src="/img/dba/page-3.png" alt="page-3"></p>
+<p><strong>页面头部（page Header）</strong></p>
+<p>InnoDB为了能得到一个数据页中存储的记录的状态信息，比如本页中已经存储了多少条记录，第一条记录的地址是什么，页目录中存储了多少个槽等等，特意在页中定义了一个叫<code>Page Header</code>的部分</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>大小（Byte）</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PAGE_N_DIR_SLOTS</td>
+<td>2</td>
+<td>页目录的插槽数</td>
+</tr>
+<tr>
+<td>PAGE_HEAP_TOP</td>
+<td>2</td>
+<td>还未使用的空间最小地址，也就是说从该地址之后就是Free Space</td>
+</tr>
+<tr>
+<td>PAGE_N_HEAP</td>
+<td>2</td>
+<td>本页中的记录的数量（包括最小和最大记录以及标记为删除的记录）</td>
+</tr>
+<tr>
+<td>PAGE_FREE</td>
+<td>2</td>
+<td>第一个已经标记为删除的记录地址（各个已删除的记录通过next_record也会组成一个单链表，这个单链表中的记录可以被重新利用）</td>
+</tr>
+<tr>
+<td>PAGE_GARBAGE</td>
+<td>2</td>
+<td>已删除记录占用的字节数</td>
+</tr>
+<tr>
+<td>PAGE_LAST_INSERT</td>
+<td>2</td>
+<td>最后插入记录的位置</td>
+</tr>
+<tr>
+<td>PAGE_DIRECTION</td>
+<td>2</td>
+<td>记录插入的方向</td>
+</tr>
+<tr>
+<td>PAGE_N_DIRECTION</td>
+<td>2</td>
+<td>一个方向连续插入的记录数量</td>
+</tr>
+<tr>
+<td>PAGE_N_RECS</td>
+<td>2</td>
+<td>页中记录的数量（不包括最小和最大记录以及被标记为删除的记录）</td>
+</tr>
+<tr>
+<td>PAGE_MAX_TRX_ID</td>
+<td>8</td>
+<td>修改当前页的最大事务ID，该值仅在二级索引中定义</td>
+</tr>
+<tr>
+<td>PAGE_LEVEL</td>
+<td>2</td>
+<td>当前页在B+树中所处的层级</td>
+</tr>
+<tr>
+<td>PAGE_INDEX_ID</td>
+<td>8</td>
+<td>索引ID，表示当前页属于哪个索引</td>
+</tr>
+<tr>
+<td>PAGE_BTR_SEG_LEAF</td>
+<td>10</td>
+<td>B+树叶子段的头部信息，仅在B+树的Root页定义</td>
+</tr>
+<tr>
+<td>PAGE_BTR_SEG_TOP</td>
+<td>10</td>
+<td>B+树非叶子段的头部信息，仅在B+树的Root页定义</td>
+</tr>
+</tbody>
+</table>
+<p><strong>文件头部（File Header）</strong></p>
+<p><code>File Header</code>是针对各种类型的页都通用数据部分，也就是说不同类型的页都会以<code>File Header</code>作为第一个组成部分，它描述了一些针对各种页都通用的一些信息，比方说这个页的编号是多少，它的上一个页、下一个页是谁等信息，这个部分占用固定的38个字节，是由下边这些内容组成的</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>大小（Byte）</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FIL_PAGE_SPACE_OR_CHKSUM</td>
+<td>4</td>
+<td>页的校验和（checksum值）</td>
+</tr>
+<tr>
+<td>FIL_PAGE_OFFSET</td>
+<td>4</td>
+<td>页号</td>
+</tr>
+<tr>
+<td>FIL_PAGE_PREV</td>
+<td>4</td>
+<td>上一个页的页号</td>
+</tr>
+<tr>
+<td>FIL_PAGE_NEXT</td>
+<td>4</td>
+<td>下一个页的页号</td>
+</tr>
+<tr>
+<td>FIL_PAGE_LSN</td>
+<td>8</td>
+<td>页面被最后修改时对应的日志序列位置</td>
+</tr>
+<tr>
+<td>FIL_PAGE_TYPE</td>
+<td>2</td>
+<td>该页的类型</td>
+</tr>
+<tr>
+<td>FIL_PAGE_FILE_FLUSH_LSN</td>
+<td>8</td>
+<td>仅在系统表空间的一个页中定义，代表文件至少被刷新到了对应的LSN值</td>
+</tr>
+<tr>
+<td>FIL_PAGE_ARCH_LOG_NO_OR_SPACE_ID</td>
+<td>4</td>
+<td>页属于哪个表空间</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/img/dba/page-4.png" alt="page-4"></p>
+<p><strong>文件尾部（File Trailer）</strong></p>
+<ul>
+<li>前4个字节代表页的校验和，和File Header的遥相呼应，刷盘时先写File Header的校验和，再写File Trailer的，如果不一致证明页面出现损坏</li>
+<li>后4个字节代表页面被最后修改时对应的日志序列位置（LSN）</li>
+</ul>
+<h3 id="日志与数据刷新">日志与数据刷新</h3>
+<p><strong>DWB（double write bufffffer）</strong></p>
+<p>MySQL的一页的大小是16K，文件系统一页的大小是4K，即MySQL将buffer中一页数据刷入磁盘，要写4个文件系统里的页</p>
+<p><img src="/img/dba/dwb-1.png" alt="dwb-1"></p>
+<p>这个操作并非原子，如果执行到一半断电，会不会出现问题呢？会，这就是所谓的“页数据损坏”</p>
+<p><img src="/img/dba/dwb-2.png" alt="dwb-2"></p>
+<blockquote>
+<p>redo无法修复这类&quot;页数据损坏&quot;的异常，修复的前提是&quot;页数据正确&quot;并且redo日志正常</p>
+</blockquote>
+<p>于是就有了解决方案<code>Double Write Buffer</code>，但它与传统的buffer不同，它分为<span style="color:RGB(4,151,253)"><strong>内存</strong></span>和<span style="color:RGB(4,151,253)"><strong>磁盘</strong></span>的两层架构。即传统的buffer，大部分是内存存储，而DWB里的数据，是需要落地的</p>
+<p><img src="/img/dba/dwb-3.png" alt="dwb-3"></p>
+<p>第一步：页数据内存的数据先拷贝到DWB的内存里</p>
+<p>第二步：DWB的内存刷到DWB的磁盘上</p>
+<p>第三步：DWB的内存刷到数据磁盘存储上</p>
+<p><span style="color:#DD001B">假设步第二步出现问题，磁盘里依然是1+2+3+4的完整数据，只要有页数据完整，就还能通过redo还原数据</span></p>
+<p><span style="color:#DD001B">假设步第三步出现问题，DWB里存储着完整的数据，可通过DWB的数据恢复磁盘数据</span></p>
+<p><strong>REDO日志</strong></p>
+<p>在页面修改完成之后，在脏页刷出磁盘之前，要先写入Redo日志，防止异常情况导致数据错误，而且Redo日志一定是先行的（聚簇索引、二级索引、Undo页面修改，均需要记录Redo日志）</p>
+<p>存储位置：数据路径下，进行轮序覆盖记录日志（名称ib_logfileN）</p>
+<p>查询Redo log文件配置：<code>show variables like '%innodb_log_file%';</code></p>
+<p>生产建议：512M-4G 2-4组</p>
+<p><span style="color:RGB(4,151,253)"><strong>从MySQL 8.0.30开始，InnoDB的重做日志架构发生了重大变化，重做日志文件被固定为32个，并存放在一个专门的目录(#innodb_redo)下面，用户可以使用系统变量innodb_redo_log_capacity（默认100M）在线修改重做日志容量，原来的innodb_log_files_in_group和innodb_log_file_size两个系统变量已经废弃。</strong></span></p>
+<p><strong>UNDO 日志</strong></p>
+<p>当事务执行过程中突然中止，为了保证事务的原子性，需要回滚回原来的样子，每当要对一条记录进行改动时，都需要记录下一些信息，为了回滚而记录的东西称为撤销日志，即undo日志。二级索引记录的修改，不记录Undo日志。</p>
+<p><strong>LSN（日志序列号）</strong></p>
+<p><code>LSN（log sequence number）</code>日志序列号，占用8字节，LSN主要用于发生宕机时对数据进行恢复，LSN是一个一直递增的整型数字，表示事务写入到日志的字节总量。LSN不仅只存在于重做日志中，在每个数据页头部也会有对应的LSN号，该LSN记录当前页最后一次修改的LSN号，用于在恢复时对比重做日志LSN号决定是否对该页进行恢复数据。<code>checkpoint</code>也是有LSN号记录的，LSN号串联起一个事务开始到恢复的过程</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#998;font-style:italic">-- 查看LSN信息
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">show</span><span style="color:#bbb"> </span>engine<span style="color:#bbb"> </span>innodb<span style="color:#bbb"> </span>status<span style="color:#a61717;background-color:#e3d2d2">\</span><span style="color:#000;font-weight:bold">G</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">-- 返回信息说明：
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">-- Log sequence number: 当前系统最大的LSN号
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">-- log flushed up to:当前已经写入redo日志文件的LSN
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">-- pages flushed up to：已经将更改写入脏页的lsn号
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">-- Last checkpoint at就是系统最后一次刷新buffer pool脏中页数据到磁盘的checkpoint
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">-- 以上4个LSN是递减的: LSN1&gt;=LSN2&gt;=LSN3&gt;=LSN4
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>checkpoint（检查点）</strong></p>
+<p>按照类型分类</p>
+<ul>
+<li>sharp checkpoint：完全检查点，数据库正常干净关闭时，会触发把所有的脏页都写入到磁盘上(这时候logfile的日志就没用了，脏页已经写到磁盘上了)</li>
+<li>fuzzy checkpoint：模糊检查点，部分页写入磁盘。</li>
+</ul>
+<p>按照触发源头分类</p>
+<ul>
+<li>
+<p>master thread checkpoint：差不多以每秒或每十秒的速度从缓冲池的脏页列表中刷新一定比例的页回磁盘，这个过程是异步的，不会阻塞用户查询</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#998;font-style:italic">-- PCI-E建议 2000-3000 4000-6000
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">-- flash建议 5000-8000 10000-16000
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">select</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">@@</span>innodb_io_capacity;<span style="color:#bbb">     </span><span style="color:#998;font-style:italic">-- 默认200
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">select</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">@@</span>innodb_io_capacity_max;<span style="color:#bbb"> </span><span style="color:#998;font-style:italic">-- 默认2000
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>flush_lru_list checkpoint：控制lru列表中可用页的数量，默认是1024</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">select</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">@@</span>innodb_lru_scan_depth;<span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>async/sync flush checkpoint：log file快满了，会批量的触发数据页回写，这个事件触发的时候又分为异步和同步</p>
+<p>redo log 占 log file 的比值大于75%是异步；大于90%是同步</p>
+</li>
+<li>
+<p>dirty page too much checkpoint：脏页太多检查点，为了保证buffer pool的空间可用性的一个检查点</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#998;font-style:italic">-- Innodb_buffer_pool_pages_dirty/Innodb_buffer_pool_pages_total：表示脏页在buffer的占比
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">select</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">@@</span>Innodb_buffer_pool_pages_dirty;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">select</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">@@</span>Innodb_buffer_pool_pages_total;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">-- 如果&gt;0，说明出现性能负载，buffer pool中没有干净可用块
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">show</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">global</span><span style="color:#bbb"> </span>status<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">like</span><span style="color:#bbb"> </span><span style="color:#d14">&#39;%Innodb_buffer_pool_wait_free&#39;</span>;<span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="innodb-事务详解"><strong>InnoDB</strong> 事务详解</h3>
+<p><strong>事务的ACID</strong></p>
+<p>Atomicity：原子性，一个事务生命周期中的DML语句，要么全成功要么全失败，不可以出现中间状态</p>
+<p>实现机制：undo保证的</p>
+<p>Consistency：一致性，事务发生前，中，后，数据都最终保持一致</p>
+<p>实现机制：CR + DWB</p>
+<p>Isolation：隔离性，事务操作数据行的时候，不会受到其他事务的影响</p>
+<p>实现机制：MVCC、锁</p>
+<p>Durability：持久性，一但事务提交，永久生效（落盘）</p>
+<p>实现机制：redo、ckpt</p>
+<p><strong>隔离级别</strong></p>
+<p>READ-UNCOMMITTED（RU）：读未提交，可以读取到事务未提交的数据。隔离性差，会出现脏读（当前内存读），不可重复读，幻读问题</p>
+<p>READ-COMMITTED（RC）：读已提交（生成一般使用）。可以读取到事务已提交的数据。隔离性一般，不会出现脏读问题，但是会出现不可重复读，幻读问题</p>
+<p>REPEATABLE-READ（RR ）：可重复读（默认）。防止脏读（当前内存读），不可重复读，幻读问题。需要配合锁机制来避免幻读</p>
+<p>SERIALIZABLE（SE）：可串行化</p>
+<h3 id="innodb-锁机制">InnoDB 锁机制</h3>
+<p><strong>latch</strong></p>
+<p>latch，闩（shuān）锁，直译过来就是锁，但latch的作用是用于控制内存中的数据结构并发访问的（通俗来讲，就是保护内存中数据结构完整性的）。与数据库的锁（Lock）不同，数据库中的锁对象不是内存结构，锁住的是一行一行的记录，而latch锁住的是并发资源的对象，也称作临界区。并且二者持续的时间不一样，Lock是贯穿整个事务，事务提交了，Lock才会释放。其实任何系统中都有latch，无处不在。就像java中的Lock</p>
+<p>在InnoDB存储引擎中，latch又可以分为mutex（互斥量）和rwlock（读写锁）。其目的是用来保证并发线程操作临界资源的正确性，并且通常没有死锁检测机制</p>
+<p><img src="/img/dba/%E9%94%81%E6%AF%94%E8%BE%83.png" alt="锁比较"></p>
+<p><strong>InnoDB的S锁、X锁</strong></p>
+<p>共享锁（S）和排他锁（X）都属于行级别（row-level）的锁，且都比较好理解，S锁与X锁互相冲突，X锁与X锁也是互相冲突，S锁与S锁不会冲突</p>
+<img src="/img/dba/x-s.png"  style="zoom:67%;" />
+<ul>
+<li>当读取一行记录时，为了防止别人修改，需要添加S锁。</li>
+<li>当修改一行记录时，为了防止别人同时进行修改，需要添加X锁</li>
+</ul>
+<p>通常情况下，普通的查询属于非锁定读，不会添加任何锁（即一致性读，利用MVCC）。还有一种是锁定读（即当前读），那么以下两种当前读情况会触发锁：</p>
+<ol>
+<li><code>SELECT ... LOCK IN SHARE MODE; </code> 这个语法会添加S锁，对于其他事务可以读但不可以修改</li>
+<li><code>SELECT ... FOR UPDATE; </code> 这个语法会添加X锁，其他事务修改或者执行<code>SELECT ... FOR UPDATE</code>操作都会被阻塞</li>
+</ol>
+<p>使用<code>SET GLOBAL innodb_status_output_locks='ON'; SHOW ENGINE INNODB STATUS ;</code>可以查看当前锁是什么</p>
+<p><strong>InnoDB的IS锁和IX锁</strong></p>
+<p>S锁和X锁都是行级别，是加在索引（记录）上的。InnoDB存储引擎是支持多粒度锁定的，这种锁定允许事务在行级别上和表级别上同时存在。为了支持在不同粒度上进行加锁操作，InnoDB存储引擎支持一种额外的锁方式，称之为意向锁（INTENTION LOCK）。意向锁是将锁定的对象分为多个层次，意味着事务希望在更细粒度上进行加锁。</p>
+<p>如果需要对行记录r加X锁，那么分别需要对数据库、表、页上先加 IX 或者 IS锁，最后对记录r上加X锁。</p>
+<p><img src="/img/dba/%E9%94%81%E5%86%B2%E7%AA%81.png" alt="锁冲突"></p>
+<p>InnoDB存储引擎层的加锁顺序是：库 → 表 → 页 → 记录</p>
+<p>InnoDB存储引擎设计意向锁的主要目的就是：为了在一个事务中揭示下一层将被请求的锁类型。即意向锁表示的是下一层级要加什么锁，对于当前这个层级，大家都是互相兼容的（大家加的都是锁的意向【有想法，但还未落实，落实的事情交给下一层手下的人去做】），所以锁兼容矩阵中 → 意向锁之间都是互相兼容的</p>
+<blockquote>
+<p>也可手动给表级别加S/X锁，非常特殊情况才会使用</p>
+<p>lock tables t read：</p>
+<p>lock tables t write：对表t加X锁</p>
+</blockquote>
+<p><strong>InnoDB engine级别锁</strong></p>
+<p>RC隔离级别下，只有Record Lock（记录锁），没有Gap Lock（间隙锁）和Next-Key Lock（临键锁）</p>
+<p><img src="/img/dba/%E9%94%81-%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB.png" alt="锁-隔离级别"></p>
+<p>使用非聚集索引列进行数据更新时，MySQL会使用非聚集索引进行查找，对于查找到满足过滤条件的每一行索引记录</p>
+<ol>
+<li>在查找到的非聚集索引记录上加锁</li>
+<li>根据非聚集索引记录上包含的聚集索引键值进行回表查找</li>
+<li>在查找到的聚集索引记录上加锁</li>
+<li>循环1、2、3步处理下一条满足过滤条件的数据</li>
+</ol>
+<p><span style="color:RGB(4,151,253)">Record Lock （记录锁）：单个索引记录上的锁。</span>锁定的是一条记录</p>
+<p><span style="color:RGB(4,151,253)">GAP (间隙锁)：锁定一个范围，但不包含记录本身（x, y）。</span>间隙锁存在于RR（可重复读）隔离级别下，为防止幻读发生设计出来的一种手段，因RC（读已提交）隔离级别可能发生幻读，故RC隔离级别下没有间隙锁。</p>
+<p><span style="color:RGB(4,151,253)">Next-Key Lock（临键锁）：Gap Lock + Record Lock，锁定一个范围，并且锁定记录本身（x, y]。</span>间隙锁存在于RR（可重复读）隔离级别下，为防止幻读发生设计出来的一种手段，因RC（读已提交）隔离级别可能发生幻读，故RC隔离级别下没有间隙锁。</p>
+<blockquote>
+<p>performance_schema.data_locks表能看到加了哪些锁</p>
+</blockquote>
+<p>在RR级别下的加锁细节</p>
+<p>原则 1：加锁的基本单位是 next-key lock。并且next-key lock 是前开后闭区间。(5,10]</p>
+<p>原则 2：查找过程中访问到的索引才会加锁</p>
+<p>原则 3：索引上的等值查询，给唯一索引加锁的时候，next-key lock 退化为行锁</p>
+<p>常见场景：</p>
+<p><code>update ... where id=?</code>，RC\RR模式下都是Record Lock</p>
+<p><code>update ... where id in (?,?,?)</code>，RC\RR模式下都是Record Lock</p>
+<p><code>update ... where id &lt; ?</code>，RC模式下Record Lock，RR模式下GAP</p>
+<p><code>update ... where id &lt;= ?</code>，RC模式下Record Lock，RR模式<code>id</code>存在是Next-Key Lock，否则是GAP</p>
+<h3 id="不同情况下的锁处理示例">不同情况下的锁处理示例</h3>
+<p><strong>组合一：id主键+RC</strong></p>
+<p>给定SQL：delete from t1 where id = 10; 只需要将主键上，id = 10的记录加上X锁即可。如下图所示</p>
+<img src="/img/dba/id主键+RC.jpg" alt="MYSQL加锁过程详解" style="zoom:67%;" />
+<p><strong>组合二：id唯一索引+RC</strong></p>
+<p>这个组合，id不是主键，而是一个Unique的二级索引键值。那么在RC隔离级别下，delete from t1 where id = 10;</p>
+<img src="/img/dba/id唯一索引+RC.jpg" alt="MYSQL加锁过程详解" style="zoom:67%;" />
+<p>此时，加锁的情况由于组合一有所不同。由于id是unique索引，因此delete语句会选择走id列的索引进行where条件的过滤，在找到id=10的记录后，首先会将unique索引上的id=10索引记录加上X锁，同时，会根据读取到的name列，回主键索引(聚簇索引)，然后将聚簇索引上的name = ‘d’ 对应的主键索引项加X锁。</p>
+<p><strong>组合三：id非唯一索引+RC</strong></p>
+<img src="/img/dba/id非唯一索引+RC.jpg" alt="MYSQL加锁过程详解" style="zoom:67%;" />
+<p>首先，id列索引上，满足id = 10查询条件的记录，均已加锁。同时，这些记录对应的主键索引上的记录也都加上了锁。与组合二唯一的区别在于，组合二最多只有一个满足等值查询的记录，而组合三会将所有满足查询条件的记录都加锁、</p>
+<p><strong>组合四：id无索引+RC</strong></p>
+<img src="/img/dba/id无索引+RC.jpg" alt="MYSQL加锁过程详解" style="zoom:67%;" />
+<p>由于id列上没有索引，因此只能走聚簇索引，进行全部扫描。从图中可以看到，满足删除条件的记录有两条，但是，聚簇索引上所有的记录，都被加上了X锁。无论记录是否满足条件，全部被加上X锁。既不是加表锁，也不是在满足条件的记录上加行锁。</p>
+<p>为什么不是只在满足条件的记录上加锁呢？这是由于MySQL的实现决定的。如果一个条件无法通过索引快速过滤，那么存储引擎层面就会将所有记录加锁后返回，然后由MySQL Server层进行过滤。因此也就把所有的记录，都锁上了。在实际的实现中，MySQL有一些改进，在MySQL Server过滤条件，发现不满足后，会调用unlock_row方法，把不满足条件的记录放锁 (违背了2PL的约束)。这样做，保证了最后只会持有满足条件记录上的锁，但是每条记录的加锁操作还是不能省略的。</p>
+<p><strong>组合五：id主键+RR</strong></p>
+<p>组合一：[id主键，Read Committed]一致</p>
+<p><strong>组合六：id唯一索引+RR</strong></p>
+<p>与组合二[id唯一索引，Read Committed]一致。两个X锁，id唯一索引满足条件的记录上一个，对应的聚簇索引上的记录一个</p>
+<p><strong>组合七：id非唯一索引+RR</strong></p>
+<img src="/img/dba/id非唯一索引+RR.jpg" alt="MYSQL加锁过程详解" style="zoom:67%;" />
+<p>Key(id) 锁定了（【6, c】, 【10, b】） + 【10, b】; （【10, b】, 【10, d】） + 【10, d】; + （【10, d】, 【11, f】）</p>
+<p>Primary Key 锁定了【b】,【d】</p>
+<p>RR隔离级别下，id列上有一个非唯一索引，对应SQL：delete from t1 where id = 10; 首先，通过id索引定位到第一条满足查询条件的记录，加记录上的X锁，加GAP上的GAP锁，然后加主键聚簇索引上的记录X锁，然后返回；然后读取下一条，重复进行。直至进行到第一条不满足条件的记录[11,f]，此时，不需要加记录X锁，但是仍旧需要加GAP锁，最后返回结束</p>
+<p><strong>组合八：id无索引+RR</strong></p>
+<img src="/img/dba/id无索引+RR.jpg" alt="MYSQL加锁过程详解" style="zoom:67%;" />
+<p>这是一个很恐怖的现象。首先，聚簇索引上的所有记录，都被加上了X锁。其次，聚簇索引每条记录间的间隙(GAP)，也同时被加上了GAP锁。这个示例表，只有6条记录，一共需要6个记录锁，7个GAP锁。试想，如果表上有1000万条记录呢！</p>
+<h3 id="mvcc-多版本并发控制">MVCC 多版本并发控制</h3>
+<p>在InnoDB中的每一条记录实际都会存在三个隐藏列：</p>
+<ul>
+<li>DB_TRX_ID：事务 ID，是根据事务产生时间顺序自动递增的，是独一无二的。如果某个事务执行过程中对该记录执行了增、删、改操作，那么InnoDB存储引擎就会记录下该条事务的 id</li>
+<li>DB_ROLL_PTR：回滚指针，本质上就是一个指向记录对应的undo log的一个指针，InnoDB 通过这个指针找到之前版本的数据</li>
+<li>DB_ROW_ID：主键，如果有自定义主键，那么该值就是主键；如果没有主键，那么就会使用定义的第一个唯一索引；如果没有唯一索引，那么就会默认生成一个隐藏列作为主键</li>
+</ul>
+<p><img src="/img/dba/mvcc.webp" alt="img"></p>
+<p><strong>Read View</strong></p>
+<p>Read View是InnoDB在实现MVCC时用到的一致性读视图，用于支持读提交和可重复读隔离级别的实现，作用是执行期间判断版本链中的哪个版本是当前事务可见的。本质上是InnoDB为每个事务构造了一个数组，用来保存当前正在活跃（启动了但还没提交）的所有事务ID。</p>
+<p>数组里面事务ID的最小值记为低水位，当前系统里面已经创建过的事务ID的最大值加1记为高水位；这个视图数组和高水位，就组成了当前事务的一致性视图（read-view）。</p>
+<p><strong>MVCC与隔离级别</strong></p>
+<p>MVCC 只在 **Read Commited（读已提交） 和 Repeatable Read（可重读读） **两种隔离级别下工作。</p>
+<ul>
+<li>在RC隔离级别下，是<strong>每个快照读都会生成并获取最新的Read View</strong>，这就是我们在RC级别下的事务中可以看到别的事务提交的更新的原因</li>
+<li>在RR隔离级别下，则是同一个事务中的第一个快照读才会创建Read View, 之后的快照读获取的都是同一个Read View，从而做到可重复读</li>
+</ul>
+<h3 id="rr级别下当前读的幻读问题">RR级别下当前读的幻读问题</h3>
+<table>
+<thead>
+<tr>
+<th>时刻</th>
+<th>事务1</th>
+<th>事务2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T1</td>
+<td>select * from user where id&gt;100;</td>
+<td></td>
+</tr>
+<tr>
+<td>T2</td>
+<td># 输出N条记录</td>
+<td>insert into user values(103, ‘wangwu’, 20);</td>
+</tr>
+<tr>
+<td>T3</td>
+<td></td>
+<td>commit;</td>
+</tr>
+<tr>
+<td>T4</td>
+<td>update user set age=21 where id&gt;100;</td>
+<td></td>
+</tr>
+<tr>
+<td>T5</td>
+<td>select * from user where id&gt;100;</td>
+<td></td>
+</tr>
+<tr>
+<td>T6</td>
+<td># 输出N+1条记录</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>产生幻读的原因：</p>
+<p>在T4时刻，由于update语句采用的是当前读，会对事务2新增的记录进行加锁、修改age字段值、修改DB_TRX_ID隐藏字段值。</p>
+<p>在T5时刻使用快照读时，根据可见性算法，这条新增记录的DB_TRX_ID是当前事务，所以是可见的，所以输出了N+1条记录</p>
+<p>解决方案：<code>select</code>的时候加<code>for update;</code>或者<code>lock in share mode;</code></p>
+<h2 id="9备份恢复与迁移">9、备份恢复与迁移</h2>
+<h3 id="binlog-日志的格式">binlog 日志的格式</h3>
+<ul>
+<li>
+<p>Statement（Statement-Based Replication,SBR）：每一条会修改数据的 SQL语句 都会记录在 binlog 中，如果使用uuid()等函数会出现问题</p>
+</li>
+<li>
+<p>Row（Row-Based Replication,RBR）：不记录 SQL 语句上下文信息，仅保存哪条记录被修改</p>
+</li>
+<li>
+<p>Mixed（Mixed-Based Replication,MBR）：Statement 和 Row 的混合体，系统会自动判断执行语句该用 Statement （优先使用）还是 Row</p>
+</li>
+</ul>
+<h3 id="gtid">GTID</h3>
+<p>在传统的mysql基于二进制日志的模式复制中，从库需要告知主库要从哪个二进制日志文件中的那个<strong>偏移量</strong>进行增量同步，如果指定错误会造成数据的遗漏，从而造成数据的不一致。借助gtid，在发生主备切换的情况下，mysql的其它从库可以自动在新主库上找到正确的复制位置，这大大简化了复杂复制拓扑下集群的维护，也减少了人为设置复制位置发生误操作的风险。另外，基于gtid的复制可以忽略已经执行过的事务，减少了数据发生不一致的风险。所以说，相比mysql传统的主从复制模式，gtid模式的复制对于 DBA/开发人员/运维 等相关技术人员更加友好。</p>
+<h3 id="binlog操作">binlog操作</h3>
+<p><strong>基本操作</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span><span style="color:#998;font-style:italic">-- 查看二进制文件列表
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">show</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">binary</span><span style="color:#bbb"> </span>logs;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">-- 查看正在使用的二进制文件，包含了偏移量和GTID信息
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">show</span><span style="color:#bbb"> </span>master<span style="color:#bbb"> </span>status;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">-- 查看二进制文件存储的内容
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">show</span><span style="color:#bbb"> </span>binlog<span style="color:#bbb"> </span>events<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">in</span><span style="color:#bbb"> </span><span style="color:#d14">&#39;二进制日志文件&#39;</span><span style="color:#a61717;background-color:#e3d2d2">\</span>G;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic"># 使用工具查看
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>mysqlbinlog<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">--</span><span style="color:#000;font-weight:bold">read</span><span style="color:#000;font-weight:bold">-</span><span style="color:#000;font-weight:bold">from</span><span style="color:#000;font-weight:bold">-</span>remote<span style="color:#000;font-weight:bold">-</span>server<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">-</span>h地址<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">-</span>P端口<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">-</span>u用户名<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">-</span>p密码<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">-</span>d<span style="color:#bbb"> </span><span style="color:#a61717;background-color:#e3d2d2">数据库</span><span style="color:#bbb"> </span><span style="color:#a61717;background-color:#e3d2d2">二进制文件</span><span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>自动清理日志</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#998;font-style:italic">-- 查看日志自动清理时间
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">-- 8.0之前expire_logs_days
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">-- 8.0之后expire_logs_days
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">-- 企业建议,至少保留两个全备周期+1的binlog
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">show</span><span style="color:#bbb"> </span>variables<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">like</span><span style="color:#bbb"> </span><span style="color:#d14">&#39;%expire%&#39;</span>;<span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>my2sql 应用</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 安装配置</span>
+</span></span><span style="display:flex;"><span>wget https://github.com/liuhr/my2sql/blob/master/releases/centOS_release_7.x/my2sql
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 解析日志事件SQL</span>
+</span></span><span style="display:flex;"><span>./my2sql -user 用户名 -password 密码 -host 地址 -port 端口 -mode repl -work-type 2sql -start-file 二进制文件 -start-datetime 开始时间 -output-dir ./tmpdir
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#生成指定事件回滚语句</span>
+</span></span><span style="display:flex;"><span>./my2sql -user 用户名 -password 密码 -host 地址 -port 端口 -mode repl -work-type rollback -start-file 二进制文件 -start-pos 开始位置   -stop-file 二进制文件 -stop-pos 结束位置  -output-dir ./tmpdir
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="slow-log的查看">slow log的查看</h3>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># -s c 安装执行个数排序</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># -t top</span>
+</span></span><span style="display:flex;"><span>mysqldumpslow -s c -t <span style="color:#099">10</span> 慢查询文件路径
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="物理备份">物理备份</h3>
+<p><a href="https://mynamelancelot.github.io/database/PXC.html#%E4%B8%83%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%86%B7%E7%83%AD%E5%A4%87%E4%BB%BD">链接</a></p>
+<h3 id="clone-plugin">Clone Plugin</h3>
+<p>MySQL 8.0推出了<code>Clone Plugin</code>插件有两种模式</p>
+<p>本地克隆：启动克隆操作的MySQL服务器实例中的数据，克隆到同服务器或同节点上的一个目录里</p>
+<p>远程克隆：默认情况下，远程克隆操作会删除接受者(recipient)数据目录中的数据，并将其替换为捐赠者(donor)的</p>
+<p>克隆数据。您也可以将数据克隆到接受者的其他目录，以避免删除现有数据。(可选)</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#998;font-style:italic">-- 加载插件
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">-- 或者配置my.cnf
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">-- plugin-load-add=mysql_clone.so
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">-- clone=FORCE_PLUS_PERMANENT
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>INSTALL<span style="color:#bbb"> </span>PLUGIN<span style="color:#bbb"> </span>clone<span style="color:#bbb"> </span>SONAME<span style="color:#bbb"> </span><span style="color:#d14">&#39;mysql_clone.so&#39;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">-- 查看插件信息
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">SELECT</span><span style="color:#bbb"> </span>PLUGIN_NAME,<span style="color:#bbb"> </span>PLUGIN_STATUS<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">FROM</span><span style="color:#bbb"> </span>INFORMATION_SCHEMA.PLUGINS<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">WHERE</span><span style="color:#bbb"> </span>PLUGIN_NAME<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">LIKE</span><span style="color:#bbb"> </span><span style="color:#d14">&#39;clone&#39;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">-- 创建克隆专用用户
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">CREATE</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">USER</span><span style="color:#bbb"> </span>clone_user<span style="color:#000;font-weight:bold">@</span><span style="color:#d14">&#39;%&#39;</span><span style="color:#bbb"> </span>IDENTIFIED<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">with</span><span style="color:#bbb"> </span>mysql_native_password<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">by</span><span style="color:#bbb"> </span><span style="color:#d14">&#39;password&#39;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">GRANT</span><span style="color:#bbb"> </span>BACKUP_ADMIN<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">ON</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">*</span>.<span style="color:#000;font-weight:bold">*</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">TO</span><span style="color:#bbb"> </span><span style="color:#d14">&#39;clone_user&#39;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">-- 本地克隆
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>mkdir<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">-</span>p<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">/</span><span style="color:#000;font-weight:bold">data</span><span style="color:#000;font-weight:bold">/</span>backup<span style="color:#000;font-weight:bold">/</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>chown<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">-</span>R<span style="color:#bbb"> </span>mysql.mysql<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">/</span><span style="color:#000;font-weight:bold">data</span><span style="color:#000;font-weight:bold">/</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>mysql<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">-</span>uclone_user<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">-</span>ppassword<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">-</span>e<span style="color:#d14">&#34;CLONE LOCAL DATA DIRECTORY = &#39;/data/backup/clonedir&#39;&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">-- 观察状态
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">SELECT</span><span style="color:#bbb"> </span>STAGE,<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">STATE</span>,<span style="color:#bbb"> </span>END_TIME<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">FROM</span><span style="color:#bbb"> </span>performance_schema.clone_progress;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">-- 日志观测
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">set</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">global</span><span style="color:#bbb"> </span>log_error_verbosity<span style="color:#000;font-weight:bold">=</span><span style="color:#099">3</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>tail<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">-</span>f<span style="color:#bbb"> </span><span style="color:#a61717;background-color:#e3d2d2">错误日志</span><span style="color:#bbb"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">-- 克隆远程数据
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">-- 创建远程clone用户
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">-- 捐赠者授权(源端)
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">create</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">user</span><span style="color:#bbb"> </span>clone_s<span style="color:#000;font-weight:bold">@</span><span style="color:#d14">&#39;%&#39;</span><span style="color:#bbb"> </span>identified<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">by</span><span style="color:#bbb"> </span><span style="color:#d14">&#39;源端密码&#39;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">grant</span><span style="color:#bbb"> </span>backup_admin<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">on</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">*</span>.<span style="color:#000;font-weight:bold">*</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">to</span><span style="color:#bbb"> </span>clone_s<span style="color:#000;font-weight:bold">@</span><span style="color:#d14">&#39;%&#39;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">-- 接受者授权（目标端）
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">create</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">user</span><span style="color:#bbb"> </span>clone_t<span style="color:#000;font-weight:bold">@</span><span style="color:#d14">&#39;%&#39;</span><span style="color:#bbb"> </span>identified<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">by</span><span style="color:#bbb"> </span><span style="color:#d14">&#39;目标端密码&#39;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">grant</span><span style="color:#bbb"> </span>clone_admin<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">on</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">*</span>.<span style="color:#000;font-weight:bold">*</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">to</span><span style="color:#bbb"> </span>clone_t<span style="color:#000;font-weight:bold">@</span><span style="color:#d14">&#39;%&#39;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">-- 目标端开始克隆
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">SET</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">GLOBAL</span><span style="color:#bbb"> </span>clone_valid_donor_list<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#39;源端ip:源端口&#39;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>mysql<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">-</span>uclone_t<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">-</span>p123<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">-</span>h目标端IP<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">-</span>P目标端端口<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">-</span>e<span style="color:#bbb"> </span><span style="color:#d14">&#34;CLONE INSTANCE FROM clone_s@&#39;源端IP&#39;:端口 IDENTIFIED BY &#39;源端密码&#39;;&#34;</span><span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="10各种架构体系">10、各种架构体系</h2>
+<table>
+<thead>
+<tr>
+<th>无故障时间</th>
+<th>故障时间</th>
+<th>方案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>99.9%</td>
+<td>0.1% = 525.6 min</td>
+<td>KA+双主 ：人为干预</td>
+</tr>
+<tr>
+<td>99.99%</td>
+<td>0.01% = 52.56 min</td>
+<td><a href="https://mynamelancelot.github.io/database/MySQL.html#mhamaster-high-availability">MHA</a></td>
+</tr>
+<tr>
+<td>99.999%</td>
+<td>0.001% = 5.256 min</td>
+<td><a href="https://mynamelancelot.github.io/database/PXC.htm">PXC</a>、 MGR</td>
+</tr>
+<tr>
+<td>99.9999%</td>
+<td>0.5256 min</td>
+<td>自动化、云化、平台化、分布式</td>
+</tr>
+</tbody>
+</table>
+<h2 id="附录">附录</h2>
+<h3 id="80版本相对于57版本的变化">8.0版本相对于5.7版本的变化</h3>
+<ul>
+<li>
+<p>支持事务性DDL，崩溃可以回滚，保证一致</p>
+</li>
+<li>
+<p>保留一份数据字典信息，取消frm数据字典。</p>
+</li>
+<li>
+<p>数据字典存放至InnoDB表中</p>
+</li>
+<li>
+<p>采用套锁机制，管理数据字典的并发访问（MDL）</p>
+</li>
+<li>
+<p>全新的Plugin支持，8.0.17+ 加入Clone Plugin,更好的支持MGR，InnoDB Cluster的节点管理</p>
+</li>
+<li>
+<p>安全加密方式改变，改变加密方式为caching_sha2_password</p>
+</li>
+<li>
+<p>改变授权管理方式</p>
+</li>
+<li>
+<p>加入role角色管理</p>
+</li>
+<li>
+<p>取消Query Cache</p>
+</li>
+</ul>
+<h3 id="各版本innodb表文件结构的变化">各版本InnoDB表文件结构的变化</h3>
+<p>8.0 以前 InnoDB表：</p>
+<ul>
+<li>ibd ： 数据和索引</li>
+<li>frm : 存私有的数据字典信息</li>
+</ul>
+<p>8.0 之后 InnoDB表：</p>
+<ul>
+<li>
+<p>ibd：数据和索引</p>
+</li>
+<li>
+<p>公共sdi（冗余的私有数据字典信息）</p>
+</li>
+</ul>
+<h3 id="mysql57升级到80">MySQL5.7升级到8.0</h3>
+<p>升级前一定要先做冷备，方便失败回退。</p>
+<p>下载安装<a href="https://downloads.mysql.com/archives/">mysql-shell</a>工具，8.0以后可以调用这个命令，升级之前的预检查。</p>
+<ol>
+<li>
+<p>创建连接用户</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">grant</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">all</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">on</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">*</span>.<span style="color:#000;font-weight:bold">*</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">to</span><span style="color:#bbb"> </span>root<span style="color:#000;font-weight:bold">@</span><span style="color:#d14">&#39;%&#39;</span><span style="color:#bbb"> </span>identified<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">by</span><span style="color:#bbb"> </span><span style="color:#d14">&#39;密码&#39;</span>;<span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>预检查</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>mysqlsh root:密码@<span style="color:#d14">&#39;%&#39;</span>:端口 -e <span style="color:#d14">&#34;util.checkForServerUpgrade()&#34;</span> &gt;/tmp/up.log
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>停原库</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 0代表当MYSQL关闭时，Innodb需要完成所有full purge和merge insert buffer操作。如果做升级，通常需要将这个参数调为0，然后在关闭数据库</span>
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">set</span> global <span style="color:#008080">innodb_fast_shutdown</span><span style="color:#000;font-weight:bold">=</span>0;
+</span></span><span style="display:flex;"><span>mysqladmin -S socket文件路径 shutdown
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>使用高版本软件挂低版本数据启动</p>
+</li>
+</ol>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 让数据库升级</span>
+</span></span><span style="display:flex;"><span>/usr/local/mysql/bin/mysqld_safe --defaults <span style="color:#008080">file</span><span style="color:#000;font-weight:bold">=</span>5.7库配置文件路径 --skip-grant-tables --skip-networking &amp;
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 关闭数据库，并重新启动数据库</span>
+</span></span><span style="display:flex;"><span>/usr/local/mysql/bin/mysqld_safe --defaults <span style="color:#008080">file</span><span style="color:#000;font-weight:bold">=</span>5.7库配置文件路径 &amp;
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 设置回默认值</span>
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">set</span> global <span style="color:#008080">innodb_fast_shutdown</span><span style="color:#000;font-weight:bold">=</span>1;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="innodb-undoredo在增删改操作时的工作">InnoDB Undo、Redo在增删改操作时的工作</h3>
+<p><strong>INSERT</strong></p>
+<ul>
+<li>
+<p>Undo</p>
+<p>将插入记录的主键值，写入Undo；</p>
+</li>
+<li>
+<p>Redo</p>
+<p>将完整数据行信息写入Redo；</p>
+</li>
+</ul>
+<img src="/img/dba/INSERT-工作.png" style="zoom:67%;" />
+<p><strong>DELETE</strong></p>
+<ul>
+<li>
+<p>Undo</p>
+<ol>
+<li>Delete，在InnoDB内部为Delete Mark操作，将记录上标识Delete_Bit，而不删除记录</li>
+<li>将当前记录的系统列写入Undo</li>
+<li>将当前记录的主键列写入</li>
+<li>将当前记录的所有索引列写入Undo</li>
+<li>将Undo Page的修改，写入Redo</li>
+</ol>
+</li>
+<li>
+<p>Redo</p>
+<p>将完整数据行信息写入Redo</p>
+</li>
+</ul>
+<img src="/img/dba/DELETE-工作.png" style="zoom:67%;" />
+<p><strong>UPDATE</strong></p>
+<p>情况一：Update（未修改聚簇索引键值，属性列长度未变化）</p>
+<ul>
+<li>Undo（聚簇索引）
+<ol>
+<li>将当前记录的系统列写入Undo</li>
+<li>将当前记录的主键列写入Undo</li>
+<li>将当前Update列的前镜像写入Undo</li>
+<li>若Update列中包含二级索引列，则将二级索引其他未修改列写入Undo</li>
+<li>将Undo页面的修改，写入Redo</li>
+</ol>
+</li>
+<li>Redo
+<ol>
+<li>进行In Place Update，记录Update Redo日志（聚簇索引）</li>
+<li>若更新列包含二级索引列，二级索引肯定不能进行In Place Update，记录Delete Mark + Insert 日志</li>
+</ol>
+</li>
+</ul>
+<img src="/img/dba/UPDATE-工作1.png" style="zoom:67%;" />
+<p>情况二： Update（未修改聚簇索引键值，属性列长度发生变化）</p>
+<ul>
+<li>Undo（聚簇索引）
+<ol>
+<li>将当前记录的系统列写入</li>
+<li>将当前记录的主键列写入</li>
+<li>将当前Update列的前镜像写入</li>
+<li>若Update列中包含二级索引列，则将二级索引其他未修改列写入Undo</li>
+<li>将Undo页面的修改，写入Redo</li>
+</ol>
+</li>
+<li>Redo
+<ol>
+<li>不可进行In Place Update，记录Delete + Insert Redo日志(聚簇索引)</li>
+<li>若更新列包含二级索引列，二级索引肯定不能进行In Place Update，记录Delete Mark + Insert Redo日志</li>
+</ol>
+</li>
+</ul>
+<img src="/img/dba/UPDATE-工作2.png"  style="zoom:67%;" />
+<p>情况三：Update（修改聚簇索引键值）</p>
+<ul>
+<li>
+<p>Undo (聚簇索引)</p>
+<ol>
+<li>不可进行In Place Update。Update = Delete Mark + Insert</li>
+<li>对原有记录进行Delete Mark操作，写入Delete Mark操作Undo</li>
+<li>将新纪录插入聚簇索引，写入Insert操作Undo</li>
+<li>将Undo页面的修改，写入Redo</li>
+</ol>
+</li>
+<li>
+<p>Redo</p>
+<ol>
+<li>不可进行In Place Update，记录Delete Mark + Insert Redo日志（聚簇索引）</li>
+<li>若更新列包含二级索引列，二级索引肯定不能进行In Place Update，记录Delete Mark + Insert 日志</li>
+</ol>
+</li>
+</ul>
+<p><img src="/img/dba/UPDATE-%E5%B7%A5%E4%BD%9C3.png" alt="UPDATE-工作3"></p>
+
+    </div>
+
+    
+
+    <div class="container-comment-giscus">
+        <script src="https://giscus.app/client.js"
+        data-repo="loveminimal/comment"
+        data-repo-id="R_kgDOJNJQ8g"
+        data-category="General"
+        data-category-id="DIC_kwDOJNJQ8s4CYl0m"
+        data-mapping="title"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="noborder_light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+        </script>
+</div>
+</div>
+
+        </div>
+        <div id="footer"><div class="container-footer">
+    
+
+    <div class="beian">
+        
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41092802000242">
+            
+
+        </a>
+
+        
+        <a href="//beian.miit.gov.cn" target="_blank">
+            
+            <span class="some">icp...<span>
+            
+        </a>
+    </div>
+
+    
+    <div class="info">
+        
+        <a href="https://github.com/loveminimal/hugo-theme-virgo">🕊️</a> 2016 - <span id="info-date"></span>
+    </div>
+
+</div></div>
+        <div class="cool-after" style="
+            
+                background-color: rgba(255, 255, 255, 0.49); 
+                backdrop-filter: saturate(100%) blur(6px);
+            
+            "></div>
+    </body>
+</html>

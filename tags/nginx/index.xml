@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nginx on hobocat home</title>
+    <link>https://hobocat.github.io/tags/nginx/</link>
+    <description>Recent content in Nginx on hobocat home</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 15 May 2024 15:24:47 +0800</lastBuildDate>
+    <atom:link href="https://hobocat.github.io/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>nginx服务</title>
+      <link>https://hobocat.github.io/post/nginx/2019-06-04-nginx/</link>
+      <pubDate>Tue, 04 Jun 2019 20:06:07 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/nginx/2019-06-04-nginx/</guid>
+      <description>一、Nginx概述 简介 ​ Nginx是一个开源且高效、可靠的HTTP中间件、代理服务。 nginx优势： IO多路复用的epoll 轻量级【功能模块少、代码模块化】 CP</description>
+    </item>
+  </channel>
+</rss>

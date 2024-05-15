@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Thymeleaf on hobocat home</title>
+    <link>https://hobocat.github.io/categories/thymeleaf/</link>
+    <description>Recent content in Thymeleaf on hobocat home</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 15 May 2024 15:24:47 +0800</lastBuildDate>
+    <atom:link href="https://hobocat.github.io/categories/thymeleaf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>thymeleaf与Spring整合</title>
+      <link>https://hobocat.github.io/post/thymeleaf/2018-09-06-thymeleaf-spring/</link>
+      <pubDate>Thu, 06 Sep 2018 15:37:40 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/thymeleaf/2018-09-06-thymeleaf-spring/</guid>
+      <description>前言 Thymeleaf集成了Spring Framework的3.x和4.x版本，由两个名为thymeleaf-spring3和thymeleaf-spring4</description>
+    </item>
+    <item>
+      <title>thymeleaf的基本使用</title>
+      <link>https://hobocat.github.io/post/thymeleaf/2018-08-29-thymeleaf/</link>
+      <pubDate>Wed, 29 Aug 2018 13:03:42 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/thymeleaf/2018-08-29-thymeleaf/</guid>
+      <description>一、简介 Thymeleaf是一个适用于Web和独立环境的现代服务器端Java模板引擎，能够处理HTML，XML，JavaScript，CSS甚至纯文本。 Thym</description>
+    </item>
+  </channel>
+</rss>

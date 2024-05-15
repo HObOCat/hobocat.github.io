@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on hobocat home</title>
+    <link>https://hobocat.github.io/categories/</link>
+    <description>Recent content in Categories on hobocat home</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 15 May 2024 15:24:47 +0800</lastBuildDate>
+    <atom:link href="https://hobocat.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Archive</title>
+      <link>https://hobocat.github.io/categories/archive/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://hobocat.github.io/categories/archive/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Database</title>
+      <link>https://hobocat.github.io/categories/database/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://hobocat.github.io/categories/database/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>NoSQL</title>
+      <link>https://hobocat.github.io/categories/nosql/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://hobocat.github.io/categories/nosql/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Network</title>
+      <link>https://hobocat.github.io/categories/network/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://hobocat.github.io/categories/network/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tool</title>
+      <link>https://hobocat.github.io/categories/tool/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://hobocat.github.io/categories/tool/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mq</title>
+      <link>https://hobocat.github.io/categories/mq/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://hobocat.github.io/categories/mq/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Spring-Cloud</title>
+      <link>https://hobocat.github.io/categories/spring-cloud/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://hobocat.github.io/categories/spring-cloud/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Docker</title>
+      <link>https://hobocat.github.io/categories/docker/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://hobocat.github.io/categories/docker/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hadoop</title>
+      <link>https://hobocat.github.io/categories/hadoop/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://hobocat.github.io/categories/hadoop/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mybatis</title>
+      <link>https://hobocat.github.io/categories/mybatis/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://hobocat.github.io/categories/mybatis/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Searchengine</title>
+      <link>https://hobocat.github.io/categories/searchengine/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://hobocat.github.io/categories/searchengine/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Java</title>
+      <link>https://hobocat.github.io/categories/java/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://hobocat.github.io/categories/java/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Spring</title>
+      <link>https://hobocat.github.io/categories/spring/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://hobocat.github.io/categories/spring/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Application</title>
+      <link>https://hobocat.github.io/categories/application/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://hobocat.github.io/categories/application/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Nginx</title>
+      <link>https://hobocat.github.io/categories/nginx/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://hobocat.github.io/categories/nginx/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Dubbo</title>
+      <link>https://hobocat.github.io/categories/dubbo/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://hobocat.github.io/categories/dubbo/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Thymeleaf</title>
+      <link>https://hobocat.github.io/categories/thymeleaf/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://hobocat.github.io/categories/thymeleaf/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

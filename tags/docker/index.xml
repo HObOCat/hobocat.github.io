@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on hobocat home</title>
+    <link>https://hobocat.github.io/tags/docker/</link>
+    <description>Recent content in Docker on hobocat home</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 18 Jan 2021 15:37:27 +0000</lastBuildDate>
+    <atom:link href="https://hobocat.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>kubernetes的使用</title>
+      <link>https://hobocat.github.io/post/docker/2021-01-18-kubernetes%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Mon, 18 Jan 2021 15:37:27 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/docker/2021-01-18-kubernetes%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>一、kubernetes 概述 基本介绍 kubernetes简称K8s，是用8代替&amp;quot;ubernete&amp;quot;而成的缩写。是一个开源的用于管理云平台中多</description>
+    </item>
+    <item>
+      <title>虚拟化概念</title>
+      <link>https://hobocat.github.io/post/docker/2019-12-09-%E8%99%9A%E6%8B%9F%E5%8C%96%E7%9A%84%E6%A6%82%E5%BF%B5/</link>
+      <pubDate>Mon, 09 Dec 2019 15:43:37 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/docker/2019-12-09-%E8%99%9A%E6%8B%9F%E5%8C%96%E7%9A%84%E6%A6%82%E5%BF%B5/</guid>
+      <description>一、虚拟化概念 ​ 虚拟化，是指通过虚拟化技术将一台计算机虚拟为多台逻辑计算机。在一台计算机上同时运行多个逻辑计算机，每个逻辑计算机可运行不同的操作系统，并且应用程</description>
+    </item>
+    <item>
+      <title>docker基础篇</title>
+      <link>https://hobocat.github.io/post/docker/2018-12-20-docker-%E5%9F%BA%E7%A1%80%E7%AF%87/</link>
+      <pubDate>Thu, 20 Dec 2018 14:23:37 +0000</pubDate>
+      <guid>https://hobocat.github.io/post/docker/2018-12-20-docker-%E5%9F%BA%E7%A1%80%E7%AF%87/</guid>
+      <description>一、简介 ​ Docker是PASS【Platform As A Service】提供商dotCloud开源的一个基于LXC【Linux Container】的高级容器引擎，</description>
+    </item>
+  </channel>
+</rss>
