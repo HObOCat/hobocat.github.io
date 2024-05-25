@@ -1,6 +1,6 @@
 baseURL = 'https://hobocat.xyz/'
 languageCode = 'zh-cn'
-title = 'hobocat's home'
+title = 'hobocat home'
 
 # 启用主题
 theme = 'virgo'
