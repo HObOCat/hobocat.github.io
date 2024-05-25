@@ -1,5 +1,6 @@
 ---
 categories: Tool
+tags: [tool]
 date: "2022-02-27T18:16:37Z"
 description: MapStruct的使用
 keywords: MapStruct,MapStruct的使用
