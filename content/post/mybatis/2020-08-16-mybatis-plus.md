@@ -1,5 +1,6 @@
 ---
 categories: mybatis
+tags: [mybatis]
 date: "2020-08-16T20:48:02Z"
 description: mybatis plus使用指南
 keywords: mybatis,mybatis plus
