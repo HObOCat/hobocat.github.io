@@ -42,7 +42,7 @@ ignoreFiles = ['\\.obsidian/*']
     # - coolSaturate 默认为 180% ，背景色彩饱和度，在 0% ~ 200% 之间
     # - coolBlur 默认为 6px ，背景色彩模糊度，数值越大越模糊
     hasActiveCool = true
-    coolBackground = 'wallhaven-m9y9j1.jpg'
+    coolBackground = 'wallhaven-6qr21l.jpg'
     coolOpacity = 0.569 # 0.86
     coolSaturate = '180%'
     coolBlur = '4px'
