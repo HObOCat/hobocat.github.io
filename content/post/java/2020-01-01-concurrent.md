@@ -1,6 +1,8 @@
 ---
-categories: java
-date: "2020-01-01T22:34:31Z"
+categories: Java
+# tags: [Java]
+date: 2024-03-08
+time: 22:34
 description: Java并发编程
 keywords: Java并发,并发,juc
 title: Java多线程并发编程

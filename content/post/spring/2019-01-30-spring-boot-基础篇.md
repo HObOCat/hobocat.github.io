@@ -1,5 +1,6 @@
 ---
 categories: spring
+tags: [Spring]
 date: "2019-01-30T11:11:10Z"
 title: Spring Boot基础篇
 ---

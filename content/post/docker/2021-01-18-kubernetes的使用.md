@@ -1,6 +1,6 @@
 ---
 categories: docker
-tags: [docker]
+# tags: [docker]
 date: "2021-01-18T15:37:27Z"
 title: kubernetes的使用
 ---

@@ -1,5 +1,6 @@
 ---
 categories: spring
+tags: [Spring]
 date: "2018-12-06T16:07:31Z"
 title: spring-data-solr的应用
 ---

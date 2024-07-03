@@ -1,5 +1,6 @@
 ---
 categories: Spring-Cloud
+tags: [Spring Cloud]
 date: "2021-02-02T16:42:30Z"
 description: spring-cloud-alibaba-naocs使用详解
 keywords: spring cloud alibaba naocs

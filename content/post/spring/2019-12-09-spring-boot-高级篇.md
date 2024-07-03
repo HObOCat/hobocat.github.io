@@ -1,5 +1,6 @@
 ---
 categories: spring
+tags: [Spring]
 date: "2019-12-09T15:37:10Z"
 title: Spring Boot高级篇
 ---
