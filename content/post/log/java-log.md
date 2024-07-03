@@ -142,7 +142,113 @@ log4j.appender.E.layout.ConversionPattern = %-d{yyyy-MM-dd HH:mm:ss}  [ %t:%r ] 
 ### Logback
 
 与 log4j 同一作者，是 log4J 的升级，具备比 log4j 更多的优点。后于 slf4j 接口规范开发，所以直接实现了 slf4j 的接口。
-logback 当前分为 3 个模块 logback-core，logback-classic， logback-access
-logback-core是其他模块的基础
-logback-classic 是 log4j 的改良，本省实现了 slf4j 的接口
-logback-access 访问模块与 servlet 容器集成提供通过 http 来访日志的功能
+
+logback 当前分为 3 个模块 `logback-core`，`logback-classic`， `logback-access`
+
+- **logback-core** 是其他模块的基础
+- **logback-classic** 是 log4j 的改良，本省实现了 slf4j 的接口
+- **logback-access** 访问模块与 servlet 容器集成提供通过 http 来访日志的功能
+
+> `logback 组件`
+
+- **Logger**：日志的记录器，主要用于存放日志对象，也可以定义日志类型、级别
+- **Appender**：用于指定日志输出的目的地，可以是 控制台、文件、数据库等
+- **Layout**：负责把事件转成字符串，格式化的日志信息的输出。在 logback 中 layout 对象被封装成 encoder 中
+
+**项目集成**
+
+```xml
+<!--logback-classic依赖logback-core，会自动级联引入-->
+<dependency>
+  <groupId>ch.qos.logback</groupId>
+  <artifactId>logback-classic</artifactId>
+  <version>${logback-classic.version}</version>
+</dependency>
+<dependency>
+  <groupId>ch.qos.logback</groupId>
+  <artifactId>logback-core</artifactId>
+  <version>${logback-core.version}</version>
+</dependency>
+```
+
+**配置文件  logback.groovy | logback-test.xml | logback.xml**
+
+加载顺序 `logback-test.xml` > `logback.groovy` > `logback.xml` > `BasicConfigurator`（默认配置）
+
+![logback](/img/log/logback-struct.png)
+
+配置详情
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 配置文件修改时重新加载，默认true -->
+<configuration scan="true">
+    
+    <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
+    <property name="CATALINA_BASE" value="**/logs"></property>
+    
+    <!-- 控制台输出 -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="UTF-8">
+            <!-- 输出日志记录格式 -->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+ 
+    <!-- 第一个文件输出,每天产生一个文件 -->
+    <appender name="FILE1" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 输出文件路径+文件名 -->
+            <fileNamePattern>${CATALINA_BASE}/aa.%d{yyyyMMdd}.log</fileNamePattern>
+            <!-- 保存30天的日志 -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder charset="UTF-8">
+            <!-- 输出日志记录格式 -->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+ 
+    <!-- 第二个文件输出,每天产生一个文件 -->
+    <appender name="FILE2" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${CATALINA_BASE}/bb.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${CATALINA_BASE}/bb.%d{yyyyMMdd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder charset="UTF-8">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <appender name="CUSTOM" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${CATALINA_BASE}/custom.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${CATALINA_BASE}/custom.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder charset="UTF-8">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <!-- 设置日志输出级别 -->
+    <root level="ERROR">
+        <appender-ref ref="CONSOLE" />
+    </root>
+    <logger name="file1" level="DEBUG">
+        <appender-ref ref="FILE1" />
+    </logger>
+    <logger name="file1" level="INFO">
+        <appender-ref ref="FILE2" />
+    </logger>
+    <!-- 自定义logger -->
+    <logger name="custom" level="INFO">
+        <appender-ref ref="CUSTOM" />
+    </logger>
+</configuration>
+
+```
