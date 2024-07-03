@@ -1606,7 +1606,7 @@ Future获得异步执行结果 有两种方法：调用Get()或者轮询isDOne()
 
 ## 十一、Fork/Join框架
 
-​	Fork/Join 框架：就是在必要的情况下，将一个大任务，进行拆分(fork)成若干个小任务（拆到不可再拆时），再将一个个的小任务运算的结果进行join 汇总。详细参见<a href="https://mynamelancelot.github.io/java/java8.html#forkjoin">Fork/Join框架</a>
+​	Fork/Join 框架：就是在必要的情况下，将一个大任务，进行拆分(fork)成若干个小任务（拆到不可再拆时），再将一个个的小任务运算的结果进行join 汇总。详细参见<a href="/post/java/2018-10-17-java8/#并行流与串行流">Fork/Join框架</a>
 
 ## 十二、并发容器
 
