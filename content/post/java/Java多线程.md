@@ -1,10 +1,11 @@
 ---
 title: "Java多线程"
-aliases: 
+aliases: Java
+categories: Java
 tags: [Java]
 date: 2024-07-02
 time: 15:50
----
+--- 
 ## 线程
 
 ### 几个概念
