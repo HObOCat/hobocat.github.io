@@ -1,5 +1,5 @@
 ---
-title: "Java多线程"
+title: "Java多线程基础篇"
 aliases: Java
 categories: Java
 tags: [Java]
@@ -436,18 +436,167 @@ take() 获取时，若队列已空，则一直等待
 
 ## 锁
 
+`主要解决问题：串行 并行  数据安全问题`
+
 ### 什么是锁
+
+多线程环境下，存在资源抢占问题，可能出现多个线程同时访问同一资源而导致的数据不一致或异常情况，为了保证共享资源的安全性，就出现了锁。
+
+`锁是用于控制多个线程对共享资源访问的机制。`
 
 ### 锁-锁的是什么 8大锁
 
-### 分类及概念
+**锁类模版**
+
+```java
+public class A {
+    // 静态方法 使用了 synchronized修饰，  则锁住的的是类模板 
+    public synchronized static void method() {
+        System.out.println("");
+    } 
+}  
+```
+
+```java
+public class A {
+    // 静态方法 
+    public static void method() {
+        // 此处锁的也是类模板
+        synchronized(this){
+            System.out.println("此处锁的也是类模板");
+        }
+    } 
+}  
+```
+
+**锁方法的调用对象**
+
+```java
+public class A {
+    // 普通方法 使用了 synchronized修饰，  则锁住的的是方法的调用对象  即类的实例对象 
+    public synchronized void method() {
+        System.out.println("");
+    } 
+} 
+
+A a = new A();
+// a调用锁a
+a.method();
+
+A b = new A();
+// b调用锁b
+b.method();
+```
+
+**锁变量**
+
+```java
+public class A {
+
+    private int index = 0;
+    
+    public void method() {
+        // 此处锁住的是index变量
+        synchronized(index) {
+            // 代码块中执行对index的操作
+            System.out.println("");
+        }
+    } 
+} 
+```
+
+**锁对象**
+
+```java
+public class A {
+    
+    public void method() {
+        // 此处锁住的是this对象，即 A的实例
+        synchronized(this) {
+            // 代码块中执行对index的操作
+            System.out.println("");
+        }
+        ....
+    } 
+} 
+```
+
+
+### 锁分类及概念
+
+> **按线程是否阻塞可分为 `有锁（悲观锁）` 和 `无锁（乐观锁）`**
+
+> **按线程是否共享分为 `共享锁（读锁）` 和 `排它锁（写锁）`**
+
+> **按竞争性可分为 `公平锁` 和 `非公平锁`**
+
+> **按锁状态划分为 `偏向锁` | `轻量级锁` | `重量级锁`**
+
+> **按递归性 分为 `递归锁（可重入锁）`**
+
+### 问题
+
+加锁会影响性能，使并行改为串行。因此在实际的使用中，根据场景的不同，要合理的控制锁的粒度，尽量减少性能的开销，线程的阻塞等。这个过程，也就是锁的优化，JDK7 以上自带锁的膨胀与消除，即在加锁的情况下，编译器会自动根据实际情况进行锁的消除或膨胀，如不会产生竞争的情况加锁了，会自动消除锁，避免性能损耗；
+
 
 ### 分布式锁
+
+> **`以上锁均为本地锁，即在同一个 JVM 中有效，而在不同的 JVM 中无效`**
+
+在集群环境中，就需要使用分布式锁来保证资源的统一
+
+分布式锁详见 [分布式锁](/post/tool/2022-02-15-distributed-lock) 
+
+此处做简单总结
+
+目前常用的分布式锁 
+1. 基于 redis 的 set NX 的简易分布式锁。
+原理：利用 redis 的 set NX（当不存在的时才设置成功，存在则不成功） 特性，实现简易的分布式锁。
+缺点： 
+  1. 不可重入：
+  2. 不可重试：无法重试，加锁失败即刻返回
+  3. 超时释放问题：业务卡死或者服务器宕机，锁一直无法释放，卡死了
+  4. 主从一致问题：主节点宕机，从节点转变为主，锁数据还未同步到该从节点，锁丢失
+可在获取锁之后在设置超时时间，但不是原子操作了。
+2. Redisson 基于 redis 的分布式锁
+
+实现原理也是基于 redis 的原子操作，使用 lua 脚本实现。
+它的功能更加完善，主要有以下优点：
+1. 对锁设置了自动过期时间，避免了因为服务器宕机而导致的锁无法释放问题。
+2. 采用哨兵机制看门狗超时续约，1 中对锁设置了过期时间，而过期时间的设置又与业务代码的执行时间有关，假若业务代码执行时长大于锁的过期时间，会造成锁的提前释放；使用看门狗模式，就避免了这种情况。看门狗原理：看门狗在每隔一段时间会检测业务代码是否执行完，若没完则续期过期时间，知道业务代码执行完毕。此时也有问题，若业务代码出现异常卡死，则会造成死锁，锁一直无法释放，这时会有一个最大等待时间，过了这个时间，锁同样也会自动释放。
+3. 可以设置最大等待时间，过期锁自动释放。即 2 中最后提到的问题。
+4. 实现了可重入功能：使用 hash 结构，存储了重入次数及当前线程标识，同一线程每获取一次锁，重入次数加一。释放一次减一。到 0 就是彻底释放了。
+5. 实现了可重试功能：利用消息订阅与信号量机制，在约定时间内多次获取锁。
+6. multiLock:解决了主从一致问题。同时向多个节点获取锁，所有节点获取成功，才算锁成功。
 
 
 ## 线程安全的集合
 
+**juc下的类**
+
+- `BlockingQueue`
+- `BlockingDeque`
+- `LinkedBlockingQueue`
+- `ConcurrentLinkedQueue`
+- `ConcurrentHashMap`
+- `CopyOnWriteArrayList`
+- `CopyOnWriteArraySet`
+
+
 ## 常用线程类
+
+```java
+FutureTask<T>
+CompletabledFuture<T>
+CyclicBarrier
+CountDownLatch
+LockSupport
+Semaphore
+
+BlockingQueue
+
+Exchanger
+```
 
 ## 线程池
 
@@ -457,7 +606,39 @@ take() 获取时，若队列已空，则一直等待
 
 ### 线程池创建方法
 
+**7大参数**
+
+```java
+ThreadPoolExcutor pool = ThreadPoolExecutor(
+                          int corePoolSize,  // 线程池初始化大小 核心线程数
+                          int maximumPoolSize,  // 最大线程数
+                          long keepAliveTime, // 当线程数大于核心数时，这时多余的空闲线程在终止之前等待新任务的最长时间。
+                          TimeUnit unit,  //  keepAliveTime 单位
+                          BlockingQueue<Runnable> workQueue, // 等待队列
+                          ThreadFactory threadFactory,  // 执行程序创建新线程时使用的工厂
+                          RejectedExecutionHandler handler) // 拒绝策略
+                          
+                          
+                          
+最大线程数 = 最大线程数 + 等待队列大小
+// corePoolSize 线程池初始化大小 
+核心池大小是保持活动状态（并且不允许超时等）的最小工作线程数
+// maximumPoolSize最大线程数
+// keepAliveTime 
+等待工作的空闲线程的超时（以纳秒为单位）。当存在超过 corePoolSize 或 allowCoreThreadTimeOut 时，
+线程将使用此超时。否则，他们将永远等待新的工作。
+// workQueue
+```
+
 ### 常见线程池
 
+**4大方法**
 
+```java
+Executors.newFixedThreadPool(5);  // 固定线程数
+Executors.newSingleThreadExecutor();  // 单线程
+Executors.newCachedThreadPool(); // 缓存线程池
+Executors.newWorkStealingPool(); // 
+Executors.newScheduledThreadPool(3);  // 定时任务线程池
+```
 
