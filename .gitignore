@@ -1,3 +1,3 @@
 public/
-resources/*
-resources/_gen/assets/style.scss_511aa33e99371f93fbf403479ebfd32e.content
+resources/**
+resources/_gen/assets/**

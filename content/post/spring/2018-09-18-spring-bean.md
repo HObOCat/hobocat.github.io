@@ -156,272 +156,320 @@ bean标签详解
 
 
 ## Spring AOP
-AOP
-    概念
-        Aspect Orient Programming 面向切面编程，AOP是一种编程思想。是面向对象编程（OOP）的一种补充。实现在不修改源代码的情况下，给程序动态统一添加额外功能的一种技术。
-        拦截指定方法并进行增强，无需侵入业务代码
+#### 概念
 
-    作用
-        分离功能性需求和非功能性需求，可以集中处理某一个关注点，减少对业务代码的侵入，增强代码的可读性和可维护性。
+Aspect Orient Programming 面向切面编程，AOP是一种编程思想。是面向对象编程（OOP）的一种补充。实现在不修改源代码的情况下，给程序动态统一添加额外功能的一种技术。
+拦截指定方法并进行增强，无需侵入业务代码
 
-    常用场景
-        事务
-        日志
-        权限
-        监测
+### 作用
 
-    核心
-        术语
-            JoinPoint 连接点
-                指哪些呗拦截到的点，在spring中只可以被动态代理拦截目标类的方法
+分离功能性需求和非功能性需求，可以集中处理某一个关注点，减少对业务代码的侵入，增强代码的可读性和可维护性。
 
-            PointCut 切入点
-                指要对哪些JoinPoint进行拦截，即被拦截的连接点
+### 常用场景
 
-            Advice 通知
-                指拦截到JoinPoint之后要做的事情，即对切入点增强的内容
+- 事务
+- 日志
+- 权限
+- 监测
 
-            Target 目标
-                指代理的目标对象
+### 核心
 
-            Weaving 植入
-                指把增强代码应用到目标上，生成代理对象的过程
+**术语**
 
-            Proxy 代理
-                指生成的代理对象
+- `JoinPoint` 连接点
 
-            Aspect 切面
-                切入点和通知的结合
+    指哪些被拦截到的点，在spring中只可以被动态代理拦截目标类的方法
 
+- `PointCut` 切入点
 
-        通知分类
-            before 前置通知
-                通知方法在目标方法调用之前执行
+    指要对哪些JoinPoint进行拦截，即被拦截的连接点
 
-            after 后置通知
-                通知方法在目标方法返回或异常后调用
+- `Advice` 通知
 
-            after-returning 返回后通知
-                通知方法在目标方法返回后调用
+    指拦截到JoinPoint之后要做的事情，即对切入点增强的内容
 
-            after-throwing 抛出异常通知
-                通知方法在目标方法抛出异常后调用
+- `Target` 目标
 
-            around 环绕通知
-                通知方法会将目标方法封装起来
+    指代理的目标对象
+
+- `Weaving` 植入
+
+    指把增强代码应用到目标上，生成代理对象的过程
+
+- `Proxy` 代理
+
+    指生成的代理对象
+
+- `Aspect` 切面
+
+    切入点和通知的结合
 
 
-        织入时期
-            编译期
-            类加载期
-            运行期
-                spring AOP使用方式
+**通知分类**
+
+- `before` 前置通知
+
+    通知方法在目标方法调用之前执行
+
+- `after` 后置通知
+
+    通知方法在目标方法返回或异常后调用
+
+- `after-returning` 返回后通知
+
+    通知方法在目标方法返回后调用
+
+- `after-throwing` 抛出异常通知
+
+    通知方法在目标方法抛出异常后调用
+
+- `around` 环绕通知
+
+    通知方法会将目标方法封装起来
 
 
+**织入时期**
 
-    日常使用
-        基于Aspectj
-            XML
-            注解
-                1. @Aspect 类上，声明当前类为切面
-                2.@Component并交给spring容器管理
-                3.自定义通知方法
-                    @Pointcut 切入点
-                        execution 表达式
-                            （[方法修饰符] 返回类型  包名.类名.方法名(参与类型) [异常类型]）
-                                方法修饰符  可省略
-                                返回值类型、包名、类名、方法名 可以用通配符* 代表任意
-                                包名与类名之间一个点 . 代表当前包下的类，两个点 .. 代表当前包下级子包下的类
-                                参数列表可以使用两个点 .. 代表任意类型参数，任意个数
+- 编译期
+- 类加载期
+- 运行期
 
-                            （* com.xx.xxx..*.*(..) ） xxx包及任意子包下所有方法
-                            （* com.xx.xxx.*.*(..)）xxx包下所有方法
-                            （* com.xx.xxx.*.yyy.*.*(..)） xxx包下任意yyy包下的任意方法
+        spring AOP使用方式
 
-                        within
-                        this
-                        target
-                        args
+### 日常使用
 
-                    @Before 前置通知
-                    @After 后置通知
-                    @AfterReturning 后置通知，有返回或有异常
-                    @Arround 环绕通知
-                    @AfterThrowing 异常通知
+**基于Aspectj**
+- XML
+- 注解
+
+    1. `@Aspect` 类上，声明当前类为切面
+    2. `@Component` 并交给spring容器管理
+    3. 自定义通知方法
+
+        - `@Pointcut` 切入点
+
+            - `execution` 表达式
+
+                    （[方法修饰符] 返回类型  包名.类名.方法名(参与类型) [异常类型]）
+                        方法修饰符  可省略
+                        返回值类型、包名、类名、方法名 可以用通配符* 代表任意
+                        包名与类名之间一个点 . 代表当前包下的类，两个点 .. 代表当前包下级子包下的类
+                        参数列表可以使用两个点 .. 代表任意类型参数，任意个数
+
+                    （* com.xx.xxx..*.*(..) ） xxx包及任意子包下所有方法
+                    （* com.xx.xxx.*.*(..)）xxx包下所有方法
+                    （* com.xx.xxx.*.yyy.*.*(..)） xxx包下任意yyy包下的任意方法
+
+            - `within`
+            - `this`
+            - `target`
+            - `args`
+
+        - `@Before` 前置通知
+        - `@After` 后置通知
+        - `@AfterReturning` 后置通知，有返回或有异常
+        - `@Arround` 环绕通知
+        - `@AfterThrowing` 异常通知
 
 
-            配置自动代理
-                <aop:aspectj-autoproxy/>
-                @Configuration + @EnableAspectAutoProxy
+    4. 配置自动代理
+        - `<aop:aspectj-autoproxy/>`
+        - `@Configuration + @EnableAspectAutoProxy`
 
 
-        spring 自带方式
+spring 自带方式
 
-    实现原理
-        动态代理实现
-            JDK动态代理  默认
-                基于接口的动态代理技术
+### 实现原理
 
-            CGLib代理
-                基于父类的动态代理技术
+**动态代理实现**
+
+- **JDK动态代理**  默认 基于接口的动态代理技术
+
+- **CGLib代理** 基于父类的动态代理技术
 
 
 
 
 
 ## Spring 事务
-Spring事务
-    概念
-        事务是逻辑上的一组操作，要么都执行，要么都不执行。
+### 概念
+事务是逻辑上的一组操作，要么都执行，要么都不执行。
+### 注意
+事务能否生效，主要看数据库引擎是否支持事务
 
-    注意
-        事务能否生效，主要看数据库引擎是否支持事务
-            MySQL 的innoDB引擎支持事务，myisam引擎不支持事务
-
-
-    特性  ACID
-        原子性 Atomicity
-            一个事务中的所有操作，要么全部完成，要么全部不完成，不会结束在某个中间环节。若执行中发生错误，会被回滚到事务开始前的状态。
-
-        一致性 Consistency
-            事务开始之前和事务结束之后，数据路的完成性没有被破坏。即数据是预期和期望的样子
-
-        隔离性 Isolation
-            数据库允许多个并发事务同时对其数据进行读写和修改的能力，隔离性可以防止多个事务并发执行时由于交叉执行而导致的数据不一致。事务隔离分为不同级别
-
-        持久性 Durability
-            事务处理结束后，对数据的修改是永久的，即系统故障也不会丢失
+    MySQL 的innoDB引擎支持事务，myisam引擎不支持事务
 
 
-    实现方式
-        编程式事务管理
-            通过TransactionTemplate或TransactionManager手动管理事务
+### 特性  ACID
 
-        声明式事务管理
-            使用@Transactional注解进行事务管理
-                作用范围
-                    方法：推荐将注解用在方法上。另外要注意的是只有在public方法上才生效
-                    类：放在类上，表示对类中所有的public方法都生效
-                    接口：不推荐
+- **原子性 Atomicity**
 
-                常用参数配置
-                    propagation
-                        事务的传播行为，默认值为 REQUIRED
+一个事务中的所有操作，要么全部完成，要么全部不完成，不会结束在某个中间环节。若执行中发生错误，会被回滚到事务开始前的状态。
 
-                    isolcation
-                        事务的隔离级别，默认值采用 DEFAULT
+- **一致性 Consistency**
 
-                    timeout
-                        事务的超时时间，默认值为-1
+事务开始之前和事务结束之后，数据路的完成性没有被破坏。即数据是预期和期望的样子
 
-                    readOnly
-                        指定事务是否为只读事务，默认值为 false
+- **隔离性 Isolation**
 
-                    rollbackFor
-                        用于指定能够触发事务回滚的异常类型，并且可以指定多个异常类型
+数据库允许多个并发事务同时对其数据进行读写和修改的能力，隔离性可以防止多个事务并发执行时由于交叉执行而导致的数据不一致。事务隔离分为不同级别
 
-                    noRollbackFor
-                        用于指定不触发事务回滚的异常类型，并且可以指定多个异常类型
+- **持久性 Durability**
 
+事务处理结束后，对数据的修改是永久的，即系统故障也不会丢失
 
-                原理解释
-                    如果类或者类中public方法上被标注@Transactional注解，Spring容器会在启动时为其创建一个代理类，在调用被注解的public方法是，实际调用的是TransactionInterceptor类中的invoke()方法。这个方法的作用就是在目标方法之前开启事务，方法执行过程中若遇到异常时回滚事务。方法调用完成之后提交事务。
-                        TransactionInterceptor 类中的 invoke()方法内部实际调用的是 TransactionAspectSupport 类的 invokeWithinTransaction()方法
+### 实现方式
 
+**编程式事务管理**
 
+        通过TransactionTemplate或TransactionManager手动管理事务
 
-            推荐使用:代码侵入性小，基于AOP实现
-            AOP自调用问题
-                同一类中其他没有@Transactional注解的方法内部调用有@Transactional注解的方法，有注解的方法事务会失效
-                只有当 @Transactional 注解的方法在类以外被调用的时候，Spring 事务管理才生效。
+**声明式事务管理**
 
+1. 使用@Transactional注解进行事务管理
 
+    - 作用范围
 
-    核心接口
-        PlatformTransactionManager
-            事务管理器，Spring事务策略的核心。提供了不同平台的事务管理器如JDBC、Hibernate、JPA等
-            主要方法
-                TransactionStatus getTransaction(TransactionDefinition var) 获取事务
-                void commit(TransactionStatus var) 提交事务
-                void rollback(TransactionStatus var) 回滚事务
+            - 方法：推荐将注解用在方法上。另外要注意的是只有在public方法上才生效
+            - 类：放在类上，表示对类中所有的public方法都生效
+            - 接口：不推荐
 
+    - 常用参数配置
 
-        TransactionDefinition
-            事务定义信息
-                隔离级别
-                    TransactionDefinition.ISOLATION_DEFAULT
-                        使用后端数据库默认的隔离级别，MySQL 默认采用的 REPEATABLE_READ 隔离级别 Oracle 默认采用的 READ_COMMITTED 隔离级别
+        - `propagation`
+        
+            事务的传播行为，默认值为 REQUIRED
 
-                    TransactionDefinition.ISOLATION_READ_UNCOMMITTED
-                        最低的隔离级别，使用这个隔离级别很少，因为它允许读取尚未提交的数据变更，可能会导致脏读、幻读或不可重复读
+        - `isolcation`
 
-                    TransactionDefinition.ISOLATION_READ_COMMITTED
-                        允许读取并发事务已经提交的数据，可以阻止脏读，但是幻读或不可重复读仍有可能发生
+            事务的隔离级别，默认值采用 DEFAULT
 
-                    TransactionDefinition.ISOLATION_REPEATABLE_READ
-                        对同一字段的多次读取结果都是一致的，除非数据是被本身事务自己所修改，可以阻止脏读和不可重复读，但幻读仍有可能发生
+        - `timeout`
 
-                    TransactionDefinition.ISOLATION_SERIALIZABLE
-                        最高的隔离级别，完全服从 ACID 的隔离级别。所有的事务依次逐个执行，这样事务之间就完全不可能产生干扰，也就是说，该级别可以防止脏读、不可重复读以及幻读。但是这将严重影响程序的性能。通常情况下也不会用到该级别。
+            事务的超时时间，默认值为-1
+
+        - `readOnly`
+
+            指定事务是否为只读事务，默认值为 false
+
+        - `rollbackFor`
+
+            用于指定能够触发事务回滚的异常类型，并且可以指定多个异常类型
+
+        - `noRollbackFor`
+
+            用于指定不触发事务回滚的异常类型，并且可以指定多个异常类型
 
 
-                传播行为
-                    TransactionDefinition.PROPAGATION_REQUIRED
-                    2.TransactionDefinition.PROPAGATION_REQUIRES_NEW
-                    3.TransactionDefinition.PROPAGATION_NESTED:
-                    4.TransactionDefinition.PROPAGATION_MANDATORY
+    - 原理解释
 
-                超时
-                    指一个事务所允许执行的最长时间，若超过该时间限制事务还没有完成，则自动回滚事务。 单位秒，默认值-1
-
-                只读
-                    只读数据查询的事务，不涉及数据的修改。适用于复杂业务，多条多次查询
-
-                回滚规则
-                    定义遇到哪些异常才会事务回滚。默认RuntimeException及其子类回滚
-
-
-            主要方法
-                int getPropagationBehavior();
-                    返回事务的传播行为，默认值为 REQUIRED。
-
-                int getIsolationLevel();
-                    返回事务的隔离级别，默认值是 DEFAULT
-
-                int getTimeout();
-                    返回事务的超时时间，默认值为-1。如果超过该时间限制但事务还没有完成，则自动回滚事务。
-
-                boolean isReadOnly();
-                    返回是否为只读事务，默认值为 false
+        如果类或者类中`public方法上`被标注`@Transactional`注解，Spring容器会在启动时为其创建一个代理类，在调用被注解的public方法时，`实际调用的是TransactionInterceptor类中的invoke()方法。这个方法的作用就是在目标方法之前开启事务，方法执行过程中若遇到异常时回滚事务。`方法调用完成之后提交事务。
+            TransactionInterceptor 类中的 invoke()方法内部实际调用的是 TransactionAspectSupport 类的 invokeWithinTransaction()方法
 
 
 
-        TransactionStatus
-            事务运行状态
-            主要方法
-                boolean isNewTransaction()
-                    是否是新的事务
+2. 推荐使用:代码侵入性小，基于AOP实现
+3. AOP自调用问题
 
-                boolean hasSavepoint()
-                    是否有恢复点
-
-                void setRollbackOnly()
-                    设置为只回滚
-
-                boolean isRollbackOnly()
-                    是否为只回滚
-
-                boolean isCompleted
-                    是否已完成
+    - 同一类中其他没有`@Transactional`注解的方法内部调用有@Transactional注解的方法，有注解的方法事务会失效
+    - 只有当 `@Transactional` 注解的方法在`类以外`被调用的时候，Spring 事务管理才生效。
 
 
 
+### 核心接口
+
+#### PlatformTransactionManager`
+
+    事务管理器，Spring事务策略的核心。提供了不同平台的事务管理器如JDBC、Hibernate、JPA等
+
+**主要方法**
+
+- `TransactionStatus getTransaction(TransactionDefinition var)` 获取事务
+- `void commit(TransactionStatus var)` 提交事务
+- `void rollback(TransactionStatus var)` 回滚事务
+
+
+#### TransactionDefinition
+
+**事务定义信息**
+
+- 隔离级别
+    - `TransactionDefinition.ISOLATION_DEFAULT`
+        使用后端数据库默认的隔离级别，MySQL 默认采用的 REPEATABLE_READ 隔离级别 Oracle 默认采用的 READ_COMMITTED 隔离级别
+
+    - `TransactionDefinition.ISOLATION_READ_UNCOMMITTED`
+        最低的隔离级别，使用这个隔离级别很少，因为它允许读取尚未提交的数据变更，可能会导致脏读、幻读或不可重复读
+
+    - `TransactionDefinition.ISOLATION_READ_COMMITTED`
+        允许读取并发事务已经提交的数据，可以阻止脏读，但是幻读或不可重复读仍有可能发生
+
+    - `TransactionDefinition.ISOLATION_REPEATABLE_READ`
+        对同一字段的多次读取结果都是一致的，除非数据是被本身事务自己所修改，可以阻止脏读和不可重复读，但幻读仍有可能发生
+
+    - `TransactionDefinition.ISOLATION_SERIALIZABLE`
+        最高的隔离级别，完全服从 ACID 的隔离级别。所有的事务依次逐个执行，这样事务之间就完全不可能产生干扰，也就是说，该级别可以防止脏读、不可重复读以及幻读。但是这将严重影响程序的性能。通常情况下也不会用到该级别。
+
+
+- 传播行为
+    1. `TransactionDefinition.PROPAGATION_REQUIRED`
+    2. `TransactionDefinition.PROPAGATION_REQUIRES_NEW`
+    3. `TransactionDefinition.PROPAGATION_NESTED`
+    4. `TransactionDefinition.PROPAGATION_MANDATORY`
+
+- 超时
+
+    指一个事务所允许执行的最长时间，若超过该时间限制事务还没有完成，则自动回滚事务。 单位秒，默认值-1
+
+- 只读
+
+    只读数据查询的事务，不涉及数据的修改。适用于复杂业务，多条多次查询
+
+- 回滚规则
+
+    定义遇到哪些异常才会事务回滚。默认RuntimeException及其子类回滚
+
+
+**主要方法**
+
+- `int getPropagationBehavior();`
+    返回事务的传播行为，默认值为 REQUIRED。
+
+- `int getIsolationLevel();`
+    返回事务的隔离级别，默认值是 DEFAULT
+
+- `int getTimeout();`
+    返回事务的超时时间，默认值为-1。如果超过该时间限制但事务还没有完成，则自动回滚事务。
+
+- `boolean isReadOnly();`
+    返回是否为只读事务，默认值为 false
+
+
+
+#### TransactionStatus
+**事务运行状态**
+
+**主要方法**
+
+- `boolean isNewTransaction()`
+    是否是新的事务
+
+- `boolean hasSavepoint()`
+    是否有恢复点
+
+- `void setRollbackOnly()`
+    设置为只回滚
+
+- `boolean isRollbackOnly()`
+    是否为只回滚
+
+- `boolean isCompleted`
+    是否已完成
 
 
 ## springframework 优点
 预定义模板、松耦合、易于测试、轻巧、快速开发、声明式支持
 
-
+![springframework 优点](/img/spring/springframework.png)
 
 
 
