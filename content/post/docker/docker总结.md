@@ -12,28 +12,28 @@ time: 15:00
 
 1. 删除未使用的容器
 ```sh
-  docker container prue
+  docker container prune
   ```
 2. 删除未使用的镜像
 ```sh
-  docker image prue
+  docker image prune
   ```
  3. 删除未使用的卷
  ```sh
-  docker volume prue
+  docker volume prune
   ```
  4. 删除未使用的网络
  ```sh
-  docker network prue
+  docker network prune
   ``` 
 5. 全量清理
   - 清理所有未使用的资源
 ```sh
-  docker system prue
+  docker system prune
   ```
   - 清理未使用的镜像和卷
 ```sh
-  docker system prue -a --volumes
+  docker system prune -a --volumes
   ```
 ### 增加Docker主机的存储空间
 
