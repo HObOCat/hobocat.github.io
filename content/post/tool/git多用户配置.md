@@ -12,20 +12,20 @@ time: 10:57
 ## 全局配置
 
 - 查看配置
-```sh
-  git config --list
+```bash
+git config --list
 ``` 
 - 清空全局 user.name email
 
-```sh
-  git config --global --unset user.name
-  git config --global --unset user.email
+```bash
+git config --global --unset user.name
+git config --global --unset user.email
 ```
 - 设置全局 user.name email
 
-```sh
-  git config --global user.name "hobocat"
-  git config --global user.email "hobocat@126.com"
+```bash
+git config --global user.name "hobocat"
+git config --global user.email "hobocat@126.com"
 ```
 
 ## 本地配置
@@ -34,15 +34,15 @@ time: 10:57
 
   - 清空 user.name email
 
-    ```sh
-      git config --unset user.name
-      git config --unset user.email
+    ```bash
+    git config --unset user.name
+    git config --unset user.email
     ```
   - 设置 user.name email
 
-    ```sh
-      git config user.name "hobocat"
-      git config user.email "hobocat@126.com"
+    ```bash
+    git config user.name "hobocat"
+    git config user.email "hobocat@126.com"
     ```
 
 ## SSH 多用户配置
@@ -50,26 +50,26 @@ time: 10:57
 #### 生成秘钥
 
 - 生成命令
-```sh
-  ssh-keygen -t {算法名} -f {文件路劲及文件名} -C "解释信息，一般是邮箱"
+```bash
+ssh-keygen -t {算法名} -f {文件路劲及文件名} -C "解释信息，一般是邮箱"
 ```
 
 - 生成gitee仓库的SSH
-```sh
+```bash
   ssh-keygen -t rsa -f ~/.ssh/id_rsa.gitee -C "hobocat@126.com"
 ```
 - 生成github仓库的SSH
 
-```sh
+```bash
   ssh-keygen -t rsa -f ~/.ssh/id_rsa.github -C "hobocat@126.com"
 ```
 - 生成公司仓库的SSH
 
-```sh
+```bash
   ssh-keygen -t rsa -f ~/.ssh/id_rsa.company -C "hobocat@126.com"
 ```
 ### 将 ssh-key 分别添加到 ssh-agent 信任列
-```sh
+```bash
   ssh-agent bash
   ssh-add ~/.ssh/id_rsa.gitee
   ssh-add ~/.ssh/id_rsa.github
@@ -77,7 +77,7 @@ time: 10:57
 ```
 ### 添加公钥到自己的 git 账户中
 | 使用命令，copy公钥，到 git 账户中粘贴即可。或者打开文件复制，带 pub 的文件
-```sh
+```bash
   pbcopy < ~/.ssh/id_rsa.gitee.pub
 ```
 #### git平台添加SSH
@@ -90,23 +90,23 @@ time: 10:57
 ```yml
 #Default gitHub user Self
 Host github.com
-    HostName github.com
-    User HObOCat #默认就是git，可以不写
-    IdentityFile ~/.ssh/id_rsa.github
+HostName github.com
+User HObOCat #默认就是git，可以不写
+IdentityFile ~/.ssh/id_rsa.github
 	
 # gitee的配置
 host gitee.com  # 别名,最好别改
-	Hostname gitee.com #要连接的服务器
-	User HObOCat #用户名
-	#密钥文件的地址，注意是私钥
-	IdentityFile ~/.ssh/id_rsa_gitee
+Hostname gitee.com #要连接的服务器
+User HObOCat #用户名
+#密钥文件的地址，注意是私钥
+IdentityFile ~/.ssh/id_rsa_gitee
 
 #Add gitLab user 
 Host xxxx
-    HostName xxxx
-    User HObOCat
-    PreferredAuthentications publickey
-    IdentityFile ~/.ssh/id_rsa.company
+HostName xxxx
+User HObOCat
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/id_rsa.company
 
 ```
 
