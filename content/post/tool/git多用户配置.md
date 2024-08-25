@@ -82,7 +82,7 @@ ssh-keygen -t {算法名} -f {文件路劲及文件名} -C "解释信息，一�
 ```
 #### git平台添加SSH
 
-- gitee方式[!https://help.gitee.com/base/account/SSH%E5%85%AC%E9%92%A5%E8%AE%BE%E7%BD%AE]
+- [gitee方式](https://help.gitee.com/base/account/SSH%E5%85%AC%E9%92%A5%E8%AE%BE%E7%BD%AE)
 
 
 #### 配置多平台
